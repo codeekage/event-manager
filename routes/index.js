@@ -28,7 +28,7 @@ app.get('/settings', (req, res, next) => {
     res.render('settings', {
         title: "Settings",
         owner_name: "Node.js Africa"
-    })
+    });
 });
 
 
@@ -36,7 +36,7 @@ app.get('/form', (req, res, next) => {
     res.render('form', {
         layout : false
     });
-})
+});
 
 
 module.exports = app;

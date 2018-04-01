@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Schema = mongo.Schema;
+const Schema = mongoose.Schema;
 
 const EventSchema = new Schema({
     evt_id : {
@@ -19,7 +19,7 @@ const EventSchema = new Schema({
     evt_agenda : {
         type : [String]
     },
-    expct_att : {
+    evt_aud : {
         type : Number,
         default : "undefined"
     },
@@ -34,12 +34,16 @@ const EventSchema = new Schema({
     co_host:{
         type : String 
     },
+    evt_occ : {
+        type : String,
+        required : [true, "event re-occuring?"]
+    },
     delete_status : {
         type : Number,
         default : 0
     }
 });
 
-const EventModel = mongoose.model(EventSchema, "events");
+const EventModel = mongoose.model('events', EventSchema);
 module.exports = EventModel;
 

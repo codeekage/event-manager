@@ -3,9 +3,15 @@
 //require application dependencies
 const express = require('express');
 const exphbs = require('express-handlebars'),
-    helpers = require('../app_modules/handlebars.helpers');
+logger = require('morgan'),
+    helpers = require('../app_modules/handlebars.helpers'),
+    routes = require("../app_modules/express.routes");
 
 module.exports = (app) => {
+
+    //logger 
+    app.use(logger('dev'))
+
     // Create `ExpressHandlebars` instance with a default layout.
     var hbs = exphbs.create({
         defaultLayout: 'main',
@@ -54,7 +60,8 @@ module.exports = (app) => {
             .catch(next);
     }
 
-    app.use("/", require("../routes/index"))
+    app.use("/", require("../routes/index"));
+    routes("/", app);
 }
 
 
