@@ -32,4 +32,11 @@ app.get('/settings', (req, res, next) => {
 });
 
 
+app.get('/form', (req, res, next) => {
+    res.render('form', {
+        layout : false
+    });
+})
+
+
 module.exports = app;
