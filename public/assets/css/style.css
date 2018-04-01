@@ -1,0 +1,7 @@
+.side-bar {
+    background: #336633 !important;
+}
+
+.side-bar>li>a {
+    color: #336633!important;
+}
