@@ -7,6 +7,10 @@ const UserSchema = new Schema({
         type : String,
         required : [true, "username must be provided"]
     },
+    fullname : {
+        type : String,
+        required : [true, "username must be provided"]
+    },
     phone : {
         type : String,
         required : [true, "phone_number is required"]
@@ -15,7 +19,7 @@ const UserSchema = new Schema({
         type : String,
         required : [true, "email address is required"]
     }, 
-    socials : {
+    handels : {
         type : String,
     }
 });
