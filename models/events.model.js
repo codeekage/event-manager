@@ -7,7 +7,6 @@ const EventsSchema = new Schema({
         required : [true, "event title is required"]
     },
     attendee_id : {
-        type : String,
-        required : [true, "attendess"]
+        type : String
     }
 })
