@@ -1,4 +1,7 @@
-# Database structure 
+# Database structure
+
+|------------|:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|
+| event_id   | event_name  | event_date  | event_time  |  expct_att  | evt_occur   |  evt_venue  | noti_msg   | evt_type   |
 
 Event --> Event ID, Event Name, Event Date, Event Time, Expected Attendees, Event Occurance(once, recurring), Event Venue, Notification Message, Event Type, Event Agenda, Add Admins, Event Status(LIVE, ENDED).
 
