@@ -684,7 +684,7 @@ fieldset[disabled] .btn-primary.active {
 }
 
 .btn-success {
-    background-color: #18ce0f;
+    background-color: #336633;
     color: #FFFFFF;
 }
 
@@ -699,7 +699,7 @@ fieldset[disabled] .btn-primary.active {
 .show>.btn-success.dropdown-toggle,
 .show>.btn-success.dropdown-toggle:focus,
 .show>.btn-success.dropdown-toggle:hover {
-    background-color: #1beb11;
+    background-color: #336633;
     color: #FFFFFF;
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -1348,7 +1348,7 @@ fieldset[disabled] .btn-link.active {
 }
 
 .form-control:focus {
-    border: 1px solid #f96332;
+    border: 1px solid #336633;
     -webkit-box-shadow: none;
     box-shadow: none;
     outline: 0 !important;
