@@ -5,12 +5,17 @@ const express = require('express');
 const exphbs = require('express-handlebars'),
 logger = require('morgan'),
     helpers = require('../app_modules/handlebars.helpers'),
+    bodyParser = require("body-parser"),
     routes = require("../app_modules/express.routes");
 
 module.exports = (app) => {
 
     //logger 
     app.use(logger('dev'))
+
+    //SET UP BodyParser MIDDLEWARE
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({ extended: false }))
 
     // Create `ExpressHandlebars` instance with a default layout.
     var hbs = exphbs.create({

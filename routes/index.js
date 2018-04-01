@@ -16,6 +16,11 @@ app.get('/events', (req, res, next) => {
     })
 });
 
+app.post('/ow/events', (req, res, next) => {
+    console.log(req.body)
+});
+
+
 app.get('/attendees', (req, res, next) => {
     res.render('attendees', {
         title: "Attendees",
