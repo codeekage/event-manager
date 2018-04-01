@@ -5,7 +5,7 @@ let mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 module.exports = (config) => {
-    var dbURI = config.dev.db;
+    var dbURI = config.env.db;
     global.Promise = mongoose.Promise
 
     // using new syntax for mongoose library

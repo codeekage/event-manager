@@ -4,7 +4,8 @@ var Promise = global.Promise || require('promise');
 
 const express = require('express'),
     exphbs = require('express-handlebars'), // "express-handlebars"
-    config = require('./config/env.config');
+    config = require('./config/env.config'),
+    mongooseconfig = require('./config/mongoose.config')(config);
 
 var app = express();
 
