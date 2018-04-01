@@ -1,5 +1,6 @@
 # Database structure
 
+| Event |
 |------------|:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|
 | event_id   | event_name  | event_date  | event_time  |  expct_att  | evt_occur   |  evt_venue  | noti_msg   | evt_type   |
 
