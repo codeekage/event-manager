@@ -17,6 +17,17 @@ app.use(function (err, req, res, next) {
     res.status(422).send({ error: err.message })
 });
 
+app.use(function (req, res, next) {
+    if (res.status(404)) {
+        res.render("404", {
+            page_title: "404",
+            layout : false
+
+        })
+    }
+})
+
+
 app.listen(config.env.port, function () {
     console.log(`express-handlebars example server listening on: ${config.env.port}`);
 });

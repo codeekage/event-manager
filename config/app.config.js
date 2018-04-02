@@ -49,14 +49,6 @@ module.exports = (app) => {
         next();
     });
 
-    app.use(function(req, res, next){
-        if(res.status(404)){
-            res.render("test", {
-                page_title : "404"
-            })
-        }
-    })
-
     // Create `ExpressHandlebars` instance with a default layout.
     var hbs = exphbs.create({
         defaultLayout: 'main',
