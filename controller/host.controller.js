@@ -1,5 +1,5 @@
 const HostModel = require("../models/host.model"),
-    bcryptjs = require("bcryptjs");
+    bcrypt = require("bcryptjs");
 
 
 function createHost(newUser, callback) {

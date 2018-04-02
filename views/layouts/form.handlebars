@@ -30,7 +30,20 @@
 </head>
 
 <body style="background-color: #666666;">
-
+    {{#if success_msg}}
+    <div class="alert alert-success">
+        {{success_msg}}
+    </div>
+    {{/if}} {{#if error_msg}}
+    <div id="error_msg" class="alert alert-danger">
+        {{error_msg}}
+    </div>
+    {{/if}} {{#if error}}
+    <div class="alert alert-danger">
+        {{error}}
+    </div>
+    {{/if}}
+     
     {{{body}}}
 
     <!--===============================================================================================-->
@@ -47,9 +60,12 @@
     <script src="assets/vendor/daterangepicker/daterangepicker.js"></script>
     <!--===============================================================================================-->
     <script src="assets/vendor/countdowntime/countdowntime.js"></script>
+    <script src="assets/js/core/form.js"></script>
+    <script src="../assets/js/plugins/bootstrap-notify.js"></script>
+    <script src="../assets/demo/demo.js"></script>
     <!--===============================================================================================-->
     <script src="assets/js/main.js"></script>
-
+    <script src="assets/js/form.request.js"></script>
 </body>
 
 </html>

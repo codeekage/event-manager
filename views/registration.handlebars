@@ -1,7 +1,7 @@
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">
-            <form class="login100-form validate-form">
+            <form id="host-registration" class="login100-form validate-form" action="/host/registration" method="POST">
                 <span class="login100-form-title p-b-43">
                    Host Account
                 </span>
@@ -14,7 +14,7 @@
                 </div>
 
                 <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                    <input class="input100" type="text" name="email">
+                    <input class="input100" type="text" name="host_email">
                     <span class="focus-input100"></span>
                     <span class="label-input100">Email</span>
                 </div>
@@ -27,9 +27,10 @@
                 </div>
 
                 <div class="container-login100-form-btn">
-                    <button class="login100-form-btn">
+                    <input class="login100-form-btn" type="submit" value="create Accouut" >
+                  {{!--   <button class="login100-form-btn" type="submit">
                       Create Account
-                    </button>
+                    </button> --}}
                 </div>
 
                 <div class="text-center p-t-30 p-b-20">
