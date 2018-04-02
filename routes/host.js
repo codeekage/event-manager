@@ -3,6 +3,7 @@ const app = express();
 const routes = express.Router();
 const passport = require('../auth/passport.auth');
 const HostAuth = require('../auth/host.auth')
+const HostModel = require("../models/host.model");
 const path = require('path')
 
 routes.post("/host/registration", (req, res, next) => {
@@ -22,6 +23,12 @@ routes.get("/logout", (req, res, next) => {
         if(err) throw err;
         res.redirect("/login");
     });
+});
+
+routes.get("/api/hosts", (req, res, next) => {
+    HostModel.find({}).then((host) => {
+        res.send(host)
+    }).catch(next)
 })
 
 module.exports = routes;

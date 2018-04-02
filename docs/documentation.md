@@ -22,7 +22,7 @@ Admin --> Community Name, Community Tags, Host Email, Community Email, Community
 | noti_msg   |             |             |           |
 | evt_type   |             |             |           |
 | evt_agenda |             |             |           |
-|  add_host  |             |             |           |
+|  co_host  |             |             |           |
 | evt_status |             |             |           |
 
 # Software Structure

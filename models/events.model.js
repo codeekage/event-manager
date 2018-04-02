@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const EventSchema = new Schema({
+    host_id : {
+        type : String,
+        required : [true, "Host is required"]
+    },
     evt_id : {
         type : String,
     },

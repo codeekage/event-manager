@@ -9,7 +9,8 @@ const HostSchema = new Schema({
     },
     host_email : {
         type : String,
-        required : [true, "host email address is required"]
+        required : [true, "host email address is required"],
+        unique : [true, "email address already exist"]
     },
     password : {
         type : String,

@@ -39,7 +39,8 @@ module.exports.registerHost = (req, res) => {
                     errors: [null],
                     msg: "Registration Complete!",
                     host: host
-                });
+                }); 
+               // res.redirect("/login")
                 console.log(host);
             }
 

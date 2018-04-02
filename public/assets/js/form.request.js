@@ -12,10 +12,20 @@ function showResponse(responseText, statusText, xhr, $form) {
         switch (responseText.success) {
             case false:
                 let msg = JSON.stringify(responseText);
-                demo.showNotification('top', 'right', 'An error occured ' + msg, 'danger');
+                demo.showNotification('top', 'right', 'An error occured! ' + msg, 'danger');
+                console.log("Here : ", location.href.split("/")[3])
+               /*  if (location.href.split("/")[3] === "registration") {
+                    location.href = "/login";
+                    return;
+                } */
                 break;
             case true:
                 demo.showNotification('top', 'right', 'Success!', 'primary');
+                console.log()
+                if(location.href.split("/")[3] === "registration"){
+                    location.href = "/login";
+                    return;
+                }
                 break;
             default:
                 break;
@@ -53,7 +63,7 @@ function hostRequest() {
         return false; // always return false to prevent standard browser submit and page navigation
     });
 
-    l/* et loginOptions = {
+    /* et loginOptions = {
         url: `/login`,
         method: "POST",
         beforeSubmit: showRequest, // pre-submit callback
