@@ -6,15 +6,19 @@ function showRequest(formData, jqForm, options) {
 
 function showResponse(responseText, statusText, xhr, $form) {
     alert('status: ' + statusText + '\n\nresponseText: \n' + responseText);
-    console.log($form)
+    if(statusText === "error"){
+        demo.showNotification('top', 'right', 'An error occured '+JSON.stringify(responseText), 'primary');
+    }
+    console.log(responseText, $form)
 }
 
-function eventHandler() {
+function eventRequest() {
     var options = {
-        url: `/api/event`,
+        url: `/api/events`,
         method: "POST",
         beforeSubmit: showRequest, // pre-submit callback
-        success: showResponse // post-submit callback
+        success: showResponse, // post-submit callback
+        error: showResponse,
     };
     // binding to the form's submit event
     $('#event-form').submit(function () {
@@ -23,31 +27,6 @@ function eventHandler() {
     });
 }
 
-function eventRequest() {
-    document.querySelector("#btn-event").addEventListener("click", function(){
-        $.ajax({
-            url : '/api/events',
-            method: "POST",
-            contentType: "application/json",
-            dataType: "JSON",
-            data: JSON.stringify({
-                username: "hgjkl",
-                btc_qty: "hgjkl",
-                status: "hgjkl",
-                user_id:111
-            }),
-            success: function (data) {
-                console.log("sucess: ", data)
-                return false;
-            },
-            error: function (data, status) {
-                console.log(data)
-                return false;
-            }
-        })
-    })  
-}
-
 (function(){
-    eventHandler();
+    eventRequest();
 })();

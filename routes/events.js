@@ -6,13 +6,19 @@ const express = require("express"),
 
 routes.get("/api/events", (req, res, next) => {
    EventModel.find({}).then((event) => {
-       res.send(event);
+       res.send({
+           success : true,
+           data : event
+       });
    }).catch(next);
 });
 
 routes.post("/api/events", (req, res, next) => {
    EventModel.create(req.body).then((event) => {
-        res.send(event);
+       res.send({
+           success: true,
+           data: event
+       });
     }).catch(next);
 });
 

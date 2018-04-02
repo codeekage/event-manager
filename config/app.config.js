@@ -6,6 +6,9 @@ const exphbs = require('express-handlebars'),
 logger = require('morgan'),
     helpers = require('../app_modules/handlebars.helpers'),
     bodyParser = require("body-parser"),
+    flash = require("connect-flash"),
+    session = require("express-session"),
+    expressValidator = require("express-validator"),
     routes = require("../app_modules/express.routes");
 
 module.exports = (app) => {
@@ -16,6 +19,14 @@ module.exports = (app) => {
     //SET UP BodyParser MIDDLEWARE
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: false }))
+
+
+    //Express Session
+    app.use(session({
+        secret: 'secret',
+        saveUninitialized: true,
+        resave: true
+    }));
 
     // Create `ExpressHandlebars` instance with a default layout.
     var hbs = exphbs.create({
@@ -64,6 +75,39 @@ module.exports = (app) => {
         })
             .catch(next);
     }
+
+
+
+    // Express Validator
+    app.use(expressValidator({
+        errorFormatter: function (param, msg, value) {
+            var namespace = param.split('.'),
+                root = namespace.shift(),
+                formParam = root;
+
+            while (namespace.length) {
+                formParam += '[' + namespace.shift() + ']';
+            }
+            return {
+                param: formParam,
+                msg: msg,
+                value: value
+            };
+        }
+    }));
+
+
+    //Connect Flash
+    app.use(flash());
+
+    //Global Vars
+    app.use(function (req, res, next) {
+        res.locals.success_msg = req.flash('success_msg');
+        res.locals.error_msg = req.flash('error_msg');
+        res.locals.error = req.flash('error');
+        res.locals.user = req.user || null;
+        next();
+    });
 
     app.use("/", require("../routes/index"));
     routes("/", app);

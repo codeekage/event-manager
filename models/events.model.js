@@ -21,7 +21,7 @@ const EventSchema = new Schema({
     },
     evt_aud : {
         type : Number,
-        default : "undefined"
+        default : 0
     },
     noti_msg : {
         type : String,
