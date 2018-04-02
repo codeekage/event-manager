@@ -9,18 +9,18 @@
                     </div>
                     <div class="card-body">
                         <form id="event-form" method="POST" action="/api/event">
-                        <input type="hidden" name="host_id" value="{{host}}">
+                            <input type="hidden" name="host_id" value="{{host}}">
                             <div class="row">
                                 <div class="col-md-6 pr-1">
                                     <div class="form-group">
                                         <label>Event Name</label>
-                                        <input type="text" class="form-control" placeholder="Node.js Africa General Meeting" name="evt_name">
+                                        <input id="event-name" type="text" class="form-control" placeholder="Node.js Africa General Meeting" name="evt_name">
                                     </div>
                                 </div>
                                 <div class="col-md-6 pl-1">
                                     <div class="form-group">
                                         <label>Invite Co-Host</label>
-                                        <input type="email" class="form-control" placeholder="Email" name="co_host">
+                                        <input id="co-host" type="email" class="form-control" placeholder="Email" name="co_host">
                                     </div>
                                 </div>
                             </div>
@@ -28,7 +28,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Event Date</label>
-                                        <input type="date" class="form-control" name="evt_date">
+                                        <input id="event-date" type="date" class="form-control" name="evt_date">
                                     </div>
                                 </div>
                             </div>
@@ -36,7 +36,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Event Venue</label>
-                                        <input type="text" class="form-control" placeholder="Venue Address" name="evt_venue">
+                                        <input id="event-venue" type="text" class="form-control" placeholder="Venue Address" name="evt_venue">
                                     </div>
                                 </div>
                             </div>
@@ -50,13 +50,13 @@
                                 <div class="col-md-4 px-1">
                                     <div class="form-group">
                                         <label>Event Type</label>
-                                        <input type="text" class="form-control" placeholder="Tech-Meetup" value="" name="evt_type">
+                                        <input id="event-type" type="text" class="form-control" placeholder="Tech-Meetup" value="" name="evt_type">
                                     </div>
                                 </div>
                                 <div class="col-md-4 pl-1">
                                     <div class="form-group">
                                         <label>Expected Audience</label>
-                                        <input type="number" class="form-control" placeholder="300" name="evt_aud" >
+                                        <input type="number" class="form-control" placeholder="300" name="evt_aud">
                                     </div>
                                 </div>
                             </div>
@@ -81,24 +81,33 @@
             </div>
             <div class="col-md-4">
                 <div class="card card-user">
-                    <div class="image">
-                        <img src="../assets/img//bg5.jpg" alt="...">
+                    <div class="card-header">
+                        <button type="button" class="btn btn-round btn-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown">
+                            <i class="now-ui-icons ui-1_email-85"></i>
+                        </button>
+                        <span>E-Vitation Card!</span>
                     </div>
+
                     <div class="card-body">
-                        <div class="author">
-                            <a href="#">
-                                <img class="avatar border-gray" src="../assets/img//mike.jpg" alt="...">
-                                <h5 class="title">Mike Andrew</h5>
-                            </a>
-                            <p class="description">
-                                michael24
-                            </p>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h6 class="txt-success">Event Name : <span>Awesome Event</span></h6>
+                            </div>
                         </div>
-                        <p class="description text-center">
-                            "Lamborghini Mercy
-                            <br> Your chick she so thirsty
-                            <br> I'm in that two seat Lambo"
-                        </p>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h6 class="txt-success">Event Name : <span>Awesome Event</span></h6>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h6 class="txt-success">Event Name : <span>Awesome Event</span></h6>
+                            </div>
+                        </div>
+                       
+                      
                     </div>
                     <hr>
                     <div class="button-container">
@@ -116,4 +125,5 @@
             </div>
         </div>
     </div>
+</div>
 </div>

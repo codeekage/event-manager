@@ -8,17 +8,13 @@ app = express.Router();
     });
 });
 
-app.get('/events', ensureAuthenticated, (req, res, next) => {
+/* app.get('/events', ensureAuthenticated, (req, res, next) => {
     res.render('events', {
         title: "Events",
         owner_name: "Node.js Africa",
          page_title : "Event"
     })
-});
-
-app.post('/ow/events', (req, res, next) => {
-    console.log(req.body)
-});
+}) */;
 
 
 app.get('/attendees',ensureAuthenticated,  (req, res, next) => {

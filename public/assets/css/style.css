@@ -3,5 +3,14 @@
 }
 
 .side-bar>li>a {
-    color: #336633!important;
+    color: #336633 !important;
+}
+
+.evitation {
+    font-family: cursive;
+    font-style: italic;
+}
+
+.txt-success {
+    color: #336633;
 }

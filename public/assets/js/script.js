@@ -12,6 +12,37 @@ setFullName = () => {
     }
     console.log(full_name.innerText.charAt(0))
 }
+
+eVitation = () => {
+    let eventName = document.getElementById("event-name");
+    let coHost = document.getElementById("co-host");
+    let eventDate = document.getElementById("event-date");
+    let eventVenue = document.getElementById("event-venue");
+    let eventType = document.getElementById("event-type");
+
+
+    eventName.addEventListener("keyup", function(){
+        document.getElementById("evt-name").innerText = eventName.value
+    })
+
+
+    coHost.addEventListener("keyup", function(){
+        document.getElementById("evt-cohost").innerText = coHost.value
+    })
+
+    eventDate.addEventListener("keyup", function(){
+        document.getElementById("evt-date").innerText = eventDate.value
+    })
+
+    eventVenue.addEventListener("keyup", function(){
+        document.getElementById("evt-venue").innerText = eventVenue.value
+    })
+
+    eventType.addEventListener("keyup", function(){
+        document.getElementById("evt-type").innerText = eventType.value
+    })
+}
+
 (function () {
     let active = location.href;
     let href = active.split("/")[3];
@@ -37,5 +68,6 @@ setFullName = () => {
     }
 
     setFullName();
+    eVitation();
 
 })()
