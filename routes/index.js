@@ -37,9 +37,17 @@ app.get('/settings', (req, res, next) => {
 });
 
 
-app.get('/form', (req, res, next) => {
-    res.render('form', {
-        layout : false
+app.get('/login', (req, res, next) => {
+    res.render('login', {
+        layout : 'form',
+        page_title : "Login"
+    });
+});
+
+app.get('/registration', (req, res, next) => {
+    res.render('registration', {
+        layout: 'form',
+        page_title: "Registration"
     });
 });
 
