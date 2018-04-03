@@ -13,25 +13,30 @@ function showResponse(responseText, statusText, xhr, $form) {
             case false:
                 let msg = JSON.stringify(responseText);
                 demo.showNotification('top', 'right', 'An error occured! ' + msg, 'danger');
-                console.log("Here : ", location.href.split("/")[3])
-               /*  if (location.href.split("/")[3] === "registration") {
-                    location.href = "/login";
-                    return;
-                } */
                 break;
             case true:
                 demo.showNotification('top', 'right', 'Success!', 'primary');
-                console.log()
-                if(location.href.split("/")[3] === "registration"){
-                    location.href = "/login";
-                    return;
-                }
+                let route = location.href.split("/")[3];
+                routes(route);
                 break;
             default:
                 break;
         }
     }
     console.log(responseText, $form)
+}
+
+function routes(route){
+    switch (route) {
+        case "registration":
+            location.href = "/login";
+            break;
+        case "settings":
+            location.href = "events";
+        break
+        default:
+            break;
+    }
 }
 
 function eventRequest() {

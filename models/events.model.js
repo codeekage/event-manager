@@ -1,6 +1,13 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+function randomString(length, chars) {
+    var result = '';
+    for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+    return result;
+}
+
+
 const EventSchema = new Schema({
     host_id : {
         type : String,
@@ -13,6 +20,14 @@ const EventSchema = new Schema({
         type : String,
         required : [true, "event name "]
     },
+    evt_link : {
+        type : String,
+        default: randomString(36, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
+     },
+    evt_passkey : {
+        type : String,
+        required : [true, "Passkey required"]
+    },
     evt_date : {
         type : Date,
         default : Date.now()
@@ -22,10 +37,6 @@ const EventSchema = new Schema({
     },
     evt_agenda : {
         type : [String]
-    },
-    evt_aud : {
-        type : Number,
-        default : 0
     },
     noti_msg : {
         type : String,

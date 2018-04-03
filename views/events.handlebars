@@ -9,28 +9,31 @@
             <div class="col-lg-4">
                 <div class="card card-chart">
                     <div class="card-header">
-                        <h5 class="card-category"></h5>
+                        <h5 class="card-category">{{evt_type}}</h5>
                         <h4 class="card-title">{{evt_name}}</h4>
                         <div class="dropdown">
                             <button type="button" class="btn btn-round btn-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown">
-                                <i class="now-ui-icons loader_gear"></i>
+                                <i class="now-ui-icons  education_atom"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                                <a class="dropdown-item text-danger" href="#">Remove Data</a>
+                                <a class="dropdown-item" href="/events/{{evt_link}}">Go to Event</a>
+                                <a class="dropdown-item" href="#">Edit Event</a>
+                            {{!--     <a class="dropdown-item" href="#"></a> --}}
+                                <a class="dropdown-item text-danger" href="#">Remove Event</a>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="chart-area">
+                      {{!--   <div class="chart-area">
                             <canvas id="lineChartExample"></canvas>
-                        </div>
+                        </div> --}}
+                        <p>
+                            {{noti_msg}}
+                        </p>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="now-ui-icons arrows-1_refresh-69"></i> Just Updated
+                            <i class="now-ui-icons arrows-1_refresh-69"></i> {{evt_date}}
                         </div>
                     </div>
                 </div>
