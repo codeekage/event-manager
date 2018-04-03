@@ -55,7 +55,7 @@ function eventRequest() {
 
     $(".remove-event").on("click", function () {
         console.log($(this).data("id").toString())
-        let toDelete = $(this).data("id").toString();
+        let toDelete =  $(this).data("id").toString();
         swal({
             title: "Are you sure?",
             text: "Once deleted, you will not be able to recover this imaginary file!",
@@ -65,24 +65,74 @@ function eventRequest() {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                   removeEvent(toDelete);
+                    removeEvent(toDelete);
                 } else {
                     swal("Your imaginary file is safe!");
+                }
+            });
+    });
+
+    $(".share-link").on("click", function (e) {
+        e.preventDefault();
+        let copiedLink = `${location.origin}${$(this).attr("href")}`
+        swal("A wild Pikachu appeared! What do you want to do?", {
+            content: {
+                element: "input",
+                attributes: {
+                    placeholder: "Type your password",
+                    type: "text",
+                    value: copiedLink,
+                    id: "copy-text",
+                },
+            },
+            buttons: {
+                confirm: {
+                    text: "Copy",
+                    value: true,
+                    visible: true,
+                    className: "tool-tip",
+                    closeModal: true
+                },
+                cancel: {
+                    text: "Close",
+                    value : false,
+                    visible: true,
+                    className: "",
+                    closeModal: true,
+                },
+
+            },
+        })
+            .then((value) => {
+                if(value !== false){
+                    let copyText = document.getElementById("copy-text")
+                    copyFunction(copyText)
                 }
             });
     })
 }
 
-function removeEvent(toDelete){
+
+function copyFunction(copyText) {
+    copyText.select();
+    document.execCommand("Copy");
+    swal(`Copied Link: ${copyText.value}`, {
+        buttons: false,
+        timer: 2000,
+    });
+}
+
+
+function removeEvent(toDelete) {
     $.ajax({
-        url : `/api/events/${toDelete}`,
-        method : "PUT",
+        url: `/api/events/${toDelete}`,
+        method: "PUT",
         contentType: "application/json",
         dataType: "JSON",
-        data : JSON.stringify({
-            delete_status :1 
+        data: JSON.stringify({
+            delete_status: 1
         }),
-        success : function(data, status) {
+        success: function (data, status) {
             swal("Poof! Your imaginary file has been deleted!", {
                 icon: "success",
             }).then((willRefresh) => {
@@ -90,7 +140,7 @@ function removeEvent(toDelete){
             });
 
         },
-        error : function(data,status){
+        error: function (data, status) {
             swal("Failed! Your imaginary file hasn't been deleted!" + data, {
                 icon: "error",
             });
