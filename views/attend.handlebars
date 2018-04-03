@@ -67,25 +67,17 @@
 
             <div id="cspio-description">Please, provide your username and event passkey</div>
 
-            <form id="cspio-form" action="" method="post">
+            <form id="attend-event" method="POST" action="/">
                 <div id="cspio-field-wrapper">
                     <div class="row">
                         <div class="col-md-12 seperate">
                             <div class="input-group">
-                                <input id="cspio-email" name="username" class="form-control input-lg form-el" type="text" placeholder="Username"
-                                    required/>
-                                    <span class="input-group-btn">
-                                        <button id="cspio-subscribe-btn" type="submit" class="btn btn-lg btn-primary form-el noglow">Notify Me</button>
-                                    </span>
-                            </div>
-                        </div>
-                       {{!--  <div class="col-md-12 seperate">
-                            <div class="input-group">
+                                <input id="cspio-email" name="passkey" class="form-control input-lg form-el" type="text" placeholder="Passkey" required/>
                                 <span class="input-group-btn">
-                                    <button id="cspio-subscribe-btn" type="submit" class="btn btn-lg btn-primary form-el noglow">Notify Me</button>
+                                    <button id="cspio-subscribe-btn" type="submit" class="btn btn-lg btn-primary form-el noglow">Join Event</button>
                                 </span>
                             </div>
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
             </form>
@@ -108,6 +100,8 @@
         <!-- end of #cspio-content -->
     </div>
 
+    <script src="/assets/js/core/form.js"></script>
+    <script src="/assets/js/user.script.js"></script>
 
     <script>
         // Animate Delay

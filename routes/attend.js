@@ -20,15 +20,19 @@ routes.get("/attend/:link", (req, res, next) => {
 });
 
 routes.post("/attend/:link", (req, res, next) => {
-    EventModel.findOne({evt_passkey : req.body.passkey}).then((event) => {
+    EventModel.findOne({
+        evt_link : req.params.link,
+        evt_passkey : req.body.passkey
+    }).then((event) => {
         if(!event){
             res.send({
-                success : false
+                success : false,
+                message : "Incorrect passkey, please check and try again"
             })
         }else{
             res.send({
                 success : true,
-                event : event
+                message : event
             })
         }
     })
