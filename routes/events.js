@@ -20,15 +20,24 @@ routes.post("/api/events", (req, res, next) => {
     }).catch(next);
 });
 
-routes.put("/api/events:id", (req, res, next) => {
-    EventModel.findByIdAndUpdate({id : event_id}).then((event) => {
-        res.send(event);
+routes.put("/api/events/:link", (req, res, next) => {
+    EventModel.findOne({evt_link : req.params.link }).then((event) => {
+        EventModel.findByIdAndUpdate({_id : event._id}, req.body).then((newevent) => {
+            console.log(req.body)
+            res.send({
+                success: true,
+                event: newevent
+            });
+        })
     }).catch(next);
 });
 
 routes.delete("/api/events:id", (req, res, next) => {
-    EventModel.findByIdAndRemove({id : event_id}).then((event) => {
-        res.send(event)
+    EventModel.findByIdAndRemove({_id : event_id}).then((event) => {
+        res.render("events", {
+            page_title: "Events",
+            events: events
+        });
     }).catch(next);
 });
 
@@ -36,7 +45,7 @@ routes.delete("/api/events:id", (req, res, next) => {
 routes.get("/events", ensureAuthenticated, (req, res, next) => {
     let session = req.session.user_id
     HostModel.findById({ _id: req.session.user_id}).then((host) => {
-        EventModel.find({ host_id: session }).then((events) => {
+        EventModel.find({ host_id: session }).where('delete_status').equals(0).sort({created_date: -1}).then((events) => {
             res.render("events", {
                 page_title: "Events",
                 events: events,

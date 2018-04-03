@@ -4,8 +4,8 @@
     <div class="content">
         <div class="row">
             <!--Card one-->
-            
-          {{#each events}}
+
+            {{#each events}}
             <div class="col-lg-4">
                 <div class="card card-chart">
                     <div class="card-header">
@@ -18,27 +18,23 @@
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a class="dropdown-item" href="/events/{{evt_link}}">Go to Event</a>
                                 <a class="dropdown-item" href="#">Edit Event</a>
-                            {{!--     <a class="dropdown-item" href="#"></a> --}}
-                                <a class="dropdown-item text-danger" href="#">Remove Event</a>
+                                <a class="dropdown-item text-danger remove-event" href="#" data-id="{{evt_link}}">Remove Event</a>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
-                      {{!--   <div class="chart-area">
-                            <canvas id="lineChartExample"></canvas>
-                        </div> --}}
-                        <p>
+                        <p class="description">
                             {{noti_msg}}
                         </p>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="now-ui-icons arrows-1_refresh-69"></i> {{evt_date}}
+                            <i class="now-ui-icons arrows-1_refresh-69"></i> {{created_date}}
                         </div>
                     </div>
                 </div>
             </div>
-            {{/each}}     
+            {{/each}}
 
         </div>
     </div>

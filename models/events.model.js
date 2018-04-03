@@ -1,12 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-function randomString(length, chars) {
-    var result = '';
-    for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
-    return result;
-}
-
+let evt_link = randomString(36, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
 
 const EventSchema = new Schema({
     host_id : {
@@ -22,7 +17,7 @@ const EventSchema = new Schema({
     },
     evt_link : {
         type : String,
-        default: randomString(36, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
+        default: evt_link
      },
     evt_passkey : {
         type : String,
@@ -56,9 +51,21 @@ const EventSchema = new Schema({
     delete_status : {
         type : Number,
         default : 0
+    },
+    created_date: {
+        type : Date,
+        default : Date.now()
     }
 });
 
 const EventModel = mongoose.model('events', EventSchema);
 module.exports = EventModel;
+
+
+
+function randomString(length, chars) {
+    var result = '';
+    for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+    return result;
+}
 
