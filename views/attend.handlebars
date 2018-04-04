@@ -1,76 +1,74 @@
 <!DOCTYPE html>
-<html class="cspio">
+<html>
+<style>
+    body,
+    html {
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+    }
 
-<head>
-    <!---
-	Welcome to our free coming soon page template by http://comingsoonpage.com Get your free download at https://www.seedprod.com/free-coming-soon-page/
-	This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License
-	http://creativecommons.org/licenses/by-nc-nd/4.0/
+    .bgimg {
+        background-image: url('/assets/img/bg-2.jpg');
+        height: 100%;
+        background-position: center;
+        background-size: cover;
+        position: relative;
+        color: white;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 25px;
+    }
 
-	To get started follow this checklist.
+    .topleft {
+        position: absolute;
+        top: 0;
+        left: 16px;
+    }
 
-	1. Replace the *Page Title* on lines 23, 31 & 296
-	2. Set the *Page Description* on lines 26, 32 & 298
-	3. Set an optional *Logo* on lines 294 using the src attribute.
-	4. Set your *Facebook Profile* URL on line 312 using the href attribute.
-	5. Set your *Twitter Profile* URL on line 313 using the href attribute.
-	6. Set your *Email* on line 314 using the href attribute.
-	7. Set your background image on line 63, see file README.mb for additional background images.
-	8. Set your MailChimp email post URL on line 300 See video: https://youtu.be/YUdP1qfMot8
-	9. FTP to your Website. 
-	-->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>e-vites!</title>
+    .bottomleft {
+        position: absolute;
+        bottom: 0;
+        left: 16px;
+    }
 
-    <meta name="generator" content="comingsoonpage.com 1.0.0" />
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="/assets/img/favicon.png">
-    <meta property="og:url" content="" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="My Coming Soon Page" />
-    <meta property="og:description" content="" />
+    .middle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
 
-    <!-- Font Awesome CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-
-    <!-- Bootstrap and default Style -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://static.comingsoonpage.com/cspio-assets/1.0.0/style.css">
-
-    <!-- Google Fonts -->
-    <link class="gf-headline" href='https://fonts.googleapis.com/css?family=Pacifico:400&subset=' rel='stylesheet' type='text/css'>
-
-    <!-- Animate CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css">
-
-    <!-- Calculated Styles -->
-    <link rel="stylesheet" href="/assets/css/attend.landing.css">
-
-    <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-    <!-- Modernizr -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-
-    <!-- Google Analytics Code Goes Here-->
-</head>
+    hr {
+        margin: auto;
+        width: 40%;
+    }
+</style>
+<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
 
 <body>
-    <div id="cspio-page">
-        <div id="cspio-content">
-
-            <img id="cspio-logo" src="https://static.comingsoonpage.com/cspio-assets/1.0.0/seedprod-logo-white.png">
-
-            <h1 id="cspio-headline">Attend Event</h1>
-
-            <div id="cspio-description">Please, provide your username and event passkey</div>
-
+    <div class="wrapper">
+        <div class="main-panel">
+            <div class="content">
+                <div class="bgimg">
+                    <div class="topleft">
+                        <p>Logo</p>
+                    </div>
+                    <div class="middle">
+                        <h1>COMING SOON</h1>
+                        <hr>
+                        <p id="demo" style="font-size:30px"></p>
+                    </div>
+                    <div class="bottomleft">
+                        <p>Some text</p>
+                        <p id="time">{{evt_date}}</p>
+                    </div>
+                
+                </div>
             <form id="attend-event" method="POST" action="/">
                 <div id="cspio-field-wrapper">
                     <div class="row">
-                        <div class="col-md-12 seperate">
+                        <div class="col-md-6">
                             <div class="input-group">
                                 <input id="cspio-email" name="passkey" class="form-control input-lg form-el" type="text" placeholder="Passkey" required/>
                                 <span class="input-group-btn">
@@ -81,52 +79,42 @@
                     </div>
                 </div>
             </form>
-
-            <span id="cspio-privacy-policy-txt"></span>
-
-            <div id="cspio-socialprofiles">
-                <a href="" target="_blank">
-                    <i class="fa fa-facebook-official fa-2x"></i>
-                </a>
-                <a href="" target="_blank">
-                    <i class="fa fa-twitter fa-2x"></i>
-                </a>
-                <a href="mailto:" target="_blank">
-                    <i class="fa fa-envelope fa-2x"></i>
-                </a>
             </div>
-
         </div>
-        <!-- end of #cspio-content -->
     </div>
 
-    <script src="/assets/js/core/form.js"></script>
-    <script src="/assets/js/user.script.js"></script>
-
     <script>
-        // Animate Delay
-        setTimeout(function () {
-            jQuery("#cspio-content").show().addClass('animated fadeIn');
-        }, 250);
+        var time = document.getElementById("time").innerText.toString();
+        // Set the date we're counting down to
+        var countDownDate = new Date(time).getTime();
 
-        // Reseize	
-        function resize() {
-            $('head').append("<style id='form-style' type='text/css'></style>");
-            $('#form-style').html('.cspio .input-group-btn, .cspio .input-group{display:block;width:100%;}.cspio #cspio-subscribe-btn{margin-left:0;width:100%;display:block;}.cspio .input-group .form-control:first-child, .cspio .input-group-addon:first-child, .cspio .input-group-btn:first-child>.btn, .cspio .input-group-btn:first-child>.dropdown-toggle, .cspio .input-group-btn:last-child>.btn:not(:last-child):not(.dropdown-toggle) {border-bottom-right-radius: 4px;border-top-right-radius: 4px;}.cspio .input-group .form-control:last-child, .cspio .input-group-addon:last-child, .cspio .input-group-btn:last-child>.btn, .cspio .input-group-btn:last-child>.dropdown-toggle, .cspio .input-group-btn:first-child>.btn:not(:first-child) {border-bottom-left-radius: 4px;border-top-left-radius: 4px;}');
-        }
+        // Update the count down every 1 second
+        var countdownfunction = setInterval(function () {
 
-        $('#cspio-content').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
-            function () {
-                var width = $('#cspio-field-wrapper').width();
-                if (width < 480 && width != 0) {
-                    resize();
-                }
+            // Get todays date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now an the count down date
+            var distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Output the result in an element with id="demo"
+            document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+                + minutes + "m " + seconds + "s ";
+
+            // If the count down is over, write some text 
+            if (distance < 0) {
+                clearInterval(countdownfunction);
+                document.getElementById("demo").innerHTML = "EXPIRED";
             }
-        );
+        }, 1000);
     </script>
 
 </body>
 
 </html>
-
-<!-- This page was generated by ComingSoonPage.com | Learn more: http://www.comingsoonpage.com -->

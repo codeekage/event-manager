@@ -12,7 +12,8 @@ routes.get("/attend/:link", (req, res, next) => {
         }else{
             res.render("attend", {
                 layout: false,
-                evt_link : event.evt_link
+                evt_link : event.evt_link,
+                evt_date : event.evt_date
             });
         }
     }).catch(next);

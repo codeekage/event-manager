@@ -18,6 +18,9 @@ function showResponse(responseText, statusText, xhr, $form) {
             case true:
                 //demo.showNotification('top', 'right', 'Success!', 'primary');
                 alert(`${responseText.message} : success`)
+                if(!localStorage.getItem("userID")){
+                   
+                }
                 break;
             default:
                 break;

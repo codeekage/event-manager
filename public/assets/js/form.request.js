@@ -83,6 +83,7 @@ function eventRequest() {
                     type: "text",
                     value: copiedLink,
                     id: "copy-text",
+                    disabled : ""
                 },
             },
             buttons: {
