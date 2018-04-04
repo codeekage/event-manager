@@ -9,11 +9,12 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/custom.css">
+    <link rel="stylesheet" href="/assets/css/custom.css">
+    <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/x-icon">
 
     <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
         crossorigin="anonymous"></script>
-    <title>Hello, world!</title>
+    <title>Manage Event</title>
 </head>
 
 <body class="body">
@@ -21,7 +22,7 @@
         <!-- Just an image -->
 
         <a class="navbar-brand" href="#">
-            <img src="/assets/img/favicon.png" width="30" height="30" alt=""> Team Node.js Africa
+            <img src="/assets/img/favicon.png" width="30" height="30" alt=""> {{organization}}
         </a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -105,7 +106,7 @@
                         <div class="card-title">
                             <img src="/assets/img/mike.jpg" alt="" height="100%" width="50px">
                             <div class="subject col-12">
-                                <h5 class="mb-0">Mike Boston</h5>
+                                <h5 class="mb-0">{{evt_name}}</h5>
                                 <a href="#" class="mb-0 fn-1 fn-bold">VIEW CHANNEL</a>
 
                                 <div class="subject-about">
