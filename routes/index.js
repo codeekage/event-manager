@@ -57,6 +57,12 @@ app.get('/registration', (req, res, next) => {
     });
 });
 
+app.get("/manage", (req, res, next) => {
+    res.render('manage', {
+        layout : false
+    })
+})
+
 
 function ensureAuthenticated(req, res, next) {
     if (req.session.user_id) {
