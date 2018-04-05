@@ -160,6 +160,9 @@ function editEvent(){
         document.getElementById("evt_venue").removeAttribute("disabled")
         document.getElementById("evt_date").removeAttribute("disabled")
         document.getElementById("evt_passkey").removeAttribute("disabled")
+        document.getElementById("evt_type").removeAttribute("disabled")
+        document.getElementById("evt_occ").removeAttribute("disabled")
+        document.getElementById("noti_msg").setAttribute("contenteditable", true)
     });
 
     document.getElementById("submit-edit").addEventListener("click", function(e){
@@ -174,6 +177,9 @@ function editEvent(){
                 evt_name : document.getElementById("evt_name").value,
                 evt_venue : document.getElementById("evt_venue").value,
                 evt_date : document.getElementById("evt_date").value,
+                evt_type : document.getElementById("evt_type").value,
+                evt_occ : document.getElementById("evt_occ").value,
+                noti_msg : document.getElementById("noti_msg").innerText,
                 evt_passkey : document.getElementById("evt_passkey").value
             }),
             success: function (data, status) {
@@ -184,6 +190,9 @@ function editEvent(){
                     document.getElementById("evt_venue").setAttribute("disabled", true)
                     document.getElementById("evt_date").setAttribute("disabled", true)
                     document.getElementById("evt_passkey").setAttribute("disabled", true)
+                    document.getElementById("evt_occ").setAttribute("disabled", true)
+                    document.getElementById("evt_type").setAttribute("disabled", true)
+                    document.getElementById("noti_msg").setAttribute("contenteditable", false)
                 });
 
             },
