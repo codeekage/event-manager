@@ -33,6 +33,10 @@ const EventSchema = new Schema({
     evt_agenda : {
         type : [String]
     },
+    evt_venue : {
+        type : String,
+        required : [true, "Event venue is required"]
+    },
     noti_msg : {
         type : String,
         default : "Happy Guest e-Vitation"

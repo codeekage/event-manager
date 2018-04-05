@@ -53,6 +53,7 @@ function eventRequest() {
         return false; // always return false to prevent standard browser submit and page navigation
     });
 
+
     $(".remove-event").on("click", function () {
         console.log($(this).data("id").toString())
         let toDelete =  $(this).data("id").toString();
@@ -110,7 +111,9 @@ function eventRequest() {
                     copyFunction(copyText)
                 }
             });
-    })
+    });
+
+   
 }
 
 
@@ -150,6 +153,53 @@ function removeEvent(toDelete) {
     })
 }
 
+function editEvent(){
+    document.getElementById("edit-event").addEventListener("click", function(e){
+        e.preventDefault();
+        document.getElementById("evt_name").removeAttribute("disabled")
+        document.getElementById("evt_venue").removeAttribute("disabled")
+        document.getElementById("evt_date").removeAttribute("disabled")
+        document.getElementById("evt_passkey").removeAttribute("disabled")
+    });
+
+    document.getElementById("submit-edit").addEventListener("click", function(e){
+        e.preventDefault();
+        let links = location.href.split("/")[4]
+        $.ajax({
+            url: `/api/events/${links}`,
+            method: "PUT",
+            contentType: "application/json",
+            dataType: "JSON",
+            data: JSON.stringify({
+                evt_name : document.getElementById("evt_name").value,
+                evt_venue : document.getElementById("evt_venue").value,
+                evt_date : document.getElementById("evt_date").value,
+                evt_passkey : document.getElementById("evt_passkey").value
+            }),
+            success: function (data, status) {
+                swal("Saved!", {
+                    icon: "success",
+                }).then((willRefresh) => {
+                    document.getElementById("evt_name").setAttribute("disabled", true)
+                    document.getElementById("evt_venue").setAttribute("disabled", true)
+                    document.getElementById("evt_date").setAttribute("disabled", true)
+                    document.getElementById("evt_passkey").setAttribute("disabled", true)
+                });
+
+            },
+            error: function (data, status) {
+                swal("Failed! Your imaginary file hasn't been deleted!" + data, {
+                    icon: "error",
+                });
+                console.log(data)
+            }
+        })
+    })
+   
+    
+
+}
+
 function hostRequest() {
     let registrationOptions = {
         url: `host/registration`,
@@ -182,5 +232,6 @@ function hostRequest() {
 
 (function () {
     eventRequest();
+    editEvent();
     hostRequest();
 })();
