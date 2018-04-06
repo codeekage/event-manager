@@ -25,12 +25,12 @@ app.get('/attendees',ensureAuthenticated,  (req, res, next) => {
 });
 
 
-app.get('/settings', ensureAuthenticated, (req, res, next) => {
+app.get('/create', ensureAuthenticated, (req, res, next) => {
     res.render('settings', {
         title: "Settings",
         owner_name: "Node.js Africa",
         host : req.session.user_id,
-        page_title: "Login"
+        page_title: "Create"
     });
 });
 

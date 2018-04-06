@@ -14,3 +14,11 @@
 .txt-success {
     color: #336633;
 }
+
+.btn-center {
+    top: 165px;
+    position: relative;
+    float: right;
+    margin: 0 auto;
+    background: linear-gradient(to right, #0c2646 0%, #204065 60%, #2a5788 100%) !important;
+}

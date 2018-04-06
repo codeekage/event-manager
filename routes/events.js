@@ -49,8 +49,7 @@ routes.get("/", ensureAuthenticated, (req, res, next) => {
             res.render("events", {
                 page_title: "Events",
                 events: events,
-                owner_name: host.organization,
-                title : "My Events"
+                title: host.organization
             });
             console.log(events)
         }).catch(next)

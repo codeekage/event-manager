@@ -3,7 +3,7 @@
     <div class="content">
         <div class="row">
             <!--Card one-->
-
+            {{#if events}}
             {{#each events}}
             <div class="col-lg-4">
                 <div class="card card-chart">
@@ -36,6 +36,13 @@
                 </div>
             </div>
             {{/each}}
+            {{else}}
+            <a class="btn btn-lg btn-center text-light" href="/create">
+            <i class="now-ui-icons education_atom" style="font-size:46px"></i>
+                 <p>Add Your First Event</p>
+            </a>
+       
+            {{/if}}
         </div>
     </div>
 </div>
