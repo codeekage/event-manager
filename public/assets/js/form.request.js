@@ -56,7 +56,7 @@ function eventRequest() {
 
     $(".remove-event").on("click", function () {
         console.log($(this).data("id").toString())
-        let toDelete =  $(this).data("id").toString();
+        let toDelete = $(this).data("id").toString();
         swal({
             title: "Are you sure?",
             text: "Once deleted, you will not be able to recover this imaginary file!",
@@ -84,7 +84,7 @@ function eventRequest() {
                     type: "text",
                     value: copiedLink,
                     id: "copy-text",
-                    disabled : ""
+                    disabled: ""
                 },
             },
             buttons: {
@@ -97,7 +97,7 @@ function eventRequest() {
                 },
                 cancel: {
                     text: "Close",
-                    value : false,
+                    value: false,
                     visible: true,
                     className: "",
                     closeModal: true,
@@ -106,14 +106,14 @@ function eventRequest() {
             },
         })
             .then((value) => {
-                if(value !== false){
+                if (value !== false) {
                     let copyText = document.getElementById("copy-text")
                     copyFunction(copyText)
                 }
             });
     });
 
-   
+
 }
 
 
@@ -153,8 +153,8 @@ function removeEvent(toDelete) {
     })
 }
 
-function editEvent(){
-    document.getElementById("edit-event").addEventListener("click", function(e){
+function editEvent() {
+    document.getElementById("edit-event").addEventListener("click", function (e) {
         e.preventDefault();
         document.getElementById("evt_name").removeAttribute("disabled")
         document.getElementById("evt_venue").removeAttribute("disabled")
@@ -165,7 +165,7 @@ function editEvent(){
         document.getElementById("noti_msg").setAttribute("contenteditable", true)
     });
 
-    document.getElementById("submit-edit").addEventListener("click", function(e){
+    document.getElementById("submit-edit").addEventListener("click", function (e) {
         e.preventDefault();
         let links = location.href.split("/")[4]
         $.ajax({
@@ -174,13 +174,13 @@ function editEvent(){
             contentType: "application/json",
             dataType: "JSON",
             data: JSON.stringify({
-                evt_name : document.getElementById("evt_name").value,
-                evt_venue : document.getElementById("evt_venue").value,
-                evt_date : document.getElementById("evt_date").value,
-                evt_type : document.getElementById("evt_type").value,
-                evt_occ : document.getElementById("evt_occ").value,
-                noti_msg : document.getElementById("noti_msg").innerText,
-                evt_passkey : document.getElementById("evt_passkey").value
+                evt_name: document.getElementById("evt_name").value,
+                evt_venue: document.getElementById("evt_venue").value,
+                evt_date: document.getElementById("evt_date").value,
+                evt_type: document.getElementById("evt_type").value,
+                evt_occ: document.getElementById("evt_occ").value,
+                noti_msg: document.getElementById("noti_msg").innerText,
+                evt_passkey: document.getElementById("evt_passkey").value
             }),
             success: function (data, status) {
                 swal("Saved!", {
@@ -204,8 +204,8 @@ function editEvent(){
             }
         })
     })
-   
-    
+
+
 
 }
 
@@ -239,11 +239,11 @@ function hostRequest() {
 }
 
 
-function agendaRequest(){
+function agendaRequest() {
     let index = 1;
     var arr = [];
     let agenda = [];
-    document.querySelector("#add-field").addEventListener("click", function(){
+    document.querySelector("#add-field").addEventListener("click", function () {
         $("#modal-field").append(`
            <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Agenda</label>
@@ -256,41 +256,41 @@ function agendaRequest(){
     })
 
 
-    $("#add-agenda").on("click", function(){
-        if (document.querySelector('#agenda-field-0').value !== ""){
+    $("#add-agenda").on("click", function () {
+        if (document.querySelector('#agenda-field-0').value !== "") {
             agenda.push(document.querySelector('#agenda-field-0').value);
-        
-        for(let i = 0; i < arr.length; i++){
-            if (document.querySelector(`#agenda-field-${arr[i]}`).value !== ""){
-                agenda.push(document.querySelector(`#agenda-field-${arr[i]}`).value);
-            }else{
-                alert("Make sure fields are not empty")
-            }
-        }
 
-        $("#modal-field").html(`<div class="form-group">
+            for (let i = 0; i < arr.length; i++) {
+                if (document.querySelector(`#agenda-field-${arr[i]}`).value !== "") {
+                    agenda.push(document.querySelector(`#agenda-field-${arr[i]}`).value);
+                } else {
+                    alert("Make sure fields are not empty")
+                }
+            }
+
+            $("#modal-field").html(`<div class="form-group">
                 <label for="recipient-name" class="col-form-label">Agenda</label>
                 <input type="text" class="form-control" id="agenda-field-0">
             </div>`);
 
-        $('#exampleModal').modal('hide');
+            $('#exampleModal').modal('hide');
 
 
-        let links = location.href.split("/")[4];
-        let renderNewAgenda = "";
-        $.ajax({
-            url : `/api/agenda/${links}`,
-            method : "POST",
-            contentType : "application/json",
-            dataType : "JSON",
-            data : JSON.stringify({
-                evt_link : links,
-                evt_agenda : agenda
-            }),
-            success : function(data, status){
-                console.log(data);
-                if(data.success === true){
-                    let agendas = `<li class="list-group-item d-flex justify-content-between align-items-center">
+            let links = location.href.split("/")[4];
+            let renderNewAgenda = "";
+            $.ajax({
+                url: `/api/agenda/${links}`,
+                method: "POST",
+                contentType: "application/json",
+                dataType: "JSON",
+                data: JSON.stringify({
+                    evt_link: links,
+                    evt_agenda: agenda
+                }),
+                success: function (data, status) {
+                    console.log(data);
+                    if (data.success === true) {
+                        let agendas = `<li class="list-group-item d-flex justify-content-between align-items-center">
                                         ${data.agenda.evt_agenda} 
                                     <span>
                                         <button class="btn btn-light btn-sm">
@@ -300,7 +300,7 @@ function agendaRequest(){
                                             <i class="icon text-danger fas fa-trash-alt fa-fw"></i> 
                                         </button>
                                     </span>`;
-                    renderNewAgenda = agendas.split(",").join(`
+                        renderNewAgenda = agendas.split(",").join(`
                     <span>
                         <button class="btn btn-light btn-sm" id="edit-agenda">
                             <i class="icon text-info fas fa-pencil-alt fa-fw"></i>
@@ -313,28 +313,45 @@ function agendaRequest(){
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                     `);
 
-                    $("#agenda-list").prepend(renderNewAgenda);
-                }
-                
-            },
-            error : function(data, status){
-                console.log(data)
-            }
-        });
+                        $("#agenda-list").prepend(renderNewAgenda);
+                    }
 
-        console.log(agenda)
-        agenda = [];
-        arr = [];
-        index = 1;
-    }else{
-        alert("empty")
-    }
+                },
+                error: function (data, status) {
+                    console.log(data)
+                }
+            });
+
+            console.log(agenda)
+            agenda = [];
+            arr = [];
+            index = 1;
+        } else {
+            alert("empty")
+        }
     })
 }
 
 (function () {
-    eventRequest();
-    editEvent();
-    hostRequest();
-    agendaRequest();
+    let currentRoute = location.href.split("/")[3];
+    switch (currentRoute) {
+        case "registration":
+            hostRequest();
+            break;
+        case "login":
+            hostRequest();
+            break;
+        case "edit":
+            editEvent();
+            break;
+        case "create":
+            eventRequest();
+            break;
+        case "manage":
+            eventRequest();
+            agendaRequest();
+            break;
+        default:
+            break;
+    }
 })();
