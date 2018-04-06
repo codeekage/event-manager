@@ -6,6 +6,9 @@ const express = require('express'),
     exphbs = require('express-handlebars'), // "express-handlebars"
     config = require('./config/env.config'),
     mongooseconfig = require('./config/mongoose.config')(config);
+   /*  jquery = require("jquery"),
+    popper = require("popper.js"),
+    boostrap = require("bootstrap-material-design"); */
 
 var app = express();
 

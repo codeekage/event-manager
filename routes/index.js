@@ -1,12 +1,12 @@
 const express = require("express"),
 app = express.Router();
 
- app.get('/', ensureAuthenticated, function (req, res, next) {
+/*  app.get('/', ensureAuthenticated, function (req, res, next) {
     res.render('home', {
         title: 'Home',
         owner_name: "Node.js Africa"
     });
-});
+}); */
 
 /* app.get('/events', ensureAuthenticated, (req, res, next) => {
     res.render('events', {

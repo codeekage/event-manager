@@ -15,6 +15,7 @@
     "dependencies": {
         "bcryptjs": "^2.4.3",
         "body-parser": "^1.18.2",
+        "bootstrap-material-design": "^4.1.1",
         "busboy-body-parser": "^0.3.2",
         "connect-flash": "^0.1.1",
         "cookie-parser": "^1.4.3",
@@ -24,11 +25,13 @@
         "express-session": "^1.15.6",
         "express-validator": "^5.1.0",
         "handlebars": "^4.0.11",
+        "jquery": "^3.3.1",
         "mongoose": "^5.0.12",
         "morgan": "^1.9.0",
         "passport": "^0.4.0",
         "passport-http": "^0.3.0",
-        "passport-local": "^1.0.0"
+        "passport-local": "^1.0.0",
+        "popper.js": "^1.14.3"
     },
     "devDependencies": {
         "gulp": "^3.9.1",

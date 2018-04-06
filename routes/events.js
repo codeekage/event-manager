@@ -42,14 +42,15 @@ routes.delete("/api/events:id", (req, res, next) => {
 });
 
 
-routes.get("/events", ensureAuthenticated, (req, res, next) => {
+routes.get("/", ensureAuthenticated, (req, res, next) => {
     let session = req.session.user_id
     HostModel.findById({ _id: req.session.user_id}).then((host) => {
         EventModel.find({ host_id: session }).where('delete_status').equals(0).sort({created_date: -1}).then((events) => {
             res.render("events", {
                 page_title: "Events",
                 events: events,
-                owner_name: host.organization
+                owner_name: host.organization,
+                title : "My Events"
             });
             console.log(events)
         }).catch(next)

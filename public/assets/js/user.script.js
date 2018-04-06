@@ -45,6 +45,8 @@ function attendRequest(){
     });
 }
 
+
+
 (function(){
     attendRequest();
 })();

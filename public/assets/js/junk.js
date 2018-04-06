@@ -18,6 +18,14 @@
     }
 
 
-
+    if (data.success == true) {
+        $("#agenda-list").append(`
+                     <li class="list-group-item d-flex justify-content-between align-items-center">
+                                       ${data.agenda.evt_agenda}
+                                
+                               <span class="badge badge-primary badge-pill">14</span>
+                            </li>`
+        )
+    }
     console.log(active, href);
 })()

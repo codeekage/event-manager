@@ -9,6 +9,10 @@ const EventAgenda = new Schema({
     evt_link: {
         type: String,
         required: [true, "Unique identification required"]
+    },
+    created_date : {
+        type : Date,
+        default : Date.now()
     }
 })
 

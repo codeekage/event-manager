@@ -30,4 +30,23 @@ routes.post('/api/agenda/:link', (req, res, next) => {
     }).catch(next);
 });
 
+/* routes.post('/api/agendas/:link', (req, res, next) => {
+    EventModel.findOne({evt_link : req.params.link}).then((event) => {
+        if(!event){
+            res.status(404).send({
+                success : false
+            });
+        }else{
+            EventModel.findOne({evt_link : req.params.link}).then((event) => {
+                let newAgenda = event.event_agenda;
+                newAgenda.push(req.body)
+                res.send({
+                    success : true,
+                    event : event
+                });
+            }).catch(next)
+        }
+    }).catch(next);
+}); */
+
 module.exports = routes;

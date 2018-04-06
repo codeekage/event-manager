@@ -15,6 +15,7 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
         crossorigin="anonymous"></script>
         <link href="/assets/demo/demo.css" rel="stylesheet" />
+{{!--         <link rel="stylesheet" href="/assets/bmd/bootstrap-material-design.css"> --}}
     <title>Manage Event</title>
 </head>
 
@@ -61,7 +62,10 @@
             <form class="form-inline">
                 {{!--
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> --}}
-                <button class="btn btn-info my-2 my-sm-0" type="submit">Go Live</button>
+               {{!--  <button class="btn btn-info my-2 my-sm-0" type="submit">Go Live</button> --}}
+                <button type="button" class="btn btn-info btn-raised active">
+                    <code>go live</code>
+                </button>
             </form>
         </div>
     </nav>
@@ -113,8 +117,8 @@
                                 <div class="subject-about">
                                     <ul>
                                         <li>
-                                            <div class="text-center">4</div>
-                                            <div class="li-text text-center">Views</div>
+                                            <div class="text-center">0</div>
+                                            <div class="li-text text-center">Co-Host</div>
                                         </li>
                                         <li class="border-side-1">
                                             <div class="text-center">0</div>
@@ -122,6 +126,7 @@
                                         </li>
                                         <li>
                                             <div class="text-center">
+                                              
                                                 <button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
 
                                                     <i class="text-info fas fa-calendar-plus fa-fw"></i>
@@ -276,6 +281,7 @@
   <script src="/assets/js/core/jquery.min.js"></script>
 <script src="/assets/js/core/popper.min.js"></script>
 <script src="/assets/js/core/bootstrap.min.js"></script>
+<script src="/assets/bmd/bootstrap-material-design.iife.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="/assets/js/core/form.js"></script>
 <script src="/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>

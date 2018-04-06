@@ -153,3 +153,7 @@ li {
     float: right;
     margin: 6px;
 }
+
+.icon:hover {
+    cursor: pointer;
+}

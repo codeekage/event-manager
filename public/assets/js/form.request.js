@@ -32,7 +32,7 @@ function routes(route) {
             location.href = "/login";
             break;
         case "settings":
-            location.href = "events";
+            location.href = "/";
             break
         default:
             break;
@@ -247,7 +247,7 @@ function agendaRequest(){
         $("#modal-field").append(`
            <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Agenda</label>
-                <input type="text" class="form-control" id="agenda-field-${index}" value="${index}">
+                <input type="text" class="form-control" id="agenda-field-${index}">
             </div>
         `)
         console.log(index)
@@ -257,9 +257,15 @@ function agendaRequest(){
 
 
     $("#add-agenda").on("click", function(){
-        agenda.push(document.querySelector('#agenda-field-0').value)
+        if (document.querySelector('#agenda-field-0').value !== ""){
+            agenda.push(document.querySelector('#agenda-field-0').value);
+        
         for(let i = 0; i < arr.length; i++){
-            agenda.push(document.querySelector(`#agenda-field-${arr[i]}`).value);
+            if (document.querySelector(`#agenda-field-${arr[i]}`).value !== ""){
+                agenda.push(document.querySelector(`#agenda-field-${arr[i]}`).value);
+            }else{
+                alert("Make sure fields are not empty")
+            }
         }
 
         $("#modal-field").html(`<div class="form-group">
@@ -284,9 +290,30 @@ function agendaRequest(){
             success : function(data, status){
                 console.log(data);
                 if(data.success === true){
-                    let agendas = `<li class="list-group-item d-flex justify-content-between align-items-center">${data.agenda.evt_agenda.toString()}  <span class="badge badge-primary badge-pill">14</span>`;
-                    renderNewAgenda = agendas.split(",").join(`<span class="badge badge-primary badge-pill">14</span></li><li class="list-group-item d-flex justify-content-between align-items-center">`);
-                    $("#agenda-list").append(renderNewAgenda);
+                    let agendas = `<li class="list-group-item d-flex justify-content-between align-items-center">
+                                        ${data.agenda.evt_agenda} 
+                                    <span>
+                                        <button class="btn btn-light btn-sm">
+                                             <i class="icon text-info fas fa-pencil-alt fa-fw"></i>
+                                        </button>
+                                        <button class="btn btn-light btn-sm">
+                                            <i class="icon text-danger fas fa-trash-alt fa-fw"></i> 
+                                        </button>
+                                    </span>`;
+                    renderNewAgenda = agendas.split(",").join(`
+                    <span>
+                        <button class="btn btn-light btn-sm" id="edit-agenda">
+                            <i class="icon text-info fas fa-pencil-alt fa-fw"></i>
+                        </button>
+                        <button class="btn btn-light btn-sm" id="edit-agenda">
+                            <i class="icon text-danger fas fa-trash-alt fa-fw"></i>
+                        </button>
+                    </span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                    `);
+
+                    $("#agenda-list").prepend(renderNewAgenda);
                 }
                 
             },
@@ -299,6 +326,9 @@ function agendaRequest(){
         agenda = [];
         arr = [];
         index = 1;
+    }else{
+        alert("empty")
+    }
     })
 }
 
