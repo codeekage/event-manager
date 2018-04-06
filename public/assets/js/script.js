@@ -1,4 +1,4 @@
-setFullName = () => {
+/* setFullName = () => {
     let full_name = document.getElementById("name-full");
     let abv_name = document.getElementById("name-abv");
     abv_name.innerText = full_name.innerText.charAt(0);
@@ -70,4 +70,4 @@ eVitation = () => {
     setFullName();
     eVitation();
 
-})()
+})() */

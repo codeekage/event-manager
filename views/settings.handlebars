@@ -1,7 +1,7 @@
 <div class="main-panel">
     {{> navbar}}
     <div class="content">
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
@@ -81,24 +81,41 @@
             </div>
             <div class="col-md-4">
                 <div class="card card-user">
-                    <div class="image">
-                        <img src="../assets/img//bg5.jpg" alt="...">
+                 <div>
+                      {{!--   <img src="../assets/img//bg5.jpg" alt="..."> --}}
+                    <button type="button" id="btn-toggle-preview" class="btn btn-round btn-simple btn-danger btn-icon no-caret" data-toggle="dropdown"
+                        aria-expanded="false" style="float:right;">
+                        <i class="now-ui-icons  ui-1_simple-remove"></i>
+                    </button>
                     </div>
-                    <div class="card-body">
-                        <div class="author">
-                            <a href="#">
-                                <img class="avatar border-gray" src="../assets/img//mike.jpg" alt="...">
-                                <h5 class="title">Mike Andrew</h5>
-                            </a>
-                            <p class="description">
-                                michael24
+                    <div class="card-body" style="background:url(/assets/img/bg-attend.jpg); background-size:cover; color:white">
+                        <div class="author" style="margin-top:50px">
+                            <p class="description text-light cursive">
+                                Event Name
                             </p>
                         </div>
-                        <p class="description text-center">
+                        <p class="description text-center text-light">
                             "Lamborghini Mercy
                             <br> Your chick she so thirsty
                             <br> I'm in that two seat Lambo"
                         </p>
+
+                        <div class="row">
+                            <div class="col-md-7 pr-1">
+                                <div class="form-group">
+                                    <label class="text-light">Enter Passkey</label>
+                                    <input type="text" class="form-control" placeholder="Yes/No" value="" name="evt_occ">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 px-1">
+                                <div class="form-group">
+                                    {{!--
+                                    <label for=""></label> --}}
+                                    <button class="bg-danger text-light btn form-control btn-success btn-outline-danger" id="btn-event" type="submit" style="margin-top: 25px;">Submit</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <hr>
                     <div class="button-container">
