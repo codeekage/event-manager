@@ -35,6 +35,6 @@ function eventActions(){
         default:
             break;
     }
-})
+})();
 
 

@@ -25,8 +25,9 @@ routes.get("/attend/:link", (req, res, next) => {
 routes.post("/attend/:link", (req, res, next) => {
     EventModel.findOne({
         evt_link : req.params.link,
-        evt_passkey : req.body.passkey
+        evt_passkey : req.query.passkey
     }).then((event) => {
+        console.log(req.query)
         if(!event){
             res.send({
                 success : false,
