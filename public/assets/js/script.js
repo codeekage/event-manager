@@ -1,73 +1,40 @@
-/* setFullName = () => {
-    let full_name = document.getElementById("name-full");
-    let abv_name = document.getElementById("name-abv");
-    abv_name.innerText = full_name.innerText.charAt(0);
 
-    if (full_name.innerText.indexOf(" ")) {
-        let sub_string = full_name.innerText.split(/\s+/)[1].toString()
-        abv_name.innerText = full_name.innerText.charAt(0) + sub_string.charAt(0);
-        console.log(abv_name.innerText.charAt(0))
-    } else {
-        abv_name.innerText = full_name.innerText.charAt(0);
-    }
-    console.log(full_name.innerText.charAt(0))
+function eventActions(){
+    document.querySelector("#hide-preview-btn").addEventListener("click", function () {
+        $("#preview-card").fadeToggle()
+        $("#event-card").fadeIn(function () {
+            $("#event-card").addClass("justify-content-center");
+            $("#show-preview-btn").css({ "display": "block" });
+        })
+    });
+
+    document.querySelector("#show-preview-btn").addEventListener("click", function () {
+        $("#preview-card").fadeToggle()
+        $("#event-card").fadeIn(function () {
+            $("#event-card").removeClass("justify-content-center");
+            $("#show-preview-btn").css({ "display": "none" });
+        })
+    });
+
+    document.querySelector("#event-name").addEventListener("keyup", function () {
+        document.querySelector("#preview-event-name").innerText = document.querySelector("#event-name").value;
+    });
+
+    document.querySelector("#noti-msg").addEventListener("keyup", function () {
+        document.querySelector("#preview-event-noti").innerText = document.querySelector("#noti-msg").value;
+    });
 }
 
-eVitation = () => {
-    let eventName = document.getElementById("event-name");
-    let coHost = document.getElementById("co-host");
-    let eventDate = document.getElementById("event-date");
-    let eventVenue = document.getElementById("event-venue");
-    let eventType = document.getElementById("event-type");
-
-
-    eventName.addEventListener("keyup", function(){
-        document.getElementById("evt-name").innerText = eventName.value
-    })
-
-
-    coHost.addEventListener("keyup", function(){
-        document.getElementById("evt-cohost").innerText = coHost.value
-    })
-
-    eventDate.addEventListener("keyup", function(){
-        document.getElementById("evt-date").innerText = eventDate.value
-    })
-
-    eventVenue.addEventListener("keyup", function(){
-        document.getElementById("evt-venue").innerText = eventVenue.value
-    })
-
-    eventType.addEventListener("keyup", function(){
-        document.getElementById("evt-type").innerText = eventType.value
-    })
-}
-
-(function () {
-    let active = location.href;
-    let href = active.split("/")[3];
-    let ul, li, activeHref, activeLi;
-
-    ul = document.getElementById("active-class");
-    li = ul.getElementsByTagName('li');
-
-    if (active) {
-        for (let i = 0; i < li.length; i++) {
-            activeHref = li[i].getAttribute('id');
-            activeLi = li[i].getElementsByTagName('a')[0].getAttribute('href')
-
-            // console.log(activeHref)
-            if (activeHref === href) {
-                document.getElementById(activeHref).className = "active";
-            } else if (activeHref === href + "#") {
-                document.getElementById(activeHref).className = "active";
-            } else if (href === "") {
-                document.getElementById("/").className = "active"
-            }
-        }
+(function() {
+    let currentRoute = location.href.split("/")[3];
+    switch (currentRoute) {
+        case "create":
+            eventActions();
+            break;
+    
+        default:
+            break;
     }
+})
 
-    setFullName();
-    eVitation();
 
-})() */

@@ -1,7 +1,11 @@
 <div class="main-panel">
     {{> navbar}}
     <div class="content">
-        <div class="row justify-content-center">
+        <button type="button" id="show-preview-btn" class="btn btn-round btn-success btn-icon no-caret btn-tooltip" data-toggle="tooltip" data-placement="top" data-animation="true" data-delay="100" data-original-title="Show Event Preview"
+            aria-expanded="false" style="float:right; display:none">
+            <i class="now-ui-icons  ui-1_check"></i>
+        </button>
+        <div id="event-card" class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
@@ -64,7 +68,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Notification Msg.</label>
-                                        <textarea rows="4" cols="80" class="form-control" placeholder="Here can be your description" value="Mike" name="noti_msg"></textarea>
+                                        <textarea id="noti-msg" rows="4" cols="80" class="form-control" placeholder="Here can be your description" value="Mike" name="noti_msg"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -79,22 +83,22 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+           <div id="preview-card" class="col-md-4">
                 <div class="card card-user">
                  <div>
                       {{!--   <img src="../assets/img//bg5.jpg" alt="..."> --}}
-                    <button type="button" id="btn-toggle-preview" class="btn btn-round btn-simple btn-danger btn-icon no-caret" data-toggle="dropdown"
+                    <button type="button" id="hide-preview-btn" class="btn btn-round btn-simple btn-danger btn-icon no-caret" data-toggle="dropdown"
                         aria-expanded="false" style="float:right;">
                         <i class="now-ui-icons  ui-1_simple-remove"></i>
                     </button>
                     </div>
                     <div class="card-body" style="background:url(/assets/img/bg-attend.jpg); background-size:cover; color:white">
                         <div class="author" style="margin-top:50px">
-                            <p class="description text-light cursive">
+                            <p id="preview-event-name" class="description text-light cursive">
                                 Event Name
                             </p>
                         </div>
-                        <p class="description text-center text-light">
+                        <p id="preview-event-noti" class="description text-center text-light">
                             "Lamborghini Mercy
                             <br> Your chick she so thirsty
                             <br> I'm in that two seat Lambo"

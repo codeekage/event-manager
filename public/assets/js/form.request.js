@@ -39,40 +39,8 @@ function routes(route) {
     }
 }
 
-function eventRequest() {
-    var options = {
-        url: `/api/events`,
-        method: "POST",
-        beforeSubmit: showRequest, // pre-submit callback
-        success: showResponse, // post-submit callback
-        error: showResponse,
-    };
-    // binding to the form's submit event
-    $('#event-form').submit(function () {
-        $(this).ajaxSubmit(options);
-        return false; // always return false to prevent standard browser submit and page navigation
-    });
 
-
-    $(".remove-event").on("click", function () {
-        console.log($(this).data("id").toString())
-        let toDelete = $(this).data("id").toString();
-        swal({
-            title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this imaginary file!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
-            .then((willDelete) => {
-                if (willDelete) {
-                    removeEvent(toDelete);
-                } else {
-                    swal("Your imaginary file is safe!");
-                }
-            });
-    });
-
+function shareEvent(){
     $(".share-link").on("click", function (e) {
         e.preventDefault();
         let copiedLink = `${location.origin}${$(this).attr("href")}`
@@ -112,6 +80,42 @@ function eventRequest() {
                 }
             });
     });
+}
+
+function eventRequest() {
+    var options = {
+        url: `/api/events`,
+        method: "POST",
+        beforeSubmit: showRequest, // pre-submit callback
+        success: showResponse, // post-submit callback
+        error: showResponse,
+    };
+    // binding to the form's submit event
+    $('#event-form').submit(function () {
+        $(this).ajaxSubmit(options);
+        return false; // always return false to prevent standard browser submit and page navigation
+    });
+
+
+    $(".remove-event").on("click", function () {
+        console.log($(this).data("id").toString())
+        let toDelete = $(this).data("id").toString();
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this imaginary file!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    removeEvent(toDelete);
+                } else {
+                    swal("Your imaginary file is safe!");
+                }
+            });
+    });
+
 
 
 }
@@ -333,6 +337,7 @@ function agendaRequest() {
 }
 
 (function () {
+    shareEvent();
     let currentRoute = location.href.split("/")[3];
     switch (currentRoute) {
         case "registration":
