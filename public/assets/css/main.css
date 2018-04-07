@@ -46,6 +46,14 @@
     box-sizing: border-box;
 }
 
+.toggle-password {
+    cursor: pointer;
+    font-size: 10px;
+    float: right;
+    margin: 2px 0px 5px 0px;
+    color: blue;
+}
+
 body,
 html {
     height: 100%;

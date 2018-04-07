@@ -213,6 +213,22 @@ function editEvent() {
 
 }
 
+function togglePassword(id){
+    let type = document.querySelector(id).getAttribute("type");
+    switch (type) {
+        case "password":
+            document.querySelector(id).setAttribute("type", "text");
+            document.querySelector("#show-password").innerText = "hide password";
+            break;
+        case "text":
+            document.querySelector(id).setAttribute("type", "password");
+            document.querySelector("#show-password").innerText = "show password";
+        break;
+        default:
+            break;
+    }
+}
+
 function hostRequest() {
     let registrationOptions = {
         url: `host/registration`,
@@ -226,6 +242,10 @@ function hostRequest() {
         $(this).ajaxSubmit(registrationOptions);
         return false; // always return false to prevent standard browser submit and page navigation
     });
+
+    $("#show-password").on("click", function(){
+     togglePassword("#password");
+    })
 
     /* et loginOptions = {
         url: `/login`,
