@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Node Event</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
+    <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/chat.css">
+</head>
+
+<body>
+    <div id="chat-page-wrapper">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 pd-0" id="contact-section">
+            <div class="col-md-12 col-sm-12 mb-15 search-contact-wrapper">
+                <input type="text" id="search-contact" class="form-control mt-10" placeholder="Search Contacts" required="required">
+            </div>
+            <div class="col-md-12 pd-0 contact-list">
+                <ul class="nav nav-stacked" id="all-contacts">
+                    <li class="contact-wrapper">
+                        <a href="#">
+                            <span class="contact-img" data-toggle="tooltip" data-placement="right" title="Sergio Ramos" style='background-image: url(/assets/img/user1-128x128.jpg);'></span>
+                            <span class="contact-name">Sergio Ramos</span>
+                            <br>
+                            <p class="recent-message">I am the best defender in the world!</p>
+                            <span class="date-sent">Today</span>
+                        </a>
+                    </li>
+                    <li class="contact-wrapper">
+                        <a href="#">
+                            <span class="contact-img" style='background-image: url(/assets/img/user2-160x160.jpg);'></span>
+                            <span class="contact-name">David de Gea</span>
+                            <br>
+                            <p class="recent-message">I am the best keeper in the world!</p>
+                            <span class="date-sent">Yesterday</span>
+                        </a>
+                    </li>
+                    <li class="contact-wrapper">
+                        <a href="#">
+                            <span class="contact-img" style='background-image: url(/assets/img/user3-128x128.jpg);'></span>
+                            <span class="contact-name">Luka Modric</span>
+                            <br>
+                            <p class="recent-message">I am the best midfielder in the world!</p>
+                            <span class="date-sent">24 Feb</span>
+                        </a>
+                    </li>
+                    <li class="contact-wrapper">
+                        <a href="#">
+                            <span class="contact-img" style='background-image: url(/assets/img/user4-128x128.jpg);'></span>
+                            <span class="contact-name">Cristiano Ronaldo</span>
+                            <br>
+                            <p class="recent-message">I am the best winger in the world!</p>
+                            <span class="date-sent">14 Feb</span>
+                        </a>
+                    </li>
+                    <li class="contact-wrapper">
+                        <a href="#">
+                            <span class="contact-img" style='background-image: url(/assets/img/user5-128x128.jpg);'></span>
+                            <span class="contact-name">Lionel Messi</span>
+                            <br>
+                            <p class="recent-message">I am the best playmaker in the world! dsdssdddddddfffffffffffffff</p>
+                            <span class="date-sent">14/10/17</span>
+                        </a>
+                    </li>
+                    <li class="contact-wrapper">
+                        <a href="#">
+                            <span class="contact-img" style='background-image: url(/assets/img/user6-128x128.jpg);'></span>
+                            <span class="contact-name">Andres Iniesta</span>
+                            <br>
+                            <p class="recent-message">I am a midfield GOAT dsdssdddddddfffffffffffffff</p>
+                            <span class="date-sent">14/10/17</span>
+                        </a>
+                    </li>
+                    <li class="contact-wrapper">
+                        <a href="#">
+                            <span class="contact-img" style='background-image: url(/assets/img/user7-128x128.jpg);'></span>
+                            <span class="contact-name">Jesse Lingard</span>
+                            <br>
+                            <p class="recent-message">I am the greatest player to ever grace the pitch dsdssdddddddfffffffffffffff</p>
+                            <span class="date-sent">14/10/17</span>
+                        </a>
+                    </li>
+                    <li class="contact-wrapper">
+                        <a href="#">
+                            <span class="contact-img" style='background-image: url(/assets/img/user8-128x128.jpg);'></span>
+                            <span class="contact-name">Paul Pogba</span>
+                            <br>
+                            <p class="recent-message">I am a hairstyle merchant dsdssdddddddfffffffffffffff</p>
+                            <span class="date-sent">14/10/17</span>
+                        </a>
+                    </li>
+                    <li class="contact-wrapper">
+                        <a href="#">
+                            <span class="contact-img" style='background-image: url(/assets/img/user1-128x128.jpg);'></span>
+                            <span class="contact-name">Eden Hazard</span>
+                            <br>
+                            <p class="recent-message">I am a bum bum merchant dsdssdddddddfffffffffffffff</p>
+                            <span class="date-sent">13/7/17</span>
+                        </a>
+                    </li>
+                    <li class="contact-wrapper">
+                        <a href="#">
+                            <span class="contact-img" style='background-image: url(/assets/img/user2-160x160.jpg);'></span>
+                            <span class="contact-name">Sergio Busquets</span>
+                            <br>
+                            <p class="recent-message">I am a midfield Rolls Royce dsdssdddddddfffffffffffffff</p>
+                            <span class="date-sent">10/9/17</span>
+                        </a>
+                    </li>
+                    <li class="contact-wrapper">
+                        <a href="#">
+                            <span class="contact-img" style='background-image: url(/assets/img/user3-128x128.jpg);'></span>
+                            <span class="contact-name">Ngolo Kante</span>
+                            <br>
+                            <p class="recent-message">I am a midfield fraud dsdssdddddddfffffffffffffff</p>
+                            <span class="date-sent">9/12/16</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-9 col-md-9 col-sm-9 pd-0" id="sent-chats">
+            <div class="chat-top-bar col-md-9 col-sm-9">
+                <p class="chat-username">Sergio Ramos</p>
+            </div>
+            <div class="col-md-12 col-sm-12 chats-section">
+                <div class="chat-receiver-div">
+                    <p class="chat-receiver">I am among the best Defensive Midfielder in the world ilubfbklsdk.dsb,j hlbsbjsd lbhsblsdlbh jdsl,jsd</p>
+                </div>
+                <div class="chat-sender-div">
+                    <p class="chat-sender">I am among the best Left Back in the world dshjsdbl,hsd hblsdhblsd hldb;.qjokk#'k ';sdhuo;sd.bkh;</p>
+                </div>
+                <div class="chat-sender-div">
+                    <p class="chat-sender">I am among the best Le</p>
+                </div>
+                <div class="chat-receiver-div">
+                    <p class="chat-receiver">I am among the best Defensive Midfielder in the world ilubfbklsdk.dsb,j hlbsbjsd lbhsblsdlbh jdsl,jsd</p>
+                </div>
+                <div class="chat-receiver-div">
+                    <p class="chat-receiver">I am among the best Defensive Midfielder in the world ilubfbklsdk.dsb,j hlbsbjsd lbhsblsdlbh jdsl,jsd</p>
+                </div>
+                <div class="chat-sender-div">
+                    <p class="chat-sender">I am among the best Le</p>
+                </div>
+                <div class="chat-sender-div">
+                    <p class="chat-sender">I am among the best Le</p>
+                </div>
+                <div class="chat-sender-div">
+                    <p class="chat-sender">I am among the best Le</p>
+                </div>
+                <div class="chat-receiver-div">
+                    <p class="chat-receiver">I am </p>
+                </div>
+                <div class="chat-receiver-div">
+                    <p class="chat-receiver">I am among </p>
+                </div>
+                <div class="chat-receiver-div">
+                    <p class="chat-receiver">I am among the best Defensive Midfielder in the world ilubfbklsdk.dsb,j hlbsbjsd lbhsblsdlbh jdsl,jsd</p>
+                </div>
+                <div class="chat-receiver-div">
+                    <p class="chat-receiver">I am among the best Defensive Midfielder in the world ilubfbklsdk.dsb,j hlbsbjsd lbhsblsdlbh jdsl,jsd</p>
+                </div>
+                <div class="chat-receiver-div">
+                    <p class="chat-receiver">I am among the best Defensive Midfielder in the worldfjkgjbhlkjn.lsdlibsdghi,jgvb.nlsdkh,jgvj ilubfbklsdk.dsb,j
+                        hlbsbjsd lbhsblsdlbh jdsl,jsd</p>
+                </div>
+                <div class="chat-receiver-div">
+                    <p class="chat-receiver">I am among the best Defensive Midfielder in the world ilubfbklsdk.dsb,j hlbsbjsd lbhsblsdlbh jdsl,jsd</p>
+                </div>
+                <div class="chat-receiver-div">
+                    <p class="chat-receiver">I am among the best Defensive Midfielder in the world ilubfbklsdk.dsb,j hlbsbjsd lbhsblsdlbh jdsl,jsd</p>
+                </div>
+                <div class="chat-receiver-div">
+                    <p class="chat-receiver">I am among the best Defensive Midfielder in the world ilubfbklsdk.dsb,j hlbsbjsd lbhsblsdlbh jdsl,jsd</p>
+                </div>
+                <!--<p class="chat-receiver">
+                    I am among the best Defensive Midfielder in the world
+                </p>
+                <p class="chat-sender">
+                    I am among the best Left Back in the world
+                </p>
+                <p class="chat-receiver">
+                    I am among the best Defensive Midfielder in the world
+                </p>
+                <p class="chat-sender">
+                    I am among the best Left Back in the world
+                </p>
+                <p class="chat-receiver">
+                    I am among the best Defensive Midfielder in the world
+                </p>
+                <p class="chat-sender">
+                    I am among the best Left Back in the world
+                </p>
+                <p class="chat-receiver">
+                    I am among the best Defensive Midfielder in the world
+                </p>
+                <p class="chat-sender">
+                    I am among the best Left Back in the world
+                </p>-->
+            </div>
+            <div class="">
+                <div class="input-group send-message-wrapper">
+                    <input type="text" id="type-message" class="form-control" title="" required="required">
+                    <span class="input-group-addon glyphicon glyphicon-send"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/jquery-3.1.1.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/chat.js"></script>
+</body>
+
+</html>

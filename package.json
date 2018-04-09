@@ -31,7 +31,8 @@
         "passport": "^0.4.0",
         "passport-http": "^0.3.0",
         "passport-local": "^1.0.0",
-        "popper.js": "^1.14.3"
+        "popper.js": "^1.14.3",
+        "socket.io": "^2.1.0"
     },
     "devDependencies": {
         "gulp": "^3.9.1",
