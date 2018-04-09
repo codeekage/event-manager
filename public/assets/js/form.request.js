@@ -350,7 +350,16 @@ function agendaRequest() {
 function editAgenda(){
     $(".edit-agenda").on('click', function(){
         let toEdit = $(this).data("id");
-        alert(toEdit)
+        alert(toEdit);
+        
+        document.querySelector(`#toedit-${toEdit}`).setAttribute("contenteditable", true);
+        $(`#toedit-${toEdit}`).focus();
+        $(`#accept-${toEdit}`).removeClass("d-none");
+        $(`#accept-${toEdit}`).on("click", function(){
+            document.querySelector(`#toedit-${toEdit}`).setAttribute("contenteditable", false);
+            $(`#accept-${toEdit}`).addClass("d-none");
+        });
+        
     })
 }
 
