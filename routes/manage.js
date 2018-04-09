@@ -23,7 +23,7 @@ routes.get("/manage/:link", ensureAuthenticated, (req, res, next) => {
                         evt_date : event.evt_date,
                         noti_msg : event.noti_msg,
                         evt_type : event.evt_type,
-                        evt_agenda: agenda,
+                        agenda: agenda,
                         evt_occ : event.evt_occ,
                         evt_passkey : event.evt_passkey,
                         organization : host.organization

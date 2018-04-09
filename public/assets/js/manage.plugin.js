@@ -1,4 +1,4 @@
-(function () {
+/* (function () {
     let agenda;
     let ul = document.getElementById("agenda-list");
     let li = ul.getElementsByTagName("li");
@@ -39,4 +39,4 @@
                 <input type="text" class="form-control" id="agenda-field-0">
             </div>`);
     })
-})();
+})(); */

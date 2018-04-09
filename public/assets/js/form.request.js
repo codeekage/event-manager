@@ -40,7 +40,7 @@ function routes(route) {
 }
 
 
-function shareEvent(){
+function shareEvent() {
     $(".share-link").on("click", function (e) {
         e.preventDefault();
         let copiedLink = `${location.origin}${$(this).attr("href")}`
@@ -213,7 +213,7 @@ function editEvent() {
 
 }
 
-function togglePassword(id){
+function togglePassword(id) {
     let type = document.querySelector(id).getAttribute("type");
     switch (type) {
         case "password":
@@ -223,7 +223,7 @@ function togglePassword(id){
         case "text":
             document.querySelector(id).setAttribute("type", "password");
             document.querySelector("#show-password").innerText = "show password";
-        break;
+            break;
         default:
             break;
     }
@@ -243,8 +243,8 @@ function hostRequest() {
         return false; // always return false to prevent standard browser submit and page navigation
     });
 
-    $("#show-password").on("click", function(){
-     togglePassword("#password");
+    $("#show-password").on("click", function () {
+        togglePassword("#password");
     })
 
     /* et loginOptions = {
@@ -262,6 +262,39 @@ function hostRequest() {
     });  */
 }
 
+function addAgenda(agenda) {
+    let links = location.href.split("/")[4];
+    $.ajax({
+        url: `/api/agenda/${links}`,
+        method: "POST",
+        contentType: "application/json",
+        dataType: "JSON",
+        data: JSON.stringify({
+            evt_link: links,
+            evt_agenda: agenda
+        }),
+        success: function (data, status) {
+            $("#agenda-list").prepend(`
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+            ${agenda}
+            <span>
+                <button class="btn btn-light btn-sm" id="edit-agenda"  data-id="${data.agenda._id}">
+                    <i class="icon text-info fas fa-pencil-alt fa-fw"></i>
+                </button>
+                <button class="btn btn-light btn-sm" id="edit-agenda" data-id="${data.agenda._id}">
+                    <i class="icon text-danger fas fa-trash-alt fa-fw"></i>
+                </button>
+                </span>
+            </li>`);
+
+            console.log(data)
+
+        },
+        error: function () {
+            alert("failed!")
+        }
+    })
+}
 
 function agendaRequest() {
     let index = 1;
@@ -299,60 +332,25 @@ function agendaRequest() {
 
             $('#exampleModal').modal('hide');
 
+            agenda.forEach(element => {
+                addAgenda(element);
+            })
 
-            let links = location.href.split("/")[4];
-            let renderNewAgenda = "";
-            $.ajax({
-                url: `/api/agenda/${links}`,
-                method: "POST",
-                contentType: "application/json",
-                dataType: "JSON",
-                data: JSON.stringify({
-                    evt_link: links,
-                    evt_agenda: agenda
-                }),
-                success: function (data, status) {
-                    console.log(data);
-                    if (data.success === true) {
-                        let agendas = `<li class="list-group-item d-flex justify-content-between align-items-center">
-                                        ${data.agenda.evt_agenda} 
-                                    <span>
-                                        <button class="btn btn-light btn-sm">
-                                             <i class="icon text-info fas fa-pencil-alt fa-fw"></i>
-                                        </button>
-                                        <button class="btn btn-light btn-sm">
-                                            <i class="icon text-danger fas fa-trash-alt fa-fw"></i> 
-                                        </button>
-                                    </span>`;
-                        renderNewAgenda = agendas.split(",").join(`
-                    <span>
-                        <button class="btn btn-light btn-sm" id="edit-agenda">
-                            <i class="icon text-info fas fa-pencil-alt fa-fw"></i>
-                        </button>
-                        <button class="btn btn-light btn-sm" id="edit-agenda">
-                            <i class="icon text-danger fas fa-trash-alt fa-fw"></i>
-                        </button>
-                    </span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                    `);
-
-                        $("#agenda-list").prepend(renderNewAgenda);
-                    }
-
-                },
-                error: function (data, status) {
-                    console.log(data)
-                }
-            });
-
-            console.log(agenda)
             agenda = [];
             arr = [];
             index = 1;
-        } else {
-            alert("empty")
         }
+    });
+
+ 
+
+}
+
+
+function editAgenda(){
+    $(".edit-agenda").on('click', function(){
+        let toEdit = $(this).data("id");
+        alert(toEdit)
     })
 }
 
@@ -374,6 +372,7 @@ function agendaRequest() {
             break;
         case "manage":
             eventRequest();
+            editAgenda();
             agendaRequest();
             break;
         default:

@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const EventAgenda = new Schema({
     evt_agenda: {
-        type: [String],
+        type: String,
         required: [true, "Agenda Required"]
     },
     evt_link: {
