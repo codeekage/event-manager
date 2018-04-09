@@ -10,6 +10,12 @@ const EventAgenda = new Schema({
         type: String,
         required: [true, "Unique identification required"]
     },
+    state : {
+        type : String
+    }, 
+    button_state : {
+        type : String
+    },
     created_date : {
         type : Date,
         default : Date.now()

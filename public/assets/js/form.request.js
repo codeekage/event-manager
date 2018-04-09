@@ -278,10 +278,13 @@ function addAgenda(agenda) {
             <li class="list-group-item d-flex justify-content-between align-items-center">
             ${agenda}
             <span>
-                <button class="btn btn-light btn-sm" id="edit-agenda"  data-id="${data.agenda._id}">
+              <button class="btn d-none btn-light btn-sm"  id="done-${data.agenda._id}" data-id="${data.agenda._id}">
+                    <i class="icon text-info fas fa-check fa-fw"></i>
+                </button>
+                <button class="btn btn-light btn-sm edit-agenda" id="edit-agenda" data-id="${data.agenda._id}">
                     <i class="icon text-info fas fa-pencil-alt fa-fw"></i>
                 </button>
-                <button class="btn btn-light btn-sm" id="edit-agenda" data-id="${data.agenda._id}">
+                <button class="btn btn-light btn-sm delete-agenda" id="-agenda" data-id="${data.agenda._id}">
                     <i class="icon text-danger fas fa-trash-alt fa-fw"></i>
                 </button>
                 </span>
@@ -343,19 +346,46 @@ function agendaRequest() {
     });
     editAgenda();
     deleteAgenda();
- 
+    checkOffAgenda();
 
+}
+
+function checkOffAgenda(){
+    $(".done-agenda").on('click', function(){
+        let toCheck = $(this).data("id");
+        let links = location.href.split("/")[4];
+        $.ajax({
+            url: `/api/agenda/${links}?_id=${toCheck}`,
+            method: "PUT",
+            contentType: "application/json",
+            dataType: "JSON",
+            data: JSON.stringify({
+                state: "done",
+                "button_state" : "disabled"
+            }),
+            success: function (data, status) {
+                $(`#toedit-${toCheck}`).addClass('done');
+                console.log(data)
+            },
+            error: function (data, status) {
+                console.log(data)
+            }
+        })
+    })
 }
 
 
 function editAgenda(){
     $(".edit-agenda").on('click', function(){
         let toEdit = $(this).data("id");
-        alert(toEdit);
         
         document.querySelector(`#toedit-${toEdit}`).setAttribute("contenteditable", true);
         $(`#toedit-${toEdit}`).focus();
-        $(`#accept-${toEdit}`).removeClass("d-none");
+        $(`#done-${toEdit}`).slideUp(function(){
+            $(`#accept-${toEdit}`).fadeIn(function(){
+                $(`#accept-${toEdit}`).removeClass("d-none");
+            });
+        });
         $(`#accept-${toEdit}`).on("click", function(){
             let links = location.href.split("/")[4];
             $.ajax({
@@ -368,7 +398,11 @@ function editAgenda(){
                 }),
                 success : function(data, status) {
                     document.querySelector(`#toedit-${toEdit}`).setAttribute("contenteditable", false);
-                    $(`#accept-${toEdit}`).addClass("d-none");
+                    $(`#accept-${toEdit}`).fadeOut(function () {
+                        $(`#done-${toEdit}`).slideDown(function () {
+                            $(`#accept-${toEdit}`).addClass("d-none");
+                        });
+                    });
                     console.log(data)
                 },
                 error: function(data, status){

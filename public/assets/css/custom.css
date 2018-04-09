@@ -162,3 +162,7 @@ li {
     border: solid 1px whitesmoke;
     outline: 1px solid whitesmoke;
 }
+
+.done {
+    text-decoration: line-through;
+}

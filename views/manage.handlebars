@@ -21,13 +21,16 @@
                         {{#if agenda}}
                         {{#each agenda}}
                         <li class="list-group-item d-flex justify-content-between align-items-center" id="agenda-item-{{_id}}">
-                            <div id="toedit-{{_id}}" style="width:86%; padding:5px;" >{{evt_agenda}}
+                            <div class="{{state}}" id="toedit-{{_id}}" style="width:86%; padding:5px;" >{{evt_agenda}}
                             </div>
                             <span>
-                                <button class="btn d-none btn-light btn-sm"  id="accept-{{_id}}" data-id="{{_id}}">
+                                <button class="btn btn-light btn-sm done-agenda"  id="done-{{_id}}" data-id="{{_id}}">
+                                    <i class="icon text-success fas fa-minus fa-fw"></i>
+                                </button>
+                                <button class="btn d-none btn-light btn-sm" id="accept-{{_id}}" data-id="{{_id}}">
                                     <i class="icon text-info fas fa-check fa-fw"></i>
                                 </button>
-                                <button class="btn btn-light btn-sm edit-agenda" id="edit-agenda" data-id="{{_id}}">
+                                <button class="btn btn-light btn-sm edit-agenda" {{button_state}} id="edit-agenda" data-id="{{_id}}">
                                         <i class="icon text-info fas fa-pencil-alt fa-fw"></i>
                                     </button>
                                     <button class="btn btn-light btn-sm delete-agenda" id="delete-agenda" data-id="{{_id}}">
