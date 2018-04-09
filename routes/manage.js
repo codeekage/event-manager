@@ -13,7 +13,7 @@ routes.get("/manage/:link", ensureAuthenticated, (req, res, next) => {
         }else{
             let hostID = req.session.user_id
             HostModel.findOne({_id : hostID}).then((host) => {
-                AgendaModel.find({evt_link : req.params.link}).then((agenda) => {
+                AgendaModel.find({evt_link : req.params.link}).sort({created_date: -1}).then((agenda) => {
                     let event_agenda = agenda.evt_agenda;
                     console.log(agenda)
                     res.render('manage', {

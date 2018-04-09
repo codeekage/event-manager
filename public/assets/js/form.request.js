@@ -341,7 +341,8 @@ function agendaRequest() {
             index = 1;
         }
     });
-
+    editAgenda();
+    deleteAgenda();
  
 
 }
@@ -356,10 +357,51 @@ function editAgenda(){
         $(`#toedit-${toEdit}`).focus();
         $(`#accept-${toEdit}`).removeClass("d-none");
         $(`#accept-${toEdit}`).on("click", function(){
-            document.querySelector(`#toedit-${toEdit}`).setAttribute("contenteditable", false);
-            $(`#accept-${toEdit}`).addClass("d-none");
+            let links = location.href.split("/")[4];
+            $.ajax({
+                url : `/api/agenda/${links}?_id=${toEdit}`,
+                method : "PUT",
+                contentType : "application/json",
+                dataType : "JSON",
+                data : JSON.stringify({
+                    evt_agenda: document.querySelector(`#toedit-${toEdit}`).innerHTML
+                }),
+                success : function(data, status) {
+                    document.querySelector(`#toedit-${toEdit}`).setAttribute("contenteditable", false);
+                    $(`#accept-${toEdit}`).addClass("d-none");
+                    console.log(data)
+                },
+                error: function(data, status){
+                    console.log(data)
+                }
+            })
         });
         
+    })
+}
+
+
+function deleteAgenda(){
+    
+    $(".delete-agenda").on('click', function(){
+        let links = location.href.split("/")[4];
+        let toDelete = $(this).data("id");
+        alert(toDelete)
+        $.ajax({
+            url : `/api/agenda/${links}?_id=${toDelete}`,
+            method : "DELETE",
+            contentType : "application/json",
+            dataType:"JSON",
+            success : function(data, status){
+                $(`#agenda-item-${toDelete}`).slideUp(function () {
+                    $(`#agenda-item-${toDelete}`).remove();
+                });
+                console.log(data)
+            },
+            error : function(data, status){
+                console.log(data)
+            }
+        })
     })
 }
 
@@ -381,7 +423,6 @@ function editAgenda(){
             break;
         case "manage":
             eventRequest();
-            editAgenda();
             agendaRequest();
             break;
         default:
