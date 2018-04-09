@@ -1,284 +1,53 @@
-<!doctype html>
-<html lang="en">
+<div class="row justify-content-center">
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="/assets/css/custom.css">
-    <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/x-icon">
-
-    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
-        crossorigin="anonymous"></script>
-        <link href="/assets/demo/demo.css" rel="stylesheet" />
-{{!--         <link rel="stylesheet" href="/assets/bmd/bootstrap-material-design.css"> --}}
-    <title>Manage Event</title>
-</head>
-
-<body class="body">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-2 justify-content-between">
-        <!-- Just an image -->
-
-        <a class="navbar-brand" href="/">
-            <img src="/assets/img/favicon.png" width="30" height="30" alt=""> {{organization}}
-        </a>
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">
-                        <span class="sr-only">(current)</span>
-                    </a>
+    <div class="card col-md-10">
+        <div class="card-body">
+            <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Agenda</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"></a>
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Edit Event</a>
                 </li>
-                {{!--
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#" </a>
-                            <a class="dropdown-item" href="#">tion</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li> --}}
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">{{evt_date}}</a>
-                </li>
-            </ul>
-            <form class="form-inline">
-                {{!--
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> --}}
-               {{!--  <button class="btn btn-info my-2 my-sm-0" type="submit">Go Live</button> --}}
-                <button type="button" class="btn btn-info btn-raised active">
-                    <code>go live</code>
-                </button>
-            </form>
-        </div>
-    </nav>
-
-    <div class="wrapper">
-        {{!--
-        <nav class="sidebar">
-            <ul>
-                <li class="sidebar-branding">
-                    <h6>Creator studio</h6>
-                </li>
-                <li class="sidebar-item">
-                    <a href="http://">
-                        <i class="fas fa-calendar-plus fa-fw"></i>
-                        <span class="text-uppercase">Dashboard</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="http://">
-                        <i class="fas fa-calendar-plus fa-fw"></i>
-                        <span class="text-uppercase">Dashboard</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="http://">
-                        <i class="fas fa-calendar-plus fa-fw"></i>
-                        <span class="text-uppercase">Dashboard</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="http://">
-                        <i class="fas fa-calendar-plus fa-fw"></i>
-                        <span class="text-uppercase">Dashboard</span>
-                    </a>
+                <li class="nav-item">
+                    <a class="nav-link" id="speakers-tab" data-toggle="tab" href="#speakers" role="tab" aria-controls="speakers" aria-selected="fasle">Speakers</a>
                 </li>
 
             </ul>
-        </nav> --}}
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="card col-md-10  card-height-90 mb-2">
-                    <div class="card-body card-height-0">
-                        <div class="card-title">
-                            <img src="/assets/img/mike.jpg" alt="" height="100%" width="50px">
-                            <div class="subject col-12">
-                                <h5 class="mb-0">{{evt_name}}</h5>
-                                <a href="#" class="mb-0 fn-1 fn-bold">VIEW CHANNEL</a>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <ul class="list-group" id="agenda-list">
 
-                                <div class="subject-about">
-                                    <ul>
-                                        <li>
-                                            <div class="text-center">0</div>
-                                            <div class="li-text text-center">Co-Host</div>
-                                        </li>
-                                        <li class="border-side-1">
-                                            <div class="text-center">0</div>
-                                            <div class="li-text text-center">Subscribers</div>
-                                        </li>
-                                        <li>
-                                            <div class="text-center">
-                                              
-                                                <button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
-
-                                                    <i class="text-info fas fa-calendar-plus fa-fw"></i>
-                                                </button>
-
-                                            </div>
-                                            <div class="li-text text-center">Add Angeda</div>
-                                        </li>
-                                    </ul>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        {{#each evt_agenda}}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {{evt_agenda}}
+                        </li>
+                        {{/each}} {{!--
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Dapibus ac facilisis in
+                            <span class="badge badge-primary badge-pill">2</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Morbi leo risus
+                            <span class="badge badge-primary badge-pill">1</span>
+                        </li> --}}
+                    </ul>
                 </div>
-            </div>
 
-
-            <div class="row justify-content-center">
-
-                <div class="card col-md-10">
-                    <div class="card-body">
-                        <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Agenda</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Edit Event</a>
-                            </li>
-
-                        </ul>
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                <ul class="list-group" id="agenda-list">
-                                    
-                                 {{#each evt_agenda}}
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    {{evt_agenda}}
-                                </li>
-                                {{/each}}
-                                 
-                                   {{!--  <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Dapibus ac facilisis in
-                                        <span class="badge badge-primary badge-pill">2</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Morbi leo risus
-                                        <span class="badge badge-primary badge-pill">1</span>
-                                    </li> --}}
-                                </ul>
-                            </div>
-                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                <form id="edit-event-form" method="PUT" action="/api/event">
-                                    <div class="form-row">
-                                      {{!--   <input type="hiddden" value="{{evt_id}}"> --}}
-                                        <div class="form-group col-md-6">
-                                            <label for="inputEmail4">Event Name</label>
-                                            <input type="text" class="form-control" id="evt_name" disabled="true" placeholder="Event Name" name="evt_name" value="{{evt_name}}">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="inputPassword4">Passkey</label>
-                                            <input type="text" class="form-control" id="evt_passkey" disabled="true" placeholder="Passkey" name="evt_passkey" value="{{evt_passkey}}">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-6">
-                                            <label for="inputAddress">Venue</label>
-                                            <input type="text" class="form-control" id="evt_venue" disabled="" placeholder="Event Venue" name="evt_venue" value="{{evt_venue}}">
-                                        </div>
-                                        <div class="form-group col-6">
-                                            <label for="inputAddress2">Event Date/Time</label>
-                                            <input type="datetime-local" class="form-control" id="evt_date" disabled="" placeholder="Event Date/Time" name="evt_date" value="{{evt_date}}">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-6">
-                                            <label for="inputAddress2">Repeat Event</label>
-                                            <input type="text" class="form-control" id="evt_occ" disabled="" placeholder="Event Occurance" name="evt_occ" value="{{evt_occ}}">
-                                        </div>
-                                        <div class="form-group col-6">
-                                            <label for="inputAddress">Event Type</label>
-                                            <input type="text" class="form-control" id="evt_type" disabled="" placeholder="Event Venue" name="evt_type" value="{{evt_type}}">
-                                        </div>
-                                    </div>
-                                    <div class="form-row mb-0">
-                                        <div class="form-group col-12">
-                                        <label for="exampleFormControlTextarea1">Welcome Message<label>
-
-                                        </div>
-                                    </div>
-                                  <div class="form-row">
-                                    <div class="form-group col-12">
-                                        <div contenteditable="false"  class="form-control col-12" id="noti_msg" name="noti_msg">
-                                            {{noti_msg}}
-                                        </div>
-                                    </div>
-
-                                  </div>
-                                    <button type="submit" class="btn btn-primary pull-right" id="submit-edit">Save Changes</button>
-                                    <button id="edit-event" class="btn btn-default pull-right">Edit</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-
-    </div>
-    </div>
-
-    {{!--
-    <footer class="footer ">
-        <div class="container fixed-bottom text-center justify-content-center">
-            <span class="text-info">copyright e-vites
-                <script>
-                    Date.now();
-                </script>
-            </span>
-        </div>
-    </footer> --}}
-
-
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content ">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add New Agenda</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="modal-field">
-                        <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Agenda</label>
-                            <input type="text" class="form-control" id="agenda-field-0">
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" id="add-field" class="btn btn-primary">Add Field</button>
-                    <button type="button" class="btn btn-success" id="add-agenda">Save</button>
-                </div>
+                {{> event-tab}} {{> speaker-tab}}
             </div>
         </div>
     </div>
+</div>
 
-  <script src="/assets/js/core/jquery.min.js"></script>
+</div>
+
+
+</div>
+</div>
+{{> modals}}
+
+<script src="/assets/js/core/jquery.min.js"></script>
 <script src="/assets/js/core/popper.min.js"></script>
 <script src="/assets/js/core/bootstrap.min.js"></script>
 <script src="/assets/bmd/bootstrap-material-design.iife.min.js"></script>

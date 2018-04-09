@@ -1,0 +1,54 @@
+<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+    <form id="edit-event-form" method="PUT" action="/api/event">
+        <div class="form-row">
+            {{!--
+            <input type="hiddden" value="{{evt_id}}"> --}}
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Event Name</label>
+                <input type="text" class="form-control" id="evt_name" disabled="true" placeholder="Event Name" name="evt_name" value="{{evt_name}}">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputPassword4">Passkey</label>
+                <input type="text" class="form-control" id="evt_passkey" disabled="true" placeholder="Passkey" name="evt_passkey" value="{{evt_passkey}}">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-6">
+                <label for="inputAddress">Venue</label>
+                <input type="text" class="form-control" id="evt_venue" disabled="" placeholder="Event Venue" name="evt_venue" value="{{evt_venue}}">
+            </div>
+            <div class="form-group col-6">
+                <label for="inputAddress2">Event Date/Time</label>
+                <input type="datetime-local" class="form-control" id="evt_date" disabled="" placeholder="Event Date/Time" name="evt_date"
+                    value="{{evt_date}}">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-6">
+                <label for="inputAddress2">Repeat Event</label>
+                <input type="text" class="form-control" id="evt_occ" disabled="" placeholder="Event Occurance" name="evt_occ" value="{{evt_occ}}">
+            </div>
+            <div class="form-group col-6">
+                <label for="inputAddress">Event Type</label>
+                <input type="text" class="form-control" id="evt_type" disabled="" placeholder="Event Venue" name="evt_type" value="{{evt_type}}">
+            </div>
+        </div>
+        <div class="form-row mb-0">
+            <div class="form-group col-12">
+                <label for="exampleFormControlTextarea1">Welcome Message
+                    <label>
+
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-12">
+                <div contenteditable="false" class="form-control col-12" id="noti_msg" name="noti_msg">
+                    {{noti_msg}}
+                </div>
+            </div>
+
+        </div>
+        <button type="submit" class="btn btn-primary pull-right" id="submit-edit">Save Changes</button>
+        <button id="edit-event" class="btn btn-default pull-right">Edit</button>
+    </form>
+</div>

@@ -17,7 +17,7 @@ routes.get("/manage/:link", ensureAuthenticated, (req, res, next) => {
                     let event_agenda = agenda.evt_agenda;
                     console.log(agenda)
                     res.render('manage', {
-                        layout: false,
+                        layout: 'manage',
                         evt_name : event.evt_name,
                         evt_venue : event.evt_venue,
                         evt_date : event.evt_date,
@@ -28,10 +28,10 @@ routes.get("/manage/:link", ensureAuthenticated, (req, res, next) => {
                         evt_passkey : event.evt_passkey,
                         organization : host.organization
                     })
-                })
-                })
+                }).catch(next)
+                }).catch(next)
         }
-    })
+    }).catch(next)
 })
 
 

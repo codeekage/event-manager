@@ -157,3 +157,8 @@ li {
 .icon:hover {
     cursor: pointer;
 }
+
+.bio {
+    border: solid 1px whitesmoke;
+    outline: 1px solid whitesmoke;
+}

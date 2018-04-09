@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/custom.css">
+    <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/x-icon">
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
+        crossorigin="anonymous"></script>
+    <link href="/assets/demo/demo.css" rel="stylesheet" /> {{!--
+    <link rel="stylesheet" href="/assets/bmd/bootstrap-material-design.css"> --}}
+    <title>Manage Event</title>
+</head>
+
+<body class="body">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-2 justify-content-between">
+        <!-- Just an image -->
+
+        <a class="navbar-brand" href="/">
+            <img src="/assets/img/favicon.png" width="30" height="30" alt=""> {{organization}}
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">{{evt_date}}</a>
+                </li>
+            </ul>
+            <form class="form-inline">
+                <div class="row">
+                    <div class="">
+                        <button type="button" class="btn btn-info btn-raised active">
+                            <code>Invite</code>
+                        </button>
+                        <button type="button" class="btn btn-info btn-raised active">
+                            <code>GO LIVE</code>
+                        </button>
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+    </nav>
+
+    <div class="wrapper">
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="card col-md-10  card-height-90 mb-2">
+                    <div class="card-body card-height-0">
+                        <div class="card-title">
+                            <img src="/assets/img/mike.jpg" alt="" height="100%" width="50px">
+                            <div class="subject col-12">
+                                <h5 class="mb-0">{{evt_name}}</h5>
+                                <a href="#" class="mb-0 fn-1 fn-bold">VIEW CHANNEL</a>
+
+                                <div class="subject-about">
+                                    <ul>
+                                        <li>
+                                            <div class="text-center">0</div>
+                                            <div class="li-text text-center">Co-Host</div>
+                                        </li>
+                                        <li class="border-side-1">
+                                            <div class="text-center">0</div>
+                                            <div class="li-text text-center">Subscribers</div>
+                                        </li>
+                                        <li>
+                                            <div class="text-center">
+
+                                                <button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+
+                                                    <i class="text-info fas fa-calendar-plus fa-fw"></i>
+                                                </button>
+
+                                            </div>
+                                            <div class="li-text text-center">Add Angeda</div>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+{{{body}}}
+          
