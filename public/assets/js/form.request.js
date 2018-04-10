@@ -521,17 +521,15 @@ function addSpeaker(speaker){
         }),
         success : function(data, status){
             $("#accordion").prepend(`
-            <div class="card m-2">
-            <div class="card-header bg-light collapsed" id="headingOne" data-toggle="collapse" data-target="#collapse${data.speaker._id}" aria-expanded="true"
-                aria-controls="collapseOne">
+            <div class="card">
+            <div class="card-header collapsed" id="headingTwo" data-toggle="collapse" data-target="#collapse${data.speaker._id}" aria-expanded="false" aria-controls="collapseTwo">
                 <h5 class="mb-0">
                     ${data.speaker.evt_speaker}
-                </h5>
+                  </h5>
             </div>
-
-            <div id="collapse${data.speaker._id}" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div id="collapse${data.speaker._id}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                 <div class="card-body">
-                   ${data.speaker.speaker_bio}
+                ${data.speaker.speaker_bio}
                 </div>
             </div>
         </div>`);
