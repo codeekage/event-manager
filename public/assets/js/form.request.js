@@ -461,12 +461,21 @@ function speakersRequest() {
 
     $("#add-speakers").on("click", function () {
         if (document.querySelector('#speakers-field-0').value !== "") {
-            speaker.push(document.querySelector('#speakers-field-0').value);
+            speaker.push({
+                speaker_name : document.querySelector('#speakers-field-0').value,
+                speaker_bio  : document.querySelector('#speakers-bio-0').innerHTML
+            }
+            );
 
             for (let i = 0; i < arr.length; i++) {
                 if (document.querySelector(`#speakers-field-${arr[i]}`).value !== "") {
-                    speaker.push(document.querySelector(`#speakers-field-${arr[i]}`).value);
-                    speaker.push(document.querySelector(`#speakers-bio-${arr[i]}`).value);
+                    speaker.push(
+                        {
+                         speaker_name: document.querySelector(`#speakers-field-${arr[i]}`).value,
+                         speaker_bio : document.querySelector(`#speakers-bio-${arr[i]}`).innerHTML
+                        }
+                    );
+           
                 } else {
                     alert("Make sure fields are not empty")
                 }
@@ -483,9 +492,9 @@ function speakersRequest() {
 
             $('#speakerModal').modal('hide');
 
-          /*   agenda.forEach(element => {
-                addAgenda(element);
-            }) */
+           speaker.forEach(element => {
+                addSpeaker(element);
+            })
 
             console.log(speaker)
 
@@ -496,6 +505,44 @@ function speakersRequest() {
             alert("soemthing is wrong")
         }
     });
+}
+
+function addSpeaker(speaker){
+    let links = location.href.split("/")[4];
+    $.ajax({
+        url: `/api/speaker/${links}`,
+        method: "POST",
+        contentType: "application/json",
+        dataType: "JSON",
+        data: JSON.stringify({
+            evt_link: links,
+            evt_speaker: speaker.speaker_name,
+            speaker_bio : speaker.speaker_bio
+        }),
+        success : function(data, status){
+            $("#accordion").prepend(`
+            <div class="card m-2">
+            <div class="card-header bg-light collapsed" id="headingOne" data-toggle="collapse" data-target="#collapse${data.speaker._id}" aria-expanded="true"
+                aria-controls="collapseOne">
+                <h5 class="mb-0">
+                    ${data.speaker.evt_speaker}
+                </h5>
+            </div>
+
+            <div id="collapse${data.speaker._id}" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                   ${data.speaker.speaker_bio}
+                </div>
+            </div>
+        </div>`);
+
+        console.log(data)
+        },
+        error: function(data, status){
+            console.log(data)
+        }
+    })
+
 }
 
 (function () {
