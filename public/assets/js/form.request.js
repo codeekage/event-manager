@@ -350,8 +350,8 @@ function agendaRequest() {
 
 }
 
-function checkOffAgenda(){
-    $(".done-agenda").on('click', function(){
+function checkOffAgenda() {
+    $(".done-agenda").on('click', function () {
         let toCheck = $(this).data("id");
         let links = location.href.split("/")[4];
         $.ajax({
@@ -361,7 +361,7 @@ function checkOffAgenda(){
             dataType: "JSON",
             data: JSON.stringify({
                 state: "done",
-                "button_state" : "disabled"
+                "button_state": "disabled"
             }),
             success: function (data, status) {
                 $(`#toedit-${toCheck}`).addClass('done');
@@ -374,29 +374,28 @@ function checkOffAgenda(){
     })
 }
 
-
-function editAgenda(){
-    $(".edit-agenda").on('click', function(){
+function editAgenda() {
+    $(".edit-agenda").on('click', function () {
         let toEdit = $(this).data("id");
-        
+
         document.querySelector(`#toedit-${toEdit}`).setAttribute("contenteditable", true);
         $(`#toedit-${toEdit}`).focus();
-        $(`#done-${toEdit}`).slideUp(function(){
-            $(`#accept-${toEdit}`).fadeIn(function(){
+        $(`#done-${toEdit}`).slideUp(function () {
+            $(`#accept-${toEdit}`).fadeIn(function () {
                 $(`#accept-${toEdit}`).removeClass("d-none");
             });
         });
-        $(`#accept-${toEdit}`).on("click", function(){
+        $(`#accept-${toEdit}`).on("click", function () {
             let links = location.href.split("/")[4];
             $.ajax({
-                url : `/api/agenda/${links}?_id=${toEdit}`,
-                method : "PUT",
-                contentType : "application/json",
-                dataType : "JSON",
-                data : JSON.stringify({
+                url: `/api/agenda/${links}?_id=${toEdit}`,
+                method: "PUT",
+                contentType: "application/json",
+                dataType: "JSON",
+                data: JSON.stringify({
                     evt_agenda: document.querySelector(`#toedit-${toEdit}`).innerHTML
                 }),
-                success : function(data, status) {
+                success: function (data, status) {
                     document.querySelector(`#toedit-${toEdit}`).setAttribute("contenteditable", false);
                     $(`#accept-${toEdit}`).fadeOut(function () {
                         $(`#done-${toEdit}`).slideDown(function () {
@@ -405,38 +404,98 @@ function editAgenda(){
                     });
                     console.log(data)
                 },
-                error: function(data, status){
+                error: function (data, status) {
                     console.log(data)
                 }
             })
         });
-        
+
     })
 }
 
 
-function deleteAgenda(){
-    
-    $(".delete-agenda").on('click', function(){
+function deleteAgenda() {
+
+    $(".delete-agenda").on('click', function () {
         let links = location.href.split("/")[4];
         let toDelete = $(this).data("id");
         alert(toDelete)
         $.ajax({
-            url : `/api/agenda/${links}?_id=${toDelete}`,
-            method : "DELETE",
-            contentType : "application/json",
-            dataType:"JSON",
-            success : function(data, status){
+            url: `/api/agenda/${links}?_id=${toDelete}`,
+            method: "DELETE",
+            contentType: "application/json",
+            dataType: "JSON",
+            success: function (data, status) {
                 $(`#agenda-item-${toDelete}`).slideUp(function () {
                     $(`#agenda-item-${toDelete}`).remove();
                 });
                 console.log(data)
             },
-            error : function(data, status){
+            error: function (data, status) {
                 console.log(data)
             }
         })
     })
+}
+
+function speakersRequest() {
+    let index = 1;
+    var arr = [];
+    let speaker = [];
+    document.querySelector("#add-speakers-field").addEventListener("click", function () {
+        $("#speakers-modal-field").append(`
+            <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Speaker's Name</label>
+                <input type="text" class="form-control" id="speakers-field-${index}">
+            </div>
+            <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Speaker's Bio</label>
+                <div class="bio" contenteditable="true" id="speakers-bio-${index}"></div>
+            </div>
+        `)
+        console.log(index)
+        arr.push(index);
+        index++;
+    })
+
+
+    $("#add-speakers").on("click", function () {
+        if (document.querySelector('#speakers-field-0').value !== "") {
+            speaker.push(document.querySelector('#speakers-field-0').value);
+
+            for (let i = 0; i < arr.length; i++) {
+                if (document.querySelector(`#speakers-field-${arr[i]}`).value !== "") {
+                    speaker.push(document.querySelector(`#speakers-field-${arr[i]}`).value);
+                    speaker.push(document.querySelector(`#speakers-bio-${arr[i]}`).value);
+                } else {
+                    alert("Make sure fields are not empty")
+                }
+            }
+
+            $("#speakers-modal-field").html(`<div class="form-group">
+                <label for="recipient-name" class="col-form-label">Speaker's Name</label>
+                <input type="text" class="form-control" id="speakers-field-0">
+            </div>
+            <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Speaker's Bio</label>
+                <div class="bio" contenteditable="true" id="speakers-bio-0"></div>
+            </div>`);
+
+            $('#speakerModal').modal('hide');
+
+          /*   agenda.forEach(element => {
+                addAgenda(element);
+            }) */
+
+            console.log(speaker)
+
+            speaker = [];
+            arr = [];
+            index = 1;
+        }else{
+            alert("soemthing is wrong")
+        }
+    });
 }
 
 (function () {
@@ -458,6 +517,7 @@ function deleteAgenda(){
         case "manage":
             eventRequest();
             agendaRequest();
+            speakersRequest();
             break;
         default:
             break;
