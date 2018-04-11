@@ -1,14 +1,14 @@
 <div class="tab-pane fade" id="speakers" role="tabpanel" aria-labelledby="speakers-tab">
     <div id="accordion">
-        {{#if speaker}}
+       
         {{#each speaker}}
-       <div class="card mb-1">
+       <div class="card mb-1" id="speaker-item-{{_id}}">
             <div class="card-header bg-light collapsed" id="headingTwo" data-toggle="collapse" data-target="#collapse{{_id}}" aria-expanded="false" aria-controls="collapseTwo">
-                <p class="mb-0  d-flex justify-content-between align-items-center">
-                {{evt_speaker}}
-                  
+                <div  class="mb-0 d-flex justify-content-between align-items-center" >
+                <div id="speaker-toedit-{{_id}}">{{evt_speaker}}</div>
+               
                     <span>
-                        <button class="btn d-none btn-light btn-sm" id="accept-{{_id}}" data-id="{{_id}}">
+                        <button class="btn d-none btn-light btn-sm" id="speaker-accept-{{_id}}" data-id="{{_id}}">
                             <i class="icon text-info fas fa-check fa-fw"></i>
                         </button>
                         <button class="btn btn-light btn-sm edit-speaker" {{button_state}} id="edit-agenda" data-id="{{_id}}">
@@ -18,17 +18,17 @@
                             <i class="icon text-danger fas fa-trash-alt fa-fw"></i>
                         </button>
                     </span>
-                    </p>
+                 </div> 
             </div>
             <div id="collapse{{_id}}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                <div class="card-body">
+                <div class="card-body" id="speaker-bio-toedit-{{_id}}">
                     {{speaker_bio}}
                 </div>
             </div>
         </div>
     {{/each}}
     </div>
-    {{else}}
+ 
     <div class="row justify-content-center">
         <div class="" style="margin-top:10px">
             <button class="btn btn-lg btn-info" data-toggle="modal" data-target="#speakerModal">
@@ -36,5 +36,5 @@
             </button>
         </div>
     </div>
-    {{/if}}
+   
 </div>

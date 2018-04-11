@@ -373,7 +373,6 @@ function checkOffAgenda() {
         })
     })
 }
-
 function editAgenda() {
     $(".edit-agenda").on('click', function () {
         let toEdit = $(this).data("id");
@@ -412,6 +411,7 @@ function editAgenda() {
 
     })
 }
+
 
 
 function deleteAgenda() {
@@ -505,7 +505,70 @@ function speakersRequest() {
             alert("soemthing is wrong")
         }
     });
+
+    deleteSpeaker();
+    editSpeaker();
 }
+
+function deleteSpeaker() {
+
+    $(".delete-speaker").on('click', function () {
+        let links = location.href.split("/")[4];
+        let toDelete = $(this).data("id");
+        $.ajax({
+            url: `/api/speaker/${links}?_id=${toDelete}`,
+            method: "DELETE",
+            contentType: "application/json",
+            dataType: "JSON",
+            success: function (data, status) {
+             $(`#speaker-item-${toDelete}`).slideUp(function () {
+                    $(`#speaker-item-${toDelete}`).remove();
+                });
+                console.log(data)
+            },
+            error: function (data, status) {
+                console.log(data)
+            }
+        })
+    })
+}
+
+function editSpeaker() {
+    $(".edit-speaker").on('click', function () {
+        let toEdit = $(this).data("id");
+
+        document.querySelector(`#speaker-toedit-${toEdit}`).setAttribute("contenteditable", true);
+        document.querySelector(`#speaker-bio-toedit-${toEdit}`).setAttribute("contenteditable", true);
+        $(`#speaker-toedit-${toEdit}`).focus();
+        $(`#speaker-bio-toedit-${toEdit}`).css({"border" : "solid 1px green"});
+        $(`#speaker-accept-${toEdit}`).removeClass("d-none");
+        $(`#speaker-accept-${toEdit}`).on("click", function () {
+            let links = location.href.split("/")[4];
+            $.ajax({
+                url: `/api/speaker/${links}?_id=${toEdit}`,
+                method: "PUT",
+                contentType: "application/json",
+                dataType: "JSON",
+                data: JSON.stringify({
+                    evt_speaker: document.querySelector(`#speaker-toedit-${toEdit}`).innerHTML,
+                    speaker_bio: document.querySelector(`#speaker-bio-toedit-${toEdit}`).innerHTML
+                }),
+                success: function (data, status) {
+                    document.querySelector(`#speaker-toedit-${toEdit}`).setAttribute("contenteditable", false);
+                    document.querySelector(`#speaker-bio-toedit-${toEdit}`).setAttribute("contenteditable", false);
+                    $(`#speaker-accept-${toEdit}`).addClass("d-none");
+                    $(`#speaker-bio-toedit-${toEdit}`).css({ "border": "none" });
+                    console.log(data)
+                },
+                error: function (data, status) {
+                    console.log(data)
+                }
+            })
+        });
+
+    })
+}
+
 
 function addSpeaker(speaker){
     let links = location.href.split("/")[4];
@@ -521,11 +584,23 @@ function addSpeaker(speaker){
         }),
         success : function(data, status){
             $("#accordion").prepend(`
-            <div class="card">
-            <div class="card-header collapsed" id="headingTwo" data-toggle="collapse" data-target="#collapse${data.speaker._id}" aria-expanded="false" aria-controls="collapseTwo">
-                <h5 class="mb-0">
-                    ${data.speaker.evt_speaker}
-                  </h5>
+            <div class="card mb-1" id="speaker-item-${data.speaker._id}">
+            <div class="card-header bg-light collapsed" id="headingTwo" data-toggle="collapse" data-target="#collapse${data.speaker._id}" aria-expanded="false" aria-controls="collapseTwo">
+            <p class="mb-0  d-flex justify-content-between align-items-center">
+            ${data.speaker.evt_speaker}
+                  
+                    <span>
+                        <button class="btn d-none btn-light btn-sm" id="accept-${data.speaker._id}" data-id="${data.speaker._id}">
+                            <i class="icon text-info fas fa-check fa-fw"></i>
+                        </button>
+                        <button class="btn btn-light btn-sm edit-speaker" {{button_state}} id="edit-agenda" data-id="${data.speaker._id}">
+                            <i class="icon text-info fas fa-pencil-alt fa-fw"></i>
+                        </button>
+                        <button class="btn btn-light btn-sm delete-speaker" id="delete-agenda" data-id="${data.speaker._id}">
+                            <i class="icon text-danger fas fa-trash-alt fa-fw"></i>
+                        </button>
+                    </span>
+                    </p>
             </div>
             <div id="collapse${data.speaker._id}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                 <div class="card-body">
