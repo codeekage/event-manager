@@ -1,13 +1,13 @@
 function showRequest(formData, jqForm, options) {
-    alert('Loading..');
+    demo.showNotification('top', 'right', 'Loading...', 'danger');
     console.log({ formData: formData, jqForm: jqForm, options: options })
     return true;
 } // post-submit callback
 
 function showResponse(responseText, statusText, xhr, $form) {
-    alert('status: ' + statusText + '\n\nresponseText: \n' + responseText);
+    ///alert('status: ' + statusText + '\n\nresponseText: \n' + responseText);
     if (statusText === "error") {
-        //demo.showNotification('top', 'right', 'An error occured ' + JSON.stringify(responseText), 'danger');
+        demo.showNotification('top', 'right', 'An error occured ' + JSON.stringify(responseText), 'danger');
         console.log(responseText)
     } else {
         let msg = JSON.stringify(responseText);
@@ -17,11 +17,37 @@ function showResponse(responseText, statusText, xhr, $form) {
                 //alert(`${msg} : Error`)
                 break;
             case true:
-                demo.showNotification('top', 'right', 'Success!', 'primary');
+                demo.showNotification('top', 'right', 'Success!', 'success');
                 //alert(`${msg} : success`)
                 if (!localStorage.getItem("userID")) {
                     $('#attendModal').modal('show')
                 }
+                break;
+            default:
+                break;
+        }
+    }
+    console.log(responseText, $form)
+}
+
+function signUpShowResponse(responseText, statusText, xhr, $form) {
+    ///alert('status: ' + statusText + '\n\nresponseText: \n' + responseText);
+    if (statusText === "error") {
+        demo.showNotification('top', 'right', 'An error occured ' + JSON.stringify(responseText), 'danger');
+        console.log(responseText)
+    } else {
+        let msg = JSON.stringify(responseText);
+        switch (responseText.success) {
+            case false:
+                demo.showNotification('top', 'right', 'An error occured! ' + msg, 'danger');
+                //alert(`${msg} : Error`)
+                break;
+            case true:
+                demo.showNotification('top', 'right', 'Success!', 'success');
+                $('#attendModal').modal('hide', function(){
+                    location.href = "/login";
+                })
+                //alert(`${msg} : success`)
                 break;
             default:
                 break;
@@ -70,7 +96,7 @@ function attendRequest() {
         url: `/signup`,
         method: "POST",
         beforeSubmit: showRequest,
-        success: showResponse,
+        success: signUpShowResponse,
         error: showResponse,
     }
     
