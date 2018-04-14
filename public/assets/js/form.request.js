@@ -17,7 +17,9 @@ function showResponse(responseText, statusText, xhr, $form) {
             case true:
                 demo.showNotification('top', 'right', 'Success!', 'primary');
                 let route = location.href.split("/")[3];
-                routes(route);
+                setTimeout(() => {
+                    routes(route);
+                }, 1500);
                 break;
             default:
                 break;
