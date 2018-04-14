@@ -7,6 +7,10 @@
         "**/node_modules":true,
         "**/config":true,
         "**/event-manager" :true,
+        "**/auth" : true,
+        "**/controller" : true,
+        "**/docs" : true,
+        "**/.gitignore" : true,
         "**app_modules":true,
         "**/.DS_Store": true
     },

@@ -88,7 +88,7 @@ function attendRequest() {
 
 
 (function () {
-   // togglePassword();
+   
     attendRequest();
-    //signUp();
+   
 })();
