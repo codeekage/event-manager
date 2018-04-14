@@ -44,9 +44,10 @@ function signUpShowResponse(responseText, statusText, xhr, $form) {
                 break;
             case true:
                 demo.showNotification('top', 'right', 'Success!', 'success');
-                $('#attendModal').modal('hide', function(){
-                    location.href = "/login";
-                })
+                $('#attendModal').modal('hide');
+                setTimeout(() => {
+                    location.href = "/login"
+                }, 2000);
                 //alert(`${msg} : success`)
                 break;
             default:
@@ -77,7 +78,7 @@ function togglePassword(id) {
 
 
 function attendRequest() {
- 
+
     let link = location.href.split("/")[4];
     let attendOptions = {
         url: `/attend/${link}`,
@@ -99,7 +100,7 @@ function attendRequest() {
         success: signUpShowResponse,
         error: showResponse,
     }
-    
+
     $('#signup-form').submit(function () {
         $(this).ajaxSubmit(signUpOptions);
         return false; // always return false to prevent standard browser submit and page navigation
@@ -114,7 +115,7 @@ function attendRequest() {
 
 
 (function () {
-   
+
     attendRequest();
-   
+
 })();
