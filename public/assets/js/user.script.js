@@ -7,18 +7,19 @@ function showRequest(formData, jqForm, options) {
 function showResponse(responseText, statusText, xhr, $form) {
     alert('status: ' + statusText + '\n\nresponseText: \n' + responseText);
     if (statusText === "error") {
-        demo.showNotification('top', 'right', 'An error occured ' + JSON.stringify(responseText), 'danger');
+        //demo.showNotification('top', 'right', 'An error occured ' + JSON.stringify(responseText), 'danger');
+        console.log(responseText)
     } else {
+        let msg = JSON.stringify(responseText);
         switch (responseText.success) {
             case false:
-                let msg = JSON.stringify(responseText);
-                //demo.showNotification('top', 'right', 'An error occured! ' + msg, 'danger');
-                alert(`${responseText.message} : Error`)
+                demo.showNotification('top', 'right', 'An error occured! ' + msg, 'danger');
+                //alert(`${msg} : Error`)
                 break;
             case true:
-                //demo.showNotification('top', 'right', 'Success!', 'primary');
-                alert(`${responseText.message} : success`)
-                if(!localStorage.getItem("userID")){
+                demo.showNotification('top', 'right', 'Success!', 'primary');
+                //alert(`${msg} : success`)
+                if (!localStorage.getItem("userID")) {
                     $('#attendModal').modal('show')
                 }
                 break;
@@ -29,9 +30,30 @@ function showResponse(responseText, statusText, xhr, $form) {
     console.log(responseText, $form)
 }
 
-function attendRequest(){
+
+function togglePassword(id) {
+    let type = document.querySelector(id).getAttribute("type");
+    switch (type) {
+        case "password":
+            document.querySelector(id).setAttribute("type", "text");
+            document.querySelector(".toggle-password").innerText = "hide password";
+            document.querySelector(".toggle-password").classList.add("text-danger")
+            break;
+        case "text":
+            document.querySelector(id).setAttribute("type", "password");
+            document.querySelector(".toggle-password").innerText = "show password";
+            document.querySelector(".toggle-password").classList.remove("text-danger")
+            break;
+        default:
+            break;
+    }
+}
+
+
+function attendRequest() {
+ 
     let link = location.href.split("/")[4];
-    let options = {
+    let attendOptions = {
         url: `/attend/${link}`,
         method: "POST",
         beforeSubmit: showRequest, // pre-submit callback
@@ -40,13 +62,33 @@ function attendRequest(){
     };
     // binding to the form's submit event
     $('#attend-event').submit(function () {
-        $(this).ajaxSubmit(options);
+        $(this).ajaxSubmit(attendOptions);
         return false; // always return false to prevent standard browser submit and page navigation
     });
+
+    let signUpOptions = {
+        url: `/signup`,
+        method: "POST",
+        beforeSubmit: showRequest,
+        success: showResponse,
+        error: showResponse,
+    }
+    
+    $('#signup-form').submit(function () {
+        $(this).ajaxSubmit(signUpOptions);
+        return false; // always return false to prevent standard browser submit and page navigation
+    });
+
+    document.querySelector('.toggle-password').addEventListener('click', (e) => {
+        togglePassword(".password");
+        togglePassword(".password2");
+    })
+
 }
 
 
-
-(function(){
+(function () {
+   // togglePassword();
     attendRequest();
+    //signUp();
 })();

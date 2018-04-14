@@ -8,12 +8,15 @@ module.exports.registerUser = (req, res) => {
     req.checkBody("username", "Cannot be empty and must be longer than 8 ").isLength({ min: 8 });
     req.checkBody("email", "Make sure email is correct").isEmail();
     req.checkBody('password', 'Password must contain alphanumberic and must be longer than 6').isLength({ min: 6 }).matches(/^(?=.*[a-zA-Z])(?=.*[0-9]).+$/);
+    req.checkBody('password2', 'Password dose not match').equals(req.body.password);
+    req.checkBody('handles', 'Please list one handle').notEmpty();
+    req.checkBody('fullname', 'Please enter full name').notEmpty();
 
 
     //Initialize errors variable
     var errors = req.validationErrors();
 
-    if (errors) {
+     if (errors) {
         res.send({
             success: false,
             errors: errors
@@ -27,7 +30,7 @@ module.exports.registerUser = (req, res) => {
             if (err) {
                 res.send({
                     success: false,
-                    errors: [err.message]
+                    message: [err.message]
                 });
 
                 // throw err;
@@ -37,7 +40,7 @@ module.exports.registerUser = (req, res) => {
                 res.send({
                     success: true,
                     errors: [null],
-                    msg: "Registration Complete!",
+                    message: "Registration Complete!",
                     user : user
                 });
                 // res.redirect("/login")

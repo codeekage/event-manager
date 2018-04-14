@@ -5,7 +5,8 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema({
     username : {
         type : String,
-        required : [true, "username must be provided"]
+        required : [true, "username must be provided"],
+        unique : [true, "username already exist"]
     },
     fullname : {
         type : String,
@@ -17,7 +18,8 @@ const UserSchema = new Schema({
     },
     email : {
         type : String,
-        required : [true, "email address is required"]
+        required : [true, "email address is required"],
+        unique: [true, "email address already exist"]
     }, 
     handels : {
         type : String,

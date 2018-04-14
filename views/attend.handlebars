@@ -19,6 +19,14 @@
     <link href='http://fonts.googleapis.com/css?family=Grand+Hotel' rel='stylesheet' type='text/css'>
 
 </head>
+<style>
+    .toggle-password {
+        cursor: pointer;
+        float: right;
+        color: green;
+        font-size: 13px;
+    }
+</style>
 
 <body>
     <nav class="navbar navbar-transparent navbar-fixed-top" role="navigation">
@@ -120,18 +128,18 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="speakers-modal-field">
+                    <form id="signup-form" method="POST">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label">Preferred Username</label>
-                                    <input type="text" class="form-control" id="speakers-field-0" placeholder="uinque">
+                                    <input type="text" class="form-control" placeholder="uinque" name="username">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label">Full Name</label>
-                                    <input type="text" class="form-control" id="speakers-field-0" placeholder="Jon Doe">
+                                    <input type="text" class="form-control" placeholder="Jon Doe" name="fullname">
                                 </div>
                             </div>
                         </div>
@@ -139,13 +147,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label">Email</label>
-                                    <input type="email" class="form-control" id="speakers-field-0" placeholder="joedoe@gmail.com">
+                                    <input type="email" class="form-control" placeholder="joedoe@gmail.com" name="email">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label">Phone</label>
-                                    <input type="text" class="form-control" id="speakers-field-0" placeholder="+234 907999900">
+                                    <input type="text" class="form-control" placeholder="+234 907999900" name="phone">
                                 </div>
                             </div>
                         </div>
@@ -153,30 +161,39 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label">Password</label>
-                                    <input type="password" class="form-control" id="speakers-field-0" placeholder="password">
+                                    <input type="password" class="form-control password" placeholder="password" name="password">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label">Repeat Password</label>
-                                    <input type="password" class="form-control" id="speakers-field-0" placeholder="password">
+                                    <input type="password" class="form-control password2" placeholder="password" name="password2">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
+
+                                <span class="toggle-password m-0">show password</span>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label">Social</label>
-                                    <input type="text" class="form-control" id="speakers-field-0" placeholder="twitter:@username; facebook:@username; github:@username">
+                                    <input type="text" class="form-control" placeholder="twitter:@username; facebook:@username; github:@username"
+                                        name="handles">
                                 </div>
                             </div>
                         </div>
 
+                        <div class="modal-footer">
+                            <button type="button" id="add-speakers-field" class="btn btn-fill btn-primary" style="cursor: pointer;">Exist user?</button>
+                            <button type="submit" class="btn btn-success btn-fill" id="add-speakers" style="cursor: pointer;">Join</button>
+                        </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" id="add-speakers-field" class="btn btn-fill btn-primary" style="cursor: pointer;">Exist user?</button>
-                    <button type="button" class="btn btn-success btn-fill" id="add-speakers"  style="cursor: pointer;">Join</button>
+
                 </div>
             </div>
         </div>
@@ -187,6 +204,8 @@
 <script src="/assets/js/core/form.js" type="text/javascript"></script>
 <script src="/assets/js/core/popper.min.js" type="text/javascript"></script>
 <script src="/assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+<script src="../assets/js/plugins/bootstrap-notify.js"></script>
+<script src="/assets/demo/demo.js"></script>
 <script src="/assets/js/user.script.js"></script>
 
 </html>
