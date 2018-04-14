@@ -10,7 +10,7 @@
 
     <title>Attend {{evt_name}} </title>
 
-    <link href="/assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/assets/css/coming-sssoon.css" rel="stylesheet" />
     <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/x-icon">
 
@@ -35,64 +35,6 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            {{!--     <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="images/flags/US.png" /> English(US)
-                            <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="#">
-                                    <img src="images/flags/DE.png" /> Deutsch</a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="images/flags/GB.png" /> English(UK)</a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="images/flags/FR.png" /> Français</a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="images/flags/RO.png" /> Română</a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="images/flags/IT.png" /> Italiano</a>
-                            </li>
-
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#">
-                                    <img src="images/flags/ES.png" /> Español
-                                    <span class="label label-default">soon</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="images/flags/BR.png" /> Português
-                                    <span class="label label-default">soon</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="images/flags/JP.png" /> 日本語
-                                    <span class="label label-default">soon</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="images/flags/TR.png" /> Türkçe
-                                    <span class="label label-default">soon</span>
-                                </a>
-                            </li>
-
-                        </ul>
-                    </li>
-
-                </ul> --}}
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href="#">
@@ -139,21 +81,23 @@
                     <h5 class="info-text">
                         Please, enter passkey to attend event
                     </h5>
-                    <div class="row">
-                        <div class="col-md-7 col-md-offset-4 col-sm6-6 col-sm-offset-3 ">
+                    <div class="row  justify-content-center">
+                        <div class="col-md-0 col-md-offset-4 col-sm6-6 col-sm-offset-3 ">
                             <form id="attend-event" class="form-inline" role="form">
                                 <div class="form-group">
                                     <label class="sr-only" for="exampleInputEmail2">Passkey</label>
-                                    <input type="text" name="passkey" class="form-control transparent" placeholder="Passkey">
+                                    <input type="text" name="passkey" class="form-control transparent col-md-11" placeholder="Passkey">
                                 </div>
-                                <button type="submit" class="btn btn-danger btn-fill">Attend Event</button>
+                                <button class="btn btn-danger btn-fill">Attend Event</button>
                             </form>
+                          
 
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+      
        {{!--  <div class="footer">
             <div class="container">
                 Made with
@@ -162,7 +106,39 @@
                 <a href="http://www.creative-tim.com/product/coming-sssoon-page">here.</a>
             </div>
         </div> --}}
+        
     </div>
+
+    <div class="modal fade" id="attendModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Speaker</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="speakers-modal-field">
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Speaker's Name</label>
+                            <input type="text" class="form-control" id="speakers-field-0">
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Speaker's Bio</label>
+                            <div class="bio" contenteditable="true" id="speakers-bio-0"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="add-speakers-field" class="btn btn-primary">Add Field</button>
+                    <button type="button" class="btn btn-success" id="add-speakers">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+   
 </body>
 <script src="/assets/js/core/jquery.min.js" type="text/javascript"></script>
 <script src="/assets/js/core/form.js" type="text/javascript"></script>

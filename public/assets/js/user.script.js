@@ -19,7 +19,7 @@ function showResponse(responseText, statusText, xhr, $form) {
                 //demo.showNotification('top', 'right', 'Success!', 'primary');
                 alert(`${responseText.message} : success`)
                 if(!localStorage.getItem("userID")){
-                   
+                    $('#attendModal').modal('show')
                 }
                 break;
             default:
