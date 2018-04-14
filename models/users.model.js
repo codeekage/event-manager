@@ -12,6 +12,10 @@ const UserSchema = new Schema({
         type : String,
         required : [true, "username must be provided"]
     },
+    password : {
+        type : String,
+        required : [true, "Password is required"]
+    },
     phone : {
         type : String,
         required : [true, "phone_number is required"]

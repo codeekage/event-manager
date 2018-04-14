@@ -19,8 +19,13 @@ function showResponse(responseText, statusText, xhr, $form) {
             case true:
                 demo.showNotification('top', 'right', 'Success!', 'success');
                 //alert(`${msg} : success`)
-                if (!localStorage.getItem("userID")) {
-                    $('#attendModal').modal('show')
+                if (!localStorage.getItem("username")) {
+                    $('#registerModal').modal('show')
+                }else{
+                    demo.showNotification('top', 'left', 'Redirecting...', 'success');
+                    setTimeout(() => {
+                        location.href = "/chat";
+                    }, 2000);
                 }
                 break;
             default:
@@ -43,10 +48,12 @@ function signUpShowResponse(responseText, statusText, xhr, $form) {
                 //alert(`${msg} : Error`)
                 break;
             case true:
+                let username = document.querySelector("#username").value;
                 demo.showNotification('top', 'right', 'Success!', 'success');
-                $('#attendModal').modal('hide');
+                $('#registerModal').modal('hide');
+                localStorage.setItem("username", username);
                 setTimeout(() => {
-                    location.href = "/login"
+                    location.href = "/chat"
                 }, 2000);
                 //alert(`${msg} : success`)
                 break;
@@ -64,12 +71,15 @@ function togglePassword(id) {
         case "password":
             document.querySelector(id).setAttribute("type", "text");
             document.querySelector(".toggle-password").innerText = "hide password";
-            document.querySelector(".toggle-password").classList.add("text-danger")
+            document.querySelector("#password").innerText = "hide password";
+            document.querySelector("#password").classList.add("text-danger")
             break;
         case "text":
             document.querySelector(id).setAttribute("type", "password");
             document.querySelector(".toggle-password").innerText = "show password";
-            document.querySelector(".toggle-password").classList.remove("text-danger")
+            document.querySelector("#password").innerText = "show password";
+            document.querySelector("#password").innerText = "show password";
+            document.querySelector("#password").classList.remove("text-danger")
             break;
         default:
             break;
@@ -106,9 +116,37 @@ function attendRequest() {
         return false; // always return false to prevent standard browser submit and page navigation
     });
 
+   /*  let joinOptions = {
+        url: `/join`,
+        method: "POST",
+        beforeSubmit: showRequest,
+        success: signUpShowResponse,
+        error: showResponse,
+    }
+
+    $('#join-form').submit(function () {
+        $(this).ajaxSubmit(joinOptions);
+        return false; // always return false to prevent standard browser submit and page navigation
+    }); */
+
     document.querySelector('.toggle-password').addEventListener('click', (e) => {
         togglePassword(".password");
         togglePassword(".password2");
+        togglePassword(".password3");
+    });
+
+    document.querySelector('#password').addEventListener('click', (e) => {
+        togglePassword(".password3");
+    });
+
+    document.querySelector('#login').addEventListener('click', function(){
+        $('#registerModal').modal('hide');
+        $('#loginModal').modal('show');
+    })
+
+    document.querySelector('#join').addEventListener('click', function(){
+        $('#registerModal').modal('show');
+        $('#loginModal').modal('hide');
     })
 
 }

@@ -4,7 +4,7 @@ const passport = require('passport'),
     HostModel = require("../models/host.model")
 
 
-passport.use(new LocalStrategy(
+passport.use('host', new LocalStrategy(
     function (username, password, done) {
         HostModel.findOne({ organization: username }, function (err, user) {
             if (err) throw err;

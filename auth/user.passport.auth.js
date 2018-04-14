@@ -3,7 +3,7 @@ const passport = require('passport'),
     Controller = require('../controller/controller'),
     UserModel = require("../models/users.model");
 
-passport.use(new LocalStrategy(
+passport.use('user', new LocalStrategy(
     function (username, password, done){
         UserModel.findOne({username : username}, function(err, user){
             if(err) throw err;

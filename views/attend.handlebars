@@ -26,6 +26,11 @@
         color: green;
         font-size: 13px;
     }
+
+    .expo {
+        font-size: 10px;
+        color: grey;
+    }
 </style>
 
 <body>
@@ -118,7 +123,7 @@
 
     </div>
 
-    <div class="modal fade" id="attendModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content ">
                 <div class="modal-header">
@@ -133,7 +138,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label">Preferred Username</label>
-                                    <input type="text" class="form-control" placeholder="uinque" name="username">
+                                    <input type="text" class="form-control" placeholder="uinque" name="username" id="username">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -181,19 +186,52 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="recipient-name" class="col-form-label">Social</label>
-                                    <input type="text" class="form-control" placeholder="twitter:@username; facebook:@username; github:@username"
-                                        name="handles">
+                                    <label for="recipient-name" class="col-form-label">Social
+                                        <span class="expo">
+                                            <i>eg:twitter:@username; facebook:@username; github:@username</i>
+                                        </span>
+                                    </label>
+                                    <input type="text" class="form-control" placeholder="twitter:@username; facebook:@username; github:@username" name="handles">
                                 </div>
                             </div>
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" id="add-speakers-field" class="btn btn-fill btn-primary" style="cursor: pointer;">Exist user?</button>
+                            <button type="button" id="login" class="btn btn-fill btn-primary" style="cursor: pointer;">Existing user?</button>
                             <button type="submit" class="btn btn-success btn-fill" id="add-speakers" style="cursor: pointer;">Join</button>
                         </div>
                     </form>
 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="join-form" method="POST" action="/join">
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Username</label>
+                            <input type="text" class="form-control" name="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Password</label>
+                            <input type="password" class="form-control password3" name="password">
+                            <span class="toggle-password m-0" id="password">show password</span>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="join" class="btn btn-fill btn-primary">New User?</button>
+                            <button type="sumbit" class="btn btn-success btn-fill" id="add-agenda">Login</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

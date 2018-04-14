@@ -17,13 +17,19 @@ function getHostbyOrganization(organization, callback) {
     HostModel.findOne(query, callback);
 }
 
+function getUserbyUsername(username, callback) {
+    var query = { username : username};
+    UserModel.findOne(query, callback);
+}
+
 function getHostById(id, callback) {
     HostModels.findById(id, callback);
 }
 
 function comparePassword(candidatePassword, hash, callback) {
     bcrypt.compare(candidatePassword, hash, function (err, isMatch) {
-        if (err) throw err;
+        console.log(`${candidatePassword} : ${hash}`)
+        //if (err) throw err;
         callback(null, isMatch);
     });
 }

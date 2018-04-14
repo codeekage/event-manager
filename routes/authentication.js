@@ -18,14 +18,14 @@ routes.post("/signup", (req, res, next) => {
 
 
 routes.post('/login',
-    hostPassport.authenticate('local', {sucessRedirect : "/", failureRedirect: "/login", failureFlash: true, successFlash : true}),
+    hostPassport.authenticate('host', {sucessRedirect : "/", failureRedirect: "/login", failureFlash: true, successFlash : true}),
     (req, res, next) => {
         req.session.user_id = req.user.id;
         res.redirect("/")
     });
 
 routes.post('/join', 
-    userPassport.authenticate('local', { sucessRedirect: "/", failureRedirect: "/attend", failureFlash: true, successFlash: true }),
+    userPassport.authenticate('user', { sucessRedirect: "/", failureFlash: true, successFlash: true }),
     (req, res, next) => {
         req.session.attendee = req.attendee.id;
         res.redirect("/chat")
