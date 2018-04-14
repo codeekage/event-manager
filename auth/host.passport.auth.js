@@ -28,11 +28,11 @@ passport.use('host', new LocalStrategy(
 
 passport.serializeUser((user, done) => {
     //console.log(user)
-    done(null, user.id);
+    done(null, user._id);
 });
 
-passport.deserializeUser((id, done) => {
-    HostModel.findById(id, (err, user) => {
+passport.deserializeUser((_id, done) => {
+    HostModel.findById(_id, (err, user) => {
         console.log(user)
     })
 });

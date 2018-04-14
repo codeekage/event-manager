@@ -26,11 +26,11 @@ passport.use('user', new LocalStrategy(
 
 passport.serializeUser((user, done) => {
     //console.log(user)
-    done(null, user.id);
+    done(null, user._id);
 });
 
 passport.deserializeUser((id, done) => {
-    UserModel.findById(id, (err, user) => {
+    UserModel.findById({_id : id}, (err, user) => {
         console.log(user)
     })
 });
