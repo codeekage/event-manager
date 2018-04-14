@@ -1,8 +1,9 @@
 const HostModel = require("../models/host.model"),
+UserModel = require("../models/users.model"),
     bcrypt = require("bcryptjs");
 
 
-function createHost(newUser, callback) {
+function create(newUser, callback) {
     bcrypt.genSalt(10, function (err, salt) {
         bcrypt.hash(newUser.password, salt, function (err, hash) {
             newUser.password = hash;
@@ -28,11 +29,12 @@ function comparePassword(candidatePassword, hash, callback) {
 }
 
 let Host = {
-    createHost: createHost,
+    create: create,
     getHostById: getHostById,
     getHostByOrganization: getHostbyOrganization,
     comparePassword: comparePassword,
-    HostModel: HostModel
+    HostModel: HostModel,
+    UserModel : UserModel
 }
 
 module.exports = Host

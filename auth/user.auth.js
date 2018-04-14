@@ -1,12 +1,12 @@
-const Host = require('../controller/controller'),
+const User = require('../controller/controller'),
     bcrypt = require('bcryptjs');
 
 //REGISTER A  USER
-module.exports.registerHost = (req, res) => {
+module.exports.registerUser = (req, res) => {
 
     // Validation
-    req.checkBody("organization", "Cannot be empty and must be longer than 8 ").isLength({min : 8});
-    req.checkBody("host_email", "Make sure email is correct").isEmail();
+    req.checkBody("username", "Cannot be empty and must be longer than 8 ").isLength({ min: 8 });
+    req.checkBody("email", "Make sure email is correct").isEmail();
     req.checkBody('password', 'Password must contain alphanumberic and must be longer than 6').isLength({ min: 6 }).matches(/^(?=.*[a-zA-Z])(?=.*[0-9]).+$/);
 
 
@@ -21,9 +21,9 @@ module.exports.registerHost = (req, res) => {
     } else {
 
         let dbError = null;
-        var newHost = new Host.HostModel(req.body);
+        var newUser = new User.UserModel(req.body);
 
-        Host.create(newHost, (err, host) => {
+        User.create(newUser, (err, user) => {
             if (err) {
                 res.send({
                     success: false,
@@ -38,10 +38,10 @@ module.exports.registerHost = (req, res) => {
                     success: true,
                     errors: [null],
                     msg: "Registration Complete!",
-                    host: host
-                }); 
-               // res.redirect("/login")
-                console.log(host);
+                    user : user
+                });
+                // res.redirect("/login")
+                console.log(user);
             }
 
         });

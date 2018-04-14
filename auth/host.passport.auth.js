@@ -1,6 +1,6 @@
 const passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
-    Host = require('../controller/host.controller'),
+    Controller = require('../controller/controller'),
     HostModel = require("../models/host.model")
 
 
@@ -12,7 +12,7 @@ passport.use(new LocalStrategy(
                 return done(null, false, "Incorrect username")
             }
             
-            Host.comparePassword(password, user.password, (err, isMatch) => {
+            Controller.comparePassword(password, user.password, (err, isMatch) => {
                 if(err) throw err;
                 if(!isMatch){
                     return done(null, false, "Incorrect Password")
