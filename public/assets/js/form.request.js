@@ -264,45 +264,6 @@ function hostRequest() {
     });  */
 }
 
-function addAgenda(agenda) {
-    let links = location.href.split("/")[4];
-    $.ajax({
-        url: `/api/agenda/${links}`,
-        method: "POST",
-        contentType: "application/json",
-        dataType: "JSON",
-        data: JSON.stringify({
-            evt_link: links,
-            evt_agenda: agenda
-        }),
-        success: function (data, status) {
-            $("#agenda-list").prepend(`
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-            ${agenda}
-            <span>
-              <button class="btn btn-light btn-sm done-agenda"  id="done-${data.agenda.id}" data-id="${data.agenda.id}">
-                    <i class="icon text-success fas fa-minus fa-fw"></i>
-                </button>
-              <button class="btn d-none btn-light btn-sm"  id="done-${data.agenda._id}" data-id="${data.agenda._id}">
-                    <i class="icon text-info fas fa-check fa-fw"></i>
-                </button>
-                <button class="btn btn-light btn-sm edit-agenda" id="edit-agenda" data-id="${data.agenda._id}">
-                    <i class="icon text-info fas fa-pencil-alt fa-fw"></i>
-                </button>
-                <button class="btn btn-light btn-sm delete-agenda" id="-agenda" data-id="${data.agenda._id}">
-                    <i class="icon text-danger fas fa-trash-alt fa-fw"></i>
-                </button>
-                </span>
-            </li>`);
-
-            console.log(data)
-
-        },
-        error: function () {
-            alert("failed!")
-        }
-    })
-}
 
 function agendaRequest() {
     let index = 1;
@@ -357,17 +318,69 @@ function agendaRequest() {
             <label for="recipient-name" class="col-form-label">Agenda</label>
             <input type="text" class="form-control" id="agenda-field-0">
         </div>`);
-    })
+    });
+
+    $('#agendaModal').on('shown.bs.modal', function (e){
+       $("#agenda-field-0").focus();
+    });
     editAgenda();
     deleteAgenda();
     checkOffAgenda();
 
 }
 
+function addAgenda(agenda) {
+    let links = location.href.split("/")[4];
+    $.ajax({
+        url: `/api/agenda/${links}`,
+        method: "POST",
+        contentType: "application/json",
+        dataType: "JSON",
+        data: JSON.stringify({
+            evt_link: links,
+            evt_agenda: agenda
+        }),
+        success: function (data, status) {
+            $("#agenda-list").prepend(`
+            <li class="list-group-item d-flex justify-content-between align-items-center" id="agenda-item-${data.agenda._id}">
+              <div class="${data.agenda.state}" id="toedit-${data.agenda._id}" style="width:86%; padding:5px;" >    
+              ${agenda}
+              </div>
+            <span>
+              <button class="btn btn-light btn-sm done-agenda"  id="done-${data.agenda._id}" data-id="${data.agenda._id}">
+                    <i class="icon text-success fas fa-minus fa-fw"></i>
+                </button>
+              <button class="btn d-none btn-light btn-sm"  id="accept-${data.agenda._id}" data-id="${data.agenda._id}">
+                    <i class="icon text-info fas fa-check fa-fw"></i>
+                </button>
+                <button class="btn btn-light btn-sm edit-agenda" id="edit-agenda" data-id="${data.agenda._id}">
+                    <i class="icon text-info fas fa-pencil-alt fa-fw"></i>
+                </button>
+                <button class="btn btn-light btn-sm delete-agenda" id="-agenda" data-id="${data.agenda._id}">
+                    <i class="icon text-danger fas fa-trash-alt fa-fw"></i>
+                </button>
+                </span>
+            </li>`);
+
+            deleteAgenda();
+            editAgenda();
+            checkOffAgenda();
+          
+            console.log(data)
+
+        },
+        error: function () {
+            alert("failed!")
+        }
+    })
+}
+
+
 function checkOffAgenda() {
     $(".done-agenda").on('click', function () {
         let toCheck = $(this).data("id");
         let links = location.href.split("/")[4];
+        alert(toCheck)
         $.ajax({
             url: `/api/agenda/${links}?_id=${toCheck}`,
             method: "PUT",
