@@ -143,8 +143,10 @@ function removeEvent(toDelete) {
             swal("Poof! Your imaginary file has been deleted!", {
                 icon: "success",
             }).then((willRefresh) => {
-                //location.reload();
-                $(`#${toDelete}`).fadeOut()
+                //
+                $(`#${toDelete}`).fadeOut("slow", function(){
+                    location.reload();
+                })
             });
 
         },

@@ -33,7 +33,7 @@ app.get('/chat', (req, res, next) => {
 
 app.get('/create', ensureAuthenticated, (req, res, next) => {
     res.render('settings', {
-        title: "Settings",
+        title: "Event Creator",
         owner_name: "Node.js Africa",
         host : req.session.user_id,
         page_title: "Create"
