@@ -380,7 +380,6 @@ function checkOffAgenda() {
     $(".done-agenda").on('click', function () {
         let toCheck = $(this).data("id");
         let links = location.href.split("/")[4];
-        alert(toCheck)
         $.ajax({
             url: `/api/agenda/${links}?_id=${toCheck}`,
             method: "PUT",
