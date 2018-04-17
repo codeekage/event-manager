@@ -29,6 +29,7 @@ app.get('/chat', (req, res, next) => {
     res.render('chat', {
         layout : false
     })
+   
 })
 
 app.get('/create', ensureAuthenticated, (req, res, next) => {

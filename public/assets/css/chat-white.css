@@ -1,0 +1,300 @@
+body {
+    padding: 0;
+    margin: 0;
+    font-family: "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+body::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #F5F5F5;
+    z-index: 9999999999;
+}
+
+body::-webkit-scrollbar {
+    width: 10px;
+    background-color: #F5F5F5;
+    z-index: 9999999999;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: #F90 -webkit-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+    z-index: 9999999999;
+}
+
+#sent-chats {
+    background: url("https://computerscience.johncabot.edu/mscaramastra/S2016/CS110-1/Vittucci/PROJECT%20WHATSAPP%20CS%20110/files/whatsapp-wallpaper.jpg");
+    /* background-size: contain; */
+}
+
+.m-10 {
+    margin: 10px;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+.mb-15 {
+    margin-bottom: 15px;
+}
+
+.pd-0 {
+    padding: 0;
+}
+
+#contact-section::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #F5F5F5;
+    z-index: 9999999999;
+}
+
+#contact-section::-webkit-scrollbar {
+    width: 10px;
+    background-color: #F5F5F5;
+    z-index: 9999999999;
+}
+
+#contact-section::-webkit-scrollbar-thumb {
+    background: #4c94db -webkit-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+    z-index: 9999999999;
+}
+
+.search-contact-wrapper {
+    position: fixed;
+    width: inherit;
+    background: #4c94dbab;
+    height: 57px;
+    z-index: 9;
+}
+
+#search-contact {
+    border-radius: 20px;
+    box-shadow: none;
+    transition: all 0.5s;
+}
+
+#search-contact:active,
+#search-contact:focus {
+    border: 1px solid #4c94db;
+}
+
+.contact-list {
+    position: relative;
+    top: 70px;
+}
+
+li {
+    list-style: none;
+}
+
+.contact-img {
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    position: absolute;
+}
+
+.contact-name,
+.recent-message {
+    position: relative;
+    margin-left: 50px;
+}
+
+.contact-name {
+    color: rgb(39, 36, 36);
+}
+
+.recent-message {
+    color: #999999;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 12px;
+    width: 70%;
+}
+
+#contact-section {
+    position: fixed;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    /* background: linear-gradient(to right, #0c2646 0%, #204065 60%, #2a5788 100%); */
+    color: white;
+}
+
+.contact-wrapper>a {
+    padding: 11px 6px !important;
+}
+
+.contact-wrapper>a:hover {
+    background-color: #ececec !important;
+}
+
+.contact-wrapper>a:hover>span {}
+
+.contact-wrapper>a:hover>span,
+.contact-wrapper>a:hover>p {
+    color: black;
+}
+
+.date-sent {
+    position: relative;
+    float: right;
+    font-size: 12px;
+    margin-top: -50px;
+    font-weight: 500;
+    color: #999;
+}
+
+.chats-section {
+    margin-top: 40px;
+    background-size: auto;
+    /* background: url("https://computerscience.johncabot.edu/mscaramastra/S2016/CS110-1/Vittucci/PROJECT%20WHATSAPP%20CS%20110/files/whatsapp-wallpaper.jpg"); */
+}
+
+#sent-chats {
+    position: absolute;
+    background: white;
+    margin-left: 25%;
+    width: 75%;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.chat-top-bar {
+    text-align: center;
+    position: fixed;
+    background: #ffffff;
+    padding: 5px;
+    height: 40px;
+    width: 75%;
+    z-index: 99;
+    -webkit-box-shadow: 3px 1px 3px 0px #989898;
+    -moz-box-shadow: 3px 1px 3px 0px #989898;
+    box-shadow: 3px 1px 3px 0px #989898;
+    color: #4c94db;
+}
+
+
+/**/
+
+.chat-receiver-div {
+    text-align: left;
+    float: left;
+    background: transparent;
+    padding: 5px;
+    width: 100%;
+}
+
+.chat-receiver-div:last-child,
+.chat-sender-div:last-child {
+    margin-bottom: 40px;
+}
+
+.chat-receiver {
+    background: #ececec;
+    padding: 9px;
+    border-radius: 15px 10px 15px 0px;
+    width: fit-content;
+    max-width: fit-content;
+    color: #756060;
+    text-overflow: ellipsis;
+    /* font-weight: 300; */
+}
+
+.chat-sender-div {
+    float: right;
+    position: relative;
+    background: transparent;
+    text-align: right;
+    width: 100%;
+}
+
+.chat-icons {
+    display: flex;
+    float: right;
+    right: 10px;
+    top: 0;
+    position: absolute;
+}
+
+.chat-icons li {
+    font-size: 17px;
+    /* margin: 0 5px; */
+    padding: 3px 3px 4px 0px;
+    color: #4c94dbbf;
+    cursor: pointer;
+    width: 50px;
+}
+
+.chat-icons li:hover {
+    color: white;
+    background: #4c94db;
+}
+
+.bg-white {
+    background: white !important;
+}
+
+.chat-sender {
+    background: #2e82d5db;
+    padding: 9px;
+    border-radius: 10px 15px 0 15px;
+    width: fit-content;
+    text-align: right;
+    float: inherit;
+    max-width: 70%;
+    color: white;
+}
+
+.chat-user-name {
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: 500;
+    margin-top: 2px;
+}
+
+.send-message-wrapper {
+    position: fixed;
+    bottom: 0;
+    border-radius: 0;
+    width: 75%;
+}
+
+#type-message {
+    border-radius: 0;
+}
+
+@media screen and (max-width: 1000px) {
+    #contact-section {
+        width: 10%;
+    }
+    #sent-chats {
+        margin-left: 10%;
+        width: 90%;
+    }
+    .send-message-wrapper {
+        width: 90%;
+    }
+    .chat-top-bar {
+        width: 90%;
+    }
+    .recent-message,
+    .contact-name,
+    .date-sent,
+    .search-contact-wrapper {
+        display: none;
+    }
+    .contact-wrapper>a {
+        padding: 5px 5px 25px !important;
+    }
+    .contact-list {
+        top: 10px;
+    }
+    .chat-user-name {
+        width: fit-content
+    }
+}

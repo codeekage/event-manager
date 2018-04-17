@@ -6,13 +6,17 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{title}}</title>
-
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
-    <link rel="shortcut icon" href="/assets/img/sos.png" type="image/x-icon">
+
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
+        crossorigin="anonymous"></script>
+    <script defer src="/static/fontawesome/fa-v4-shim.js"></script>
+    <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/x-icon">
 
     <link rel="stylesheet" href="assets/css/1-bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/chat-2.css">
+    <link rel="stylesheet" href="assets/css/chat-white.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
 </head>
 
 <body>
@@ -23,7 +27,7 @@
             </div>
             <div class="col-md-12 pd-0 contact-list">
                 <ul class="nav nav-stacked" id="all-contacts">
-                   <li class="contact-wrapper">
+                    <li class="contact-wrapper">
                         <a href="#">
                             <span class="contact-img" style='background-image: url(assets/img/user3-128x128.jpg);'></span>
                             <span class="contact-name">Logged User Name</span>
@@ -37,7 +41,22 @@
         </div>
         <div class="col-lg-9 col-md-9 col-sm-9 pd-0" id="sent-chats">
             <div class="chat-top-bar col-md-9 col-sm-9">
-                <p class="chat-username">Event Name</p>
+                <p class="chat-user-name" id="evt_name">Event Name</p>
+
+                <ul class="chat-icons">
+                    <li class="">
+                        <p>
+                            <i class="fa fa-edit"></i>
+                        </p>
+                    </li>
+                    <li>
+                        <i class="fa fa-microphone"></i>
+                    </li>
+                    <li>
+                        <i class="fa fa-clipboard-check"></i>
+                    </li>
+                </ul>
+
             </div>
             <div class="col-md-12 col-sm-12 chats-section">
                 <div class="chat-receiver-div">
@@ -116,15 +135,12 @@
             </div>
             <div class="">
                 <div class="input-group send-message-wrapper">
-                    <input type="text" id="type-message" class="form-control" title="" required="required">
-                    <span class="input-group-addon">
-                        send
-                        <i class="fas fa-telegram-plane fa-fw"></i>
+                    <input type="text" id="type-message" class="form-control" title="" required="required" placeholder="Type message">
+                    <span class="bg-white input-group-addon">
+
+                        <i class="text-info fa fa-paper-plane"></i>
                     </span>
-                    <span class="input-group-addon">
-                       event
-                    <i class="icon text-success fas fa-handshake fa-fw"></i>
-                    </span>
+
                 </div>
             </div>
         </div>
