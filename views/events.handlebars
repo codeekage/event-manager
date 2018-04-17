@@ -5,7 +5,7 @@
             <!--Card one-->
             {{#if events}}
             {{#each events}}
-            <div class="col-lg-4">
+            <div class="col-lg-4" id="{{evt_link}}">
                 <div class="card card-chart">
                     <div class="card-header">
                         <h5 class="card-category">{{evt_type}}</h5>
@@ -18,7 +18,7 @@
                                 <a class="dropdown-item" href="/manage/{{evt_link}}">Go to Event</a>
                                 {{!--
                                 <a class="dropdown-item" href="#">Edit Event</a> --}}
-                                <a class="dropdown-item share-link" href="/attend/{{evt_link}}" data-id="/attend/{{evt_link}}">Get shareable link</a>
+                                <a class="dropdown-item share-link" data-link="/attend/{{evt_link}}">Get shareable link</a>
                                 <a class="dropdown-item text-danger remove-event" href="#" data-id="{{evt_link}}">Remove Event</a>
                             </div>
                         </div>

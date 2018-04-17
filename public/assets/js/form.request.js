@@ -33,9 +33,9 @@ function routes(route) {
         case "registration":
             location.href = "/login";
             break;
-        case "settings":
+        case "create":
             location.href = "/";
-            break
+            break;
         default:
             break;
     }
@@ -45,8 +45,8 @@ function routes(route) {
 function shareEvent() {
     $(".share-link").on("click", function (e) {
         e.preventDefault();
-        let copiedLink = `${location.origin}${$(this).attr("href")}`
-        swal("A wild Pikachu appeared! What do you want to do?", {
+        let copiedLink = `${location.origin}${$(this).data("link")}`
+        swal("Click Copy to Get Sharable Link", {
             content: {
                 element: "input",
                 attributes: {
@@ -136,17 +136,15 @@ function copyFunction(copyText) {
 function removeEvent(toDelete) {
     $.ajax({
         url: `/api/events/${toDelete}`,
-        method: "PUT",
+        method: "DELETE",
         contentType: "application/json",
         dataType: "JSON",
-        data: JSON.stringify({
-            delete_status: 1
-        }),
         success: function (data, status) {
             swal("Poof! Your imaginary file has been deleted!", {
                 icon: "success",
             }).then((willRefresh) => {
-                location.reload();
+                //location.reload();
+                $(`#${toDelete}`).fadeOut()
             });
 
         },
@@ -464,8 +462,8 @@ function speakersRequest() {
     $("#add-speakers").on("click", function () {
         if (document.querySelector('#speakers-field-0').value !== "") {
             speaker.push({
-                speaker_name : document.querySelector('#speakers-field-0').value,
-                speaker_bio  : document.querySelector('#speakers-bio-0').innerHTML
+                speaker_name: document.querySelector('#speakers-field-0').value,
+                speaker_bio: document.querySelector('#speakers-bio-0').innerHTML
             }
             );
 
@@ -473,11 +471,11 @@ function speakersRequest() {
                 if (document.querySelector(`#speakers-field-${arr[i]}`).value !== "") {
                     speaker.push(
                         {
-                         speaker_name: document.querySelector(`#speakers-field-${arr[i]}`).value,
-                         speaker_bio : document.querySelector(`#speakers-bio-${arr[i]}`).innerHTML
+                            speaker_name: document.querySelector(`#speakers-field-${arr[i]}`).value,
+                            speaker_bio: document.querySelector(`#speakers-bio-${arr[i]}`).innerHTML
                         }
                     );
-           
+
                 } else {
                     alert("Make sure fields are not empty")
                 }
@@ -494,7 +492,7 @@ function speakersRequest() {
 
             $('#speakerModal').modal('hide');
 
-           speaker.forEach(element => {
+            speaker.forEach(element => {
                 addSpeaker(element);
             })
 
@@ -503,7 +501,7 @@ function speakersRequest() {
             speaker = [];
             arr = [];
             index = 1;
-        }else{
+        } else {
             alert("soemthing is wrong")
         }
     });
@@ -523,7 +521,7 @@ function deleteSpeaker() {
             contentType: "application/json",
             dataType: "JSON",
             success: function (data, status) {
-             $(`#speaker-item-${toDelete}`).slideUp(function () {
+                $(`#speaker-item-${toDelete}`).slideUp(function () {
                     $(`#speaker-item-${toDelete}`).remove();
                 });
                 console.log(data)
@@ -542,7 +540,7 @@ function editSpeaker() {
         document.querySelector(`#speaker-toedit-${toEdit}`).setAttribute("contenteditable", true);
         document.querySelector(`#speaker-bio-toedit-${toEdit}`).setAttribute("contenteditable", true);
         $(`#speaker-toedit-${toEdit}`).focus();
-        $(`#speaker-bio-toedit-${toEdit}`).css({"border" : "solid 1px green"});
+        $(`#speaker-bio-toedit-${toEdit}`).css({ "border": "solid 1px green" });
         $(`#speaker-accept-${toEdit}`).removeClass("d-none");
         $(`#speaker-accept-${toEdit}`).on("click", function () {
             let links = location.href.split("/")[4];
@@ -572,7 +570,7 @@ function editSpeaker() {
 }
 
 
-function addSpeaker(speaker){
+function addSpeaker(speaker) {
     let links = location.href.split("/")[4];
     $.ajax({
         url: `/api/speaker/${links}`,
@@ -582,9 +580,9 @@ function addSpeaker(speaker){
         data: JSON.stringify({
             evt_link: links,
             evt_speaker: speaker.speaker_name,
-            speaker_bio : speaker.speaker_bio
+            speaker_bio: speaker.speaker_bio
         }),
-        success : function(data, status){
+        success: function (data, status) {
             $("#accordion").prepend(`
             <div class="card mb-1" id="speaker-item-${data.speaker._id}">
             <div class="card-header bg-light collapsed" id="headingTwo" data-toggle="collapse" data-target="#collapse${data.speaker._id}" aria-expanded="false" aria-controls="collapseTwo">
@@ -611,9 +609,9 @@ function addSpeaker(speaker){
             </div>
         </div>`);
 
-        console.log(data)
+            console.log(data)
         },
-        error: function(data, status){
+        error: function (data, status) {
             console.log(data)
         }
     })
@@ -621,7 +619,7 @@ function addSpeaker(speaker){
 }
 
 (function () {
-    shareEvent();
+
     let currentRoute = location.href.split("/")[3];
     switch (currentRoute) {
         case "registration":
@@ -642,6 +640,8 @@ function addSpeaker(speaker){
             speakersRequest();
             break;
         default:
+            eventRequest();
+            shareEvent();
             break;
     }
 })();
