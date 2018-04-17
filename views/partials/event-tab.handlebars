@@ -1,36 +1,54 @@
 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
     <form id="edit-event-form" method="PUT" action="/api/event">
-        <div class="form-row">
-            {{!--
-            <input type="hiddden" value="{{evt_id}}"> --}}
-            <div class="form-group col-md-6">
-                <label for="inputEmail4">Event Name</label>
-                <input type="text" class="form-control" id="evt_name" disabled="true" placeholder="Event Name" name="evt_name" value="{{evt_name}}">
+        <div class="row">
+        	<div class="col-md-6 mb-3">
+        		<label for="inputAddress2">Event Name</label>
+         		<div class="input-group">
+                	<input type="text" class="form-control" id="evt_name" disabled="true" placeholder="Event Name" name="evt_name" value="{{evt_name}}">
+            	</div>
             </div>
-            <div class="form-group col-md-6">
-                <label for="inputPassword4">Passkey</label>
-                <input type="text" class="form-control" id="evt_passkey" disabled="true" placeholder="Passkey" name="evt_passkey" value="{{evt_passkey}}">
+           <div class="col-md-6 mb-3">
+        		<label for="inputAddress2">Event Date/Time</label>
+         		<div class="input-group">
+                	<input type="text" class="form-control" id="evt_passkey" disabled="true" placeholder="Passkey" name="evt_passkey" value="{{evt_passkey}}">
+                </div>
             </div>
         </div>
-        <div class="form-row">
-            <div class="form-group col-6">
-                <label for="inputAddress">Venue</label>
+        <div class="row">
+        <div class="col-md-6 mb-3">
+         <label for="inputAddress">Venue</label>
+         <div class="input-group">
                 <input type="text" class="form-control" id="evt_venue" disabled="" placeholder="Event Venue" name="evt_venue" value="{{evt_venue}}">
             </div>
-            <div class="form-group col-6">
-                <label for="inputAddress2">Event Date/Time</label>
+        </div>
+        <div class="col-md-6 mb-3">
+        <label for="inputAddress2">Event Date/Time</label>
+         <div class="input-group">
                 <input type="datetime-local" class="form-control" id="evt_date" disabled="" placeholder="Event Date/Time" name="evt_date"
                     value="{{evt_date}}">
+                    <div class="input-group-append">
+                        <button class="btn btn-sm btn-outline-secondary" type="button">Button</button>
+                    </div>
             </div>
         </div>
-        <div class="form-row">
-            <div class="form-group col-6">
-                <label for="inputAddress2">Repeat Event</label>
-                <input type="text" class="form-control" id="evt_occ" disabled="" placeholder="Event Occurance" name="evt_occ" value="{{evt_occ}}">
+           
+           
+           {{!--  <div class="form-group col-1">
+                  
+            </div> --}}
+        </div>
+        <div class="row">
+           <div class="col-md-6 mb-3">
+        		<label for="inputAddress2">Event Occurance</label>
+         		<div class="input-group">
+                	<input type="text" class="form-control" id="evt_occ" disabled="" placeholder="Event Occurance" name="evt_occ" value="{{evt_occ}}">
+               </div>
             </div>
-            <div class="form-group col-6">
-                <label for="inputAddress">Event Type</label>
-                <input type="text" class="form-control" id="evt_type" disabled="" placeholder="Event Venue" name="evt_type" value="{{evt_type}}">
+            <div class="col-md-6 mb-3">
+        		<label for="inputAddress2">Event Type</label>
+        		<div class="input-group">
+                	<input type="text" class="form-control" id="evt_type" disabled="" placeholder="Event Venue" name="evt_type" value="{{evt_type}}">
+                </div>
             </div>
         </div>
         <div class="form-row mb-0">
