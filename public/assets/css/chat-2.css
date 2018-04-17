@@ -4,9 +4,26 @@ body {
     font-family: "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif;
 }
 
+body::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #F5F5F5;
+    z-index: 9999999999;
+}
+
+body::-webkit-scrollbar {
+    width: 10px;
+    background-color: #F5F5F5;
+    z-index: 9999999999;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: #F90 -webkit-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+    z-index: 9999999999;
+}
+
 #sent-chats {
-    background-image: url("/img/bitcoin_wallpaper.jpg");
-    background-size: contain;
+    background: url("https://computerscience.johncabot.edu/mscaramastra/S2016/CS110-1/Vittucci/PROJECT%20WHATSAPP%20CS%20110/files/whatsapp-wallpaper.jpg");
+    /* background-size: contain; */
 }
 
 .m-10 {
@@ -45,15 +62,15 @@ body {
 .search-contact-wrapper {
     position: fixed;
     width: inherit;
-    background: #f9f9f9;
+    background: #1f3e63;
     height: 57px;
     z-index: 9;
 }
 
 #search-contact {
-    border-radius: 0;
+    border-radius: 20px;
     box-shadow: none;
-    transition: all 0.5s
+    transition: all 0.5s;
 }
 
 #search-contact:active,
@@ -86,7 +103,7 @@ li {
 }
 
 .contact-name {
-    color: rgba(0, 0, 0, 1);
+    color: rgb(238, 230, 230);
 }
 
 .recent-message {
@@ -103,6 +120,8 @@ li {
     height: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
+    background: linear-gradient(to right, #0c2646 0%, #204065 60%, #2a5788 100%);
+    color: white;
 }
 
 .contact-wrapper>a {
@@ -133,12 +152,13 @@ li {
 
 .chats-section {
     margin-top: 40px;
-    background-image: url("https://fsb.zobj.net/crop.php?r=qCWSmHgHZ-xQT2_Dvh25rXpXO_83sisKOMmZcWPNVg5SqYoDS_gOfDsMfBeA8_yDHsR6DQpmp0YU0PHXTigFOGw8xPlJuxUfwUy_0uZnPNALmnvnxeb-yQowpnGEOhODNuf7HWGQ7TKHEyRNaS9RstddnPNWnd-Ndfxrkg");
+    background-size: auto;
+    background: url("https://computerscience.johncabot.edu/mscaramastra/S2016/CS110-1/Vittucci/PROJECT%20WHATSAPP%20CS%20110/files/whatsapp-wallpaper.jpg");
 }
 
 #sent-chats {
     position: absolute;
-    background: white;
+    /* background: white; */
     margin-left: 25%;
     width: 75%;
     height: 100%;
@@ -149,7 +169,7 @@ li {
 .chat-top-bar {
     text-align: center;
     position: fixed;
-    background: #f3f3f3;
+    background: #1f3e63;
     padding: 5px;
     height: 40px;
     width: 75%;
@@ -157,6 +177,7 @@ li {
     -webkit-box-shadow: 3px 1px 3px 0px #989898;
     -moz-box-shadow: 3px 1px 3px 0px #989898;
     box-shadow: 3px 1px 3px 0px #989898;
+    color: white;
 }
 
 
@@ -176,12 +197,13 @@ li {
 }
 
 .chat-receiver {
-    background: #d22929ed;
+    background: #fff;
     padding: 9px;
     border-radius: 15px 10px 15px 0px;
     width: 70%;
     max-width: fit-content;
-    color: white;
+    color: #756060;
+    /* font-weight: 300; */
 }
 
 .chat-sender-div {
