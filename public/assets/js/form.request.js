@@ -280,6 +280,9 @@ function addAgenda(agenda) {
             <li class="list-group-item d-flex justify-content-between align-items-center">
             ${agenda}
             <span>
+              <button class="btn btn-light btn-sm done-agenda"  id="done-${data.agenda.id}" data-id="${data.agenda.id}">
+                    <i class="icon text-success fas fa-minus fa-fw"></i>
+                </button>
               <button class="btn d-none btn-light btn-sm"  id="done-${data.agenda._id}" data-id="${data.agenda._id}">
                     <i class="icon text-info fas fa-check fa-fw"></i>
                 </button>
@@ -312,6 +315,7 @@ function agendaRequest() {
                 <input type="text" class="form-control" id="agenda-field-${index}">
             </div>
         `)
+        $(`#agenda-field-${index}`).focus();
         console.log(index)
         arr.push(index);
         index++;
@@ -335,7 +339,7 @@ function agendaRequest() {
                 <input type="text" class="form-control" id="agenda-field-0">
             </div>`);
 
-            $('#exampleModal').modal('hide');
+            $('#agendaModal').modal('hide');
 
             agenda.forEach(element => {
                 addAgenda(element);
@@ -346,6 +350,14 @@ function agendaRequest() {
             index = 1;
         }
     });
+
+    $('#agendaModal').on('hidden.bs.modal', function (e) {
+        // do something...
+        $("#modal-field").html(`<div class="form-group">
+            <label for="recipient-name" class="col-form-label">Agenda</label>
+            <input type="text" class="form-control" id="agenda-field-0">
+        </div>`);
+    })
     editAgenda();
     deleteAgenda();
     checkOffAgenda();
@@ -421,7 +433,6 @@ function deleteAgenda() {
     $(".delete-agenda").on('click', function () {
         let links = location.href.split("/")[4];
         let toDelete = $(this).data("id");
-        alert(toDelete)
         $.ajax({
             url: `/api/agenda/${links}?_id=${toDelete}`,
             method: "DELETE",
@@ -507,6 +518,8 @@ function speakersRequest() {
             alert("soemthing is wrong")
         }
     });
+
+   
 
     deleteSpeaker();
     editSpeaker();
