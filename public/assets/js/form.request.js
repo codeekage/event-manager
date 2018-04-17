@@ -144,7 +144,7 @@ function removeEvent(toDelete) {
                 icon: "success",
             }).then((willRefresh) => {
                 //
-                $(`#${toDelete}`).fadeOut("slow", function(){
+                $(`#${toDelete}`).fadeOut("slow", function () {
                     location.reload();
                 })
             });
@@ -320,8 +320,8 @@ function agendaRequest() {
         </div>`);
     });
 
-    $('#agendaModal').on('shown.bs.modal', function (e){
-       $("#agenda-field-0").focus();
+    $('#agendaModal').on('shown.bs.modal', function (e) {
+        $("#agenda-field-0").focus();
     });
     editAgenda();
     deleteAgenda();
@@ -365,7 +365,7 @@ function addAgenda(agenda) {
             deleteAgenda();
             editAgenda();
             checkOffAgenda();
-          
+
             console.log(data)
 
         },
@@ -531,7 +531,7 @@ function speakersRequest() {
         }
     });
 
-   
+
 
     deleteSpeaker();
     editSpeaker();
@@ -611,13 +611,13 @@ function addSpeaker(speaker) {
         }),
         success: function (data, status) {
             $("#accordion").prepend(`
-            <div class="card mb-1" id="speaker-item-${data.speaker._id}">
+             <div class="card mb-1" id="speaker-item-${data.speaker._id}">
             <div class="card-header bg-light collapsed" id="headingTwo" data-toggle="collapse" data-target="#collapse${data.speaker._id}" aria-expanded="false" aria-controls="collapseTwo">
-            <p class="mb-0  d-flex justify-content-between align-items-center">
-            ${data.speaker.evt_speaker}
-                  
+                <div  class="mb-0 d-flex justify-content-between align-items-center" >
+                <div id="speaker-toedit-${data.speaker._id}">${data.speaker.evt_speaker}</div>
+               
                     <span>
-                        <button class="btn d-none btn-light btn-sm" id="accept-${data.speaker._id}" data-id="${data.speaker._id}">
+                        <button class="btn d-none btn-light btn-sm" id="speaker-accept-${data.speaker._id}" data-id="${data.speaker._id}">
                             <i class="icon text-info fas fa-check fa-fw"></i>
                         </button>
                         <button class="btn btn-light btn-sm edit-speaker" {{button_state}} id="edit-agenda" data-id="${data.speaker._id}">
@@ -627,15 +627,17 @@ function addSpeaker(speaker) {
                             <i class="icon text-danger fas fa-trash-alt fa-fw"></i>
                         </button>
                     </span>
-                    </p>
+                 </div> 
             </div>
             <div id="collapse${data.speaker._id}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                <div class="card-body">
-                ${data.speaker.speaker_bio}
+                <div class="card-body" id="speaker-bio-toedit-${data.speaker._id}">
+                   ${data.speaker.speaker_bio}
                 </div>
             </div>
         </div>`);
 
+        editSpeaker();
+        deleteSpeaker();
             console.log(data)
         },
         error: function (data, status) {
@@ -655,13 +657,11 @@ function addSpeaker(speaker) {
         case "login":
             hostRequest();
             break;
-        case "edit":
-            editEvent();
-            break;
         case "create":
             eventRequest();
             break;
         case "manage":
+            editEvent();
             eventRequest();
             agendaRequest();
             speakersRequest();
