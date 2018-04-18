@@ -20,7 +20,7 @@
 </head>
 
 <body class="body">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-2 justify-content-between">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-2 fixed-nav-bar justify-content-between">
         <!-- Just an image -->
 
         <a class="navbar-brand" href="/">
@@ -32,43 +32,38 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
+        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+            <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">
-                        <span class="sr-only">(current)</span>
+                    <a class="nav-link" href="#" style="color:#007bff">{{evt_date}}</a>
+                </li>
+                <li class="nav-item nav-btn">
+                    <a class="btn btn-info btn-raised active share-link" data-link="/attend/{{evt_link}}">
+                        Invite
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">{{evt_date}}</a>
+                    {{#if evt_status}}
+                    <button type="button" class="d-none btn btn-info btn-raised active" id="on-live">
+                        <span id="live">GO LIVE</span>
+                    </button>
+                    <button type="button" class="btn btn-info btn-raised active" id="off-live">
+                        <span id="live">LIVE</span>
+                    </button>
+                    {{else}}
+                    <button type="button" class="btn btn-info btn-raised active" id="on-live">
+                        <span id="live">GO LIVE</span>
+                    </button>
+                    <button type="button" class="d-none btn btn-info btn-raised active" id="off-live">
+                        <span id="live">LIVE</span>
+                    </button>
+                    {{/if}}
                 </li>
             </ul>
-            <form class="form-inline">
-                <div class="row">
-                    <div class="">
-                        <button type="button" class="btn btn-info btn-raised active">
-                            Invite
-                        </button>
-                        <button type="button" class="btn btn-info btn-raised active" id="on-live">
-                          <span id="live">GO LIVE</span>
-                        </button>
-                        <button type="button" class="d-none btn btn-info btn-raised active" id="off-live">
-                          <span id="live">LIVE</span>
-                        </button>
-                    </div>
-
-                </div>
-
-            </form>
         </div>
     </nav>
 
     <div class="wrapper">
 
-        <div class="container">
+        <div class="container content-relative">
             <div class="row justify-content-center">
                 <div class="card col-md-10  card-height-90 mb-2">
                     <div class="card-body card-height-0">
@@ -88,7 +83,7 @@
                                             <div class="text-center">0</div>
                                             <div class="li-text text-center">Subscribers</div>
                                         </li>
-                                        <li>
+                                       {{!--  <li>
                                             <div class="text-center">
 
                                                 <button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#agendaModal" data-whatever="@mdo">
@@ -98,7 +93,7 @@
 
                                             </div>
                                             <div class="li-text text-center">Add Angeda</div>
-                                        </li>
+                                        </li> --}}
                                     </ul>
 
                                 </div>
@@ -107,5 +102,4 @@
                     </div>
                 </div>
             </div>
-{{{body}}}
-          
+            {{{body}}}

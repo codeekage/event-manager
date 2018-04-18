@@ -21,6 +21,7 @@ routes.get("/manage/:link", ensureAuthenticated, (req, res, next) => {
                             layout: 'manage',
                             evt_name : event.evt_name,
                             evt_venue : event.evt_venue,
+                            evt_link : event.evt_link,
                             evt_date : event.evt_date,
                             noti_msg : event.noti_msg,
                             evt_type : event.evt_type,

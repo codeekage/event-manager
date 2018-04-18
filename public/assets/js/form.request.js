@@ -12,7 +12,7 @@ function putRequest(url, object, successCallBack, errorCallback) {
             return errorCallback(data, status)
         }
     });
-}   
+}
 function showRequest(formData, jqForm, options) {
     alert('Loading..');
     console.log({ formData: formData, jqForm: jqForm, options: options })
@@ -56,6 +56,9 @@ function routes(route) {
     }
 }
 
+/* function invite(){
+  
+} */
 
 function shareEvent() {
     $(".share-link").on("click", function (e) {
@@ -97,6 +100,11 @@ function shareEvent() {
                 }
             });
     });
+
+    /*   $("#invite").on("click", function (e) {
+          e.preventDefault();
+          invite();
+      }); */
 }
 
 function eventRequest() {
@@ -588,7 +596,9 @@ function speakersRequest() {
         }
     });
 
-
+    $('#speakerModal').on('shown.bs.modal', function (e) {
+        $("#speakers-field-0").focus();
+    });
 
     deleteSpeaker();
     editSpeaker();
@@ -618,10 +628,10 @@ function deleteSpeaker() {
 }
 
 function goLive() {
-let link = location.href.split("/")[4];
+    let link = location.href.split("/")[4];
     $("#on-live").on('click', () => {
         putRequest(`/api/events/${link}`, {
-            evt_status : true
+            evt_status: true
         }, (data, status) => {
 
             $("#on-live").addClass("d-none");
@@ -636,16 +646,16 @@ let link = location.href.split("/")[4];
             }, 2000);
 
             console.log(data);
-        }, (data,status) => {
-            
+        }, (data, status) => {
+
             console.log(data)
         })
-       
+
     });
-  
+
     $("#off-live").on('click', () => {
         putRequest(`/api/events/${link}`, {
-            evt_status : false
+            evt_status: false
         }, (data, status) => {
             $("#off-live").addClass("d-none");
             $("#on-live").removeClass("d-none");
@@ -687,7 +697,9 @@ function editSpeaker() {
             })
         });
 
-    })
+    });
+
+    
 }
 
 
@@ -759,6 +771,7 @@ function addSpeaker(speaker) {
             goLive();
             eventRequest();
             agendaRequest();
+            shareEvent();
             speakersRequest();
             break;
         default:

@@ -181,6 +181,26 @@ li {
     display: none;
 }
 
+.fixed-nav-bar {
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+    box-shadow: -3px 0px 3px black;
+    top: 0;
+}
+
+.content-relative {
+    position: relative;
+    top: 64px;
+    margin: 0 auto;
+}
+
+.nav-btn {
+    float: right;
+    left: 39%;
+    position: relative;
+}
+
 
 /* .disabled {
     butt
