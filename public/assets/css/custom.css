@@ -171,11 +171,16 @@ li {
     cursor: not-allowed;
 }
 
-.send-messages{
-  margin: 0;
-bottom: 0;
-/* position: fixed; */
+.send-messages {
+    margin: 0;
+    bottom: 0;
+    /* position: fixed; */
 }
+
+.d-none {
+    display: none;
+}
+
 
 /* .disabled {
     butt

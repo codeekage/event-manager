@@ -67,11 +67,5 @@ routes.delete('/api/agenda/:link', (req, res, next) => {
 })
 
 
-app.get('/chat', (req, res, next) => {
-    res.render('chat', {
-        layout: false
-    })
-
-})
 
 module.exports = routes;

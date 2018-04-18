@@ -1,3 +1,18 @@
+function putRequest(url, object, successCallBack, errorCallback) {
+    $.ajax({
+        url: url,
+        method: "PUT",
+        dataType: "JSON",
+        contentType: "application/json",
+        data: JSON.stringify(object),
+        success: (data, status) => {
+            return successCallBack(data, status)
+        },
+        error: (data, status) => {
+            return errorCallback(data, status)
+        }
+    });
+}   
 function showRequest(formData, jqForm, options) {
     alert('Loading..');
     console.log({ formData: formData, jqForm: jqForm, options: options })
@@ -212,7 +227,7 @@ function editEvent() {
     editEventDate();
 }
 
-function editEventDate(){
+function editEventDate() {
     document.querySelector("#edit-evt-date").addEventListener('click', (e) => {
         document.getElementById("evt_date").removeAttribute("disabled")
         $("#evt_date").focus();
@@ -254,7 +269,7 @@ function editEventDate(){
         })
     });
 
-    
+
 }
 
 function togglePassword(id) {
@@ -602,6 +617,43 @@ function deleteSpeaker() {
     })
 }
 
+function goLive() {
+let link = location.href.split("/")[4];
+    $("#on-live").on('click', () => {
+        putRequest(`/api/events/${link}`, {
+            evt_status : true
+        }, (data, status) => {
+
+            $("#on-live").addClass("d-none");
+            $("#off-live").removeClass("d-none");
+
+            setInterval(() => {
+                $("#off-live").css({ "background": "#2e82d5db" });
+            }, 1000);
+
+            setInterval(() => {
+                $("#off-live").css({ "background": "#dc3545" });
+            }, 2000);
+
+            console.log(data);
+        }, (data,status) => {
+            
+            console.log(data)
+        })
+       
+    });
+  
+    $("#off-live").on('click', () => {
+        putRequest(`/api/events/${link}`, {
+            evt_status : false
+        }, (data, status) => {
+            $("#off-live").addClass("d-none");
+            $("#on-live").removeClass("d-none");
+            console.log(data)
+        })
+    })
+
+}
 function editSpeaker() {
     $(".edit-speaker").on('click', function () {
         let toEdit = $(this).data("id");
@@ -678,8 +730,8 @@ function addSpeaker(speaker) {
             </div>
         </div>`);
 
-        editSpeaker();
-        deleteSpeaker();
+            editSpeaker();
+            deleteSpeaker();
             console.log(data)
         },
         error: function (data, status) {
@@ -704,6 +756,7 @@ function addSpeaker(speaker) {
             break;
         case "manage":
             editEvent();
+            goLive();
             eventRequest();
             agendaRequest();
             speakersRequest();

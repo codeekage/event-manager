@@ -28,6 +28,7 @@ routes.get("/manage/:link", ensureAuthenticated, (req, res, next) => {
                             speaker : speaker,
                             evt_occ : event.evt_occ,
                             evt_passkey : event.evt_passkey,
+                            evt_status : event.evt_status,
                             organization : host.organization
                         })
                     }).catch(next)

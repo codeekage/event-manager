@@ -42,8 +42,8 @@ const EventSchema = new Schema({
         default : "Happy Guest e-Vitation"
     },
     evt_status : {
-        type : String,
-        defualt : "Pending"
+        type : Boolean,
+        defualt : false
     },
     co_host:{
         type : String 

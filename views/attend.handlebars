@@ -91,6 +91,7 @@
             <div class="content">
                 <h4 class="motto">{{noti_msg}}</h4>
                 <div class="subscribe">
+                    {{#if evt_status}}
                     <h5 class="info-text">
                         Please, enter passkey to attend event
                     </h5>
@@ -107,6 +108,11 @@
 
                         </div>
                     </div>
+                    {{else}}
+                    <h6 class="info-text cursive">
+                        Event is COMING SOON!
+                    </h6>
+                    {{/if}}
                 </div>
             </div>
         </div>
