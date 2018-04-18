@@ -6,19 +6,19 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{title}}</title>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-        crossorigin="anonymous"> 
-
-    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
-        crossorigin="anonymous"></script>
+    <link href="/assets/css/now-ui-dashboard.css?v=1.0.1" rel="stylesheet" />
+    <!--CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
     <script defer src="/static/fontawesome/fa-v4-shim.js"></script>
     <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/x-icon">
 
     <link rel="stylesheet" href="/assets/css/1-bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/chat-white.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
+
 </head>
 
 <body>
@@ -41,20 +41,30 @@
                 </ul>
             </div>
         </div>
-             {{> modals}}
+        {{> modals}}
         <div class="col-lg-9 col-md-9 col-sm-9 pd-0" id="sent-chats">
             <div class="chat-top-bar col-md-9 col-sm-9">
-                <p class="chat-user-name" id="evt_name">Event Name</p>
+                <p class="chat-user-name" id="evt_name">{{evt_name}}</p>
                 <ul class="chat-icons">
                     <li class="" data-toggle="modal" data-target="#chatAgendaModal" data-whatever="@mdo">
-                        <i class="fa fa-edit"></i>
-                    </li>
-                    <li class="" data-toggle="modal" data-target="#chatSpeakerModal" data-whatever="@mdo">
-                        <i class="fa fa-microphone"></i>
+                        <i class="now-ui-icons design-2_ruler-pencil"></i>
                     </li>
                     <li class="" data-toggle="modal" data-target="#chatAgendaModal" data-whatever="@mdo">
-
-                        <i class="fa fa-clipboard-check"></i>
+                        <i class="now-ui-icons education_agenda-bookmark"></i>
+                    </li>
+                    <li class="" data-toggle="modal" data-target="#chatSpeakerModal" data-whatever="@mdo">
+                        <i class="now-ui-icons business_badge"></i>
+                    </li>
+                    <li class="dropdown" data-toggle="modal" data-target="#chatAgendaModal" data-whatever="@mdo">
+                        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false" s style="padding:0">
+                        <i class="now-ui-icons loader_gear"></i> 
+                          {{!--   <i class="now-ui-icons users_single-02"></i> --}}
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#">Edit Profile</a>
+                            <a class="dropdown-item text-danger" href="/logout">Logout</a>
+                        </div>
                     </li>
                 </ul>
 
@@ -133,24 +143,27 @@
                 <p class="chat-sender">
                     I am among the best Left Back in the world
                 </p>-->
-            </div>
-            <div class="">
-                <div class="input-group send-message-wrapper">
-                    <input type="text" id="type-message" class="form-control" title="" required="required" placeholder="Type message">
-                    <span class="bg-white input-group-addon">
-
-                        <i class="text-info fa fa-paper-plane"></i>
-                    </span>
-
+                {{!--
+                <div class="send-message-wrapper"> --}}
+                </div>
+                <div class="send-message-wrapper">
+                    <div class="input-group send-messages">
+                        <input type="text" class="form-control" id="evt_date" placeholder="Type Message Here..." name="evt_date" value="" style="border:none">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary btn-sm btn-fill m-0" id="edit-evt-date" type="button" style="height:34px">
+                                <i class="now-ui-icons ui-1_send"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </div>
- 
-    </div>
-    <script src="/assets/js/core/jquery-3.1.1.min.js"></script>
-    <script src="/assets/js/core/popper.min.js"></script>
-    <script src="/assets/js/core/bootstrap.min.js"></script>
-    <script src="/assets/js/chat.js"></script>
+        <script src="/assets/js/core/jquery-3.1.1.min.js"></script>
+        <script src="/assets/js/core/popper.min.js"></script>
+        <script src="/assets/js/core/bootstrap.min.js"></script>
+        <script src="/assets/js/now-ui-dashboard.js?v=1.0.1"></script>
+        <script src="/assets/js/chat.js"></script>
 </body>
 
 </html>

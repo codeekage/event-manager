@@ -240,12 +240,12 @@ li {
 
 .chat-icons li {
     font-size: 17px;
-    margin: 1px 5px;
-    padding: 8px 0px 8px 0px;
+    margin: 9px 0px;
+    /* padding: 8px 0px 8px 0px; */
     color: #4c94dbbf;
     cursor: pointer;
     width: 50px;
-    border-radius: 10px;
+    border-radius: 50px;
     /* background:  black; */
 }
 
@@ -279,8 +279,14 @@ li {
 .send-message-wrapper {
     position: fixed;
     bottom: 0;
+    width: 72%;
     border-radius: 0;
-    width: 75%;
+}
+
+.send-messages {
+    margin: 0;
+    bottom: 0;
+    position: relative;
 }
 
 .done {
@@ -300,7 +306,7 @@ li {
         width: 90%;
     }
     .send-message-wrapper {
-        width: 90%;
+        width: 82%;
     }
     .chat-top-bar {
         width: 90%;
