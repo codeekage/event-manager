@@ -530,7 +530,7 @@ function speakersRequest() {
         if (document.querySelector('#speakers-field-0').value !== "") {
             speaker.push({
                 speaker_name: document.querySelector('#speakers-field-0').value,
-                speaker_bio: document.querySelector('#speakers-bio-0').innerHTML
+                speaker_bio: document.querySelector('#speakers-bio-0').innerText
             }
             );
 
@@ -539,7 +539,7 @@ function speakersRequest() {
                     speaker.push(
                         {
                             speaker_name: document.querySelector(`#speakers-field-${arr[i]}`).value,
-                            speaker_bio: document.querySelector(`#speakers-bio-${arr[i]}`).innerHTML
+                            speaker_bio: document.querySelector(`#speakers-bio-${arr[i]}`).innerText
                         }
                     );
 

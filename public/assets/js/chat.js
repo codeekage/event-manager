@@ -26,6 +26,8 @@ searchContacts = () => {
     $('[data-toggle="tooltip"]').tooltip();
 }
 
+
+
 (function (){
     searchContacts();
 });
