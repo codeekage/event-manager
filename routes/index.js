@@ -25,12 +25,12 @@ app.get('/attendees',ensureAuthenticated,  (req, res, next) => {
 });
 
 
-app.get('/chat', (req, res, next) => {
+/* app.get('/chat', (req, res, next) => {
     res.render('chat', {
         layout : false
     })
    
-})
+}) */
 
 app.get('/create', ensureAuthenticated, (req, res, next) => {
     res.render('settings', {

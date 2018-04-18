@@ -118,7 +118,6 @@ function eventRequest() {
             });
     });
 
-    editEventDate();
 
 }
 
@@ -210,6 +209,7 @@ function editEvent() {
             }
         })
     });
+    editEventDate();
 }
 
 function editEventDate(){

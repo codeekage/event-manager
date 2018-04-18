@@ -23,8 +23,9 @@ function showResponse(responseText, statusText, xhr, $form) {
                     $('#registerModal').modal('show')
                 }else{
                     demo.showNotification('top', 'left', 'Redirecting...', 'success');
+                    let eventLink = location.href.split("/")[4];
                     setTimeout(() => {
-                        location.href = "/chat";
+                        location.href = `/chat/${eventLink}`;
                     }, 2000);
                 }
                 break;

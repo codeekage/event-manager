@@ -1,5 +1,4 @@
-$(document).ready(function () {
-
+searchContacts = () => {
     document.getElementById("search-contact").addEventListener("keyup", filterContacts);
 
     function filterContacts() {
@@ -25,5 +24,8 @@ $(document).ready(function () {
     }
 
     $('[data-toggle="tooltip"]').tooltip();
+}
 
+(function (){
+    searchContacts();
 });

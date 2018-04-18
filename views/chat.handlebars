@@ -8,14 +8,16 @@
     <title>{{title}}</title>
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous"> 
 
     <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
         crossorigin="anonymous"></script>
     <script defer src="/static/fontawesome/fa-v4-shim.js"></script>
     <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/x-icon">
 
-    <link rel="stylesheet" href="assets/css/1-bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/chat-white.css">
+    <link rel="stylesheet" href="/assets/css/1-bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/chat-white.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
 </head>
 
@@ -29,7 +31,7 @@
                 <ul class="nav nav-stacked" id="all-contacts">
                     <li class="contact-wrapper">
                         <a href="#">
-                            <span class="contact-img" style='background-image: url(assets/img/user3-128x128.jpg);'></span>
+                            <span class="contact-img" style='background-image: url(/assets/img/user3-128x128.jpg);'></span>
                             <span class="contact-name">Logged User Name</span>
                             <br>
                             <p class="recent-message">I am a midfield fraud dsdssdddddddfffffffffffffff</p>
@@ -39,20 +41,19 @@
                 </ul>
             </div>
         </div>
+             {{> modals}}
         <div class="col-lg-9 col-md-9 col-sm-9 pd-0" id="sent-chats">
             <div class="chat-top-bar col-md-9 col-sm-9">
                 <p class="chat-user-name" id="evt_name">Event Name</p>
-
                 <ul class="chat-icons">
-                    <li class="">
-                        <p>
-                            <i class="fa fa-edit"></i>
-                        </p>
+                    <li class="" data-toggle="modal" data-target="#chatAgendaModal" data-whatever="@mdo">
+                        <i class="fa fa-edit"></i>
                     </li>
-                    <li>
+                    <li class="" data-toggle="modal" data-target="#chatSpeakerModal" data-whatever="@mdo">
                         <i class="fa fa-microphone"></i>
                     </li>
-                    <li>
+                    <li class="" data-toggle="modal" data-target="#chatAgendaModal" data-whatever="@mdo">
+
                         <i class="fa fa-clipboard-check"></i>
                     </li>
                 </ul>
@@ -144,11 +145,12 @@
                 </div>
             </div>
         </div>
+ 
     </div>
-    <script src="assets/js/core/jquery-3.1.1.min.js"></script>
-    <script src="assets/js/core/popper.min.js"></script>
-    <script src="assets/js/core/bootstrap.min.js"></script>
-    <script src="assets/js/chat.js"></script>
+    <script src="/assets/js/core/jquery-3.1.1.min.js"></script>
+    <script src="/assets/js/core/popper.min.js"></script>
+    <script src="/assets/js/core/bootstrap.min.js"></script>
+    <script src="/assets/js/chat.js"></script>
 </body>
 
 </html>
