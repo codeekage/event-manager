@@ -1,64 +1,67 @@
 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
     <form id="edit-event-form" method="PUT" action="/api/event">
         <div class="row">
-        	<div class="col-md-6 mb-3">
-        		<label for="inputAddress2">Event Name</label>
-         		<div class="input-group">
-                	<input type="text" class="form-control" id="evt_name" disabled="true" placeholder="Event Name" name="evt_name" value="{{evt_name}}">
-            	</div>
-            </div>
-           <div class="col-md-6 mb-3">
-        		<label for="inputAddress2">Event Date/Time</label>
-         		<div class="input-group">
-                	<input type="text" class="form-control" id="evt_passkey" disabled="true" placeholder="Passkey" name="evt_passkey" value="{{evt_passkey}}">
+            <div class="col-md-6 mb-3">
+                <label for="inputAddress2">Event Name</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="evt_name" disabled="true" placeholder="Event Name" name="evt_name" value="{{evt_name}}">
                 </div>
-            </div>
-        </div>
-        <div class="row">
-        <div class="col-md-6 mb-3">
-         <label for="inputAddress">Venue</label>
-         <div class="input-group">
-                <input type="text" class="form-control" id="evt_venue" disabled="" placeholder="Event Venue" name="evt_venue" value="{{evt_venue}}">
-            </div>
-        </div>
-        <div class="col-md-6 mb-3">
-        <label for="inputAddress2">Event Date/Time</label>
-         <div class="input-group">
-                <input type="datetime-local" class="form-control" id="evt_date" disabled="" placeholder="Event Date/Time" name="evt_date"
-                    value="{{evt_date}}">
-                    <div class="input-group-append">
-                        <button class="btn btn-sm btn-outline-secondary" type="button">Button</button>
-                    </div>
-            </div>
-        </div>
-           
-           
-           {{!--  <div class="form-group col-1">
-                  
-            </div> --}}
-        </div>
-        <div class="row">
-           <div class="col-md-6 mb-3">
-        		<label for="inputAddress2">Event Occurance</label>
-         		<div class="input-group">
-                	<input type="text" class="form-control" id="evt_occ" disabled="" placeholder="Event Occurance" name="evt_occ" value="{{evt_occ}}">
-               </div>
             </div>
             <div class="col-md-6 mb-3">
-        		<label for="inputAddress2">Event Type</label>
-        		<div class="input-group">
-                	<input type="text" class="form-control" id="evt_type" disabled="" placeholder="Event Venue" name="evt_type" value="{{evt_type}}">
+                <label for="inputAddress2">Event Date/Time</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="evt_passkey" disabled="true" placeholder="Passkey" name="evt_passkey" value="{{evt_passkey}}">
                 </div>
             </div>
         </div>
-        <div class="form-row mb-0">
-            <div class="form-group col-12">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="inputAddress">Venue</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="evt_venue" disabled="" placeholder="Event Venue" name="evt_venue" value="{{evt_venue}}">
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="inputAddress2">Event Date/Time</label>
+                <div class="input-group">
+                    <input type="datetime-local" class="form-control" id="evt_date" disabled="" placeholder="Event Date/Time" name="evt_date"
+                        value="{{evt_date}}">
+                    <div class="input-group-append">
+                        <button class="btn btn-sm btn-outline-secondary" id="edit-evt-date" type="button">
+                            <i class="fa fa-calendar-minus"></i>
+                        </button>
+                        
+                        <div class="input-group-append">
+                            <button class="btn btn-sm d-none btn-outline-secondary" id="check-evt-date" type="button">
+                                <i class="fa fa-calendar-check"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="inputAddress2">Event Occurance</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="evt_occ" disabled="" placeholder="Event Occurance" name="evt_occ" value="{{evt_occ}}">
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="inputAddress2">Event Type</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="evt_type" disabled="" placeholder="Event Venue" name="evt_type" value="{{evt_type}}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
                 <label for="exampleFormControlTextarea1">Welcome Message
                     <label>
 
             </div>
         </div>
-        <div class="form-row">
+        <div class="row">
             <div class="form-group col-12">
                 <div contenteditable="false" class="form-control col-12" id="noti_msg" name="noti_msg">
                     {{noti_msg}}
@@ -66,7 +69,7 @@
             </div>
 
         </div>
-        <button type="submit" class="btn btn-primary pull-right" id="submit-edit">Save Changes</button>
-        <button id="edit-event" class="btn btn-default pull-right">Edit</button>
+        <button type="submit" class="btn btn-success pull-right" disabled id="submit-edit">Save Changes</button>
+        <button id="edit-event" class="btn btn-primary pull-right">Edit</button>
     </form>
 </div>

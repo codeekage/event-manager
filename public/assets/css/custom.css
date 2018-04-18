@@ -167,6 +167,10 @@ li {
     text-decoration: line-through;
 }
 
+.btn:disabled {
+    cursor: not-allowed;
+}
+
 
 /* .disabled {
     butt

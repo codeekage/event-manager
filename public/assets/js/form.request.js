@@ -118,7 +118,7 @@ function eventRequest() {
             });
     });
 
-
+    editEventDate();
 
 }
 
@@ -164,7 +164,7 @@ function editEvent() {
         e.preventDefault();
         document.getElementById("evt_name").removeAttribute("disabled")
         document.getElementById("evt_venue").removeAttribute("disabled")
-        document.getElementById("evt_date").removeAttribute("disabled")
+        document.getElementById("submit-edit").removeAttribute("disabled")
         document.getElementById("evt_passkey").removeAttribute("disabled")
         document.getElementById("evt_type").removeAttribute("disabled")
         document.getElementById("evt_occ").removeAttribute("disabled")
@@ -182,7 +182,7 @@ function editEvent() {
             data: JSON.stringify({
                 evt_name: document.getElementById("evt_name").value,
                 evt_venue: document.getElementById("evt_venue").value,
-                evt_date: document.getElementById("evt_date").value,
+                //evt_date: document.getElementById("evt_date").value,
                 evt_type: document.getElementById("evt_type").value,
                 evt_occ: document.getElementById("evt_occ").value,
                 noti_msg: document.getElementById("noti_msg").innerText,
@@ -194,7 +194,7 @@ function editEvent() {
                 }).then((willRefresh) => {
                     document.getElementById("evt_name").setAttribute("disabled", true)
                     document.getElementById("evt_venue").setAttribute("disabled", true)
-                    document.getElementById("evt_date").setAttribute("disabled", true)
+                    document.getElementById("submit-edit").setAttribute("disabled", true)
                     document.getElementById("evt_passkey").setAttribute("disabled", true)
                     document.getElementById("evt_occ").setAttribute("disabled", true)
                     document.getElementById("evt_type").setAttribute("disabled", true)
@@ -209,10 +209,52 @@ function editEvent() {
                 console.log(data)
             }
         })
-    })
+    });
+}
 
+function editEventDate(){
+    document.querySelector("#edit-evt-date").addEventListener('click', (e) => {
+        document.getElementById("evt_date").removeAttribute("disabled")
+        $("#evt_date").focus();
+        $("#edit-evt-date").fadeOut(() => {
+            document.querySelector("#edit-evt-date").classList.add('d-none');
+            document.querySelector("#check-evt-date").classList.remove('d-none');
+        });
+    });
 
+    document.querySelector("#check-evt-date").addEventListener('click', (e) => {
+        let links = location.href.split("/")[4]
+        $.ajax({
+            url: `/api/events/${links}`,
+            method: "PUT",
+            contentType: "application/json",
+            dataType: "JSON",
+            data: JSON.stringify({
+                evt_date: document.getElementById("evt_date").value,
+            }),
+            success: (data, status) => {
+                swal("Saved!", {
+                    icon: "success",
+                }).then((willRefresh) => {
+                    document.getElementById("evt_date").setAttribute("disabled", true)
+                });
+                $("#check-evt-date").fadeOut(() => {
+                    $("#edit-evt-date").fadeIn(() => {
+                        document.querySelector("#edit-evt-date").classList.remove('d-none');
+                        document.querySelector("#check-evt-date").classList.add('d-none');
+                    })
+                });
+            },
+            error: function (data, status) {
+                swal("Failed! Your imaginary file hasn't been deleted!" + data, {
+                    icon: "error",
+                });
+                console.log(data)
+            }
+        })
+    });
 
+    
 }
 
 function togglePassword(id) {
