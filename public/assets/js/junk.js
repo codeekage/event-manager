@@ -63,18 +63,3 @@ console.log(power)
 
 
 
-function putRequest(url, object, successCallBack, errorCallback){
-    $.ajax({
-        url : url,
-        method : "PUT",
-        dataType : "JSON",
-        contentType : "application/json",
-        data: JSON.stringify(object),
-        success : (data, status) => {
-            return successCallBack(data, status)
-        },
-        error : (data, status) => {
-            return errorCallback(data, status)
-        }
-    })
-}   

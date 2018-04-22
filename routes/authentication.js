@@ -18,23 +18,23 @@ routes.post("/signup", (req, res, next) => {
 
 
 routes.post('/login',
-    hostPassport.authenticate('host', {sucessRedirect : "/", failureRedirect: "/login", failureFlash: true, successFlash : true}),
+    hostPassport.authenticate('host', { sucessRedirect: "/", failureRedirect: "/login", failureFlash: true, successFlash: true }),
     (req, res, next) => {
         req.session.user_id = req.user.id;
         res.redirect("/")
     });
 
-routes.post('/join', 
+routes.post('/join',
     userPassport.authenticate('user', { sucessRedirect: "/", failureFlash: true, successFlash: true }),
     (req, res, next) => {
-       console.log(req.attendee)
+        console.log(req.attendee)
         res.redirect("/chat")
     });
 
 
 routes.get("/logout", (req, res, next) => {
     req.session.destroy((err) => {
-        if(err) throw err;
+        if (err) throw err;
         res.redirect("/login");
     });
 });
@@ -43,6 +43,12 @@ routes.get("/api/hosts", (req, res, next) => {
     HostModel.find({}).then((host) => {
         res.send(host)
     }).catch(next)
-})
+});
+
+routes.post('/jwt/login', (res, req, next) => {
+    UserAuth.loginUser(req, res, next);
+});
+
+
 
 module.exports = routes;

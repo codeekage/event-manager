@@ -7,13 +7,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{title}}</title>
     <!--     Fonts and icons     -->
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <link href="/assets/css/now-ui-dashboard.css?v=1.0.1" rel="stylesheet" />
     <!--CSS-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-        crossorigin="anonymous">
-    <script defer src="/static/fontawesome/fa-v4-shim.js"></script>
+        crossorigin="anonymous"> {{!--
+    <script defer src="/static/fontawesome/fa-v4-shim.js"></script> --}}
     <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/x-icon">
 
     <link rel="stylesheet" href="/assets/css/1-bootstrap.min.css">
@@ -58,8 +60,9 @@
                     <li class="dropdown" data-toggle="modal" data-target="#chatAgendaModal" data-whatever="@mdo">
                         <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false" s style="padding:0">
-                        <i class="now-ui-icons loader_gear"></i> 
-                          {{!--   <i class="now-ui-icons users_single-02"></i> --}}
+                            <i class="now-ui-icons loader_gear"></i>
+                            {{!--
+                            <i class="now-ui-icons users_single-02"></i> --}}
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="#">Edit Profile</a>
@@ -164,6 +167,7 @@
         <script src="/assets/js/core/bootstrap.min.js"></script>
         <script src="/assets/js/now-ui-dashboard.js?v=1.0.1"></script>
         <script src="/assets/js/chat.js"></script>
+        <script src="/assets/js/chat.io.js"></script>
 </body>
 
 </html>

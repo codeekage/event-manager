@@ -1,6 +1,7 @@
 const express = require("express"),
     routes = express.Router(),
-    EventModel = require("../models/events.model")
+    EventModel = require("../models/events.model"),
+    jwt = require('jsonwebtoken');
 
 
 routes.get("/attend/:link", (req, res, next) => {

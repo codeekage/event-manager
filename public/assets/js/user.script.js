@@ -117,18 +117,20 @@ function attendRequest() {
         return false; // always return false to prevent standard browser submit and page navigation
     });
 
-   /*  let joinOptions = {
-        url: `/join`,
+    let joinOptions = {
+        url: `/jwt/login`,
         method: "POST",
         beforeSubmit: showRequest,
-        success: signUpShowResponse,
+        success:function(data){
+          localStorage.setItem('token', data.token); 
+        },
         error: showResponse,
     }
 
     $('#join-form').submit(function () {
         $(this).ajaxSubmit(joinOptions);
         return false; // always return false to prevent standard browser submit and page navigation
-    }); */
+    });
 
     document.querySelector('.toggle-password').addEventListener('click', (e) => {
         togglePassword(".password");

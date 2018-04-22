@@ -1,5 +1,6 @@
 const User = require('../controller/controller'),
-    bcrypt = require('bcryptjs');
+    bcrypt = require('bcryptjs'),
+    jwt = require('jsonwebtoken');
 
 //REGISTER A  USER
 module.exports.registerUser = (req, res) => {
@@ -49,4 +50,41 @@ module.exports.registerUser = (req, res) => {
 
         });
     }
+}
+
+module.exports.loginUser = (res, req, next) => {
+    User.getUserbyUsername(req.body.username, (err, user) => {
+        if(err) throw err;
+
+        if(!user){
+         return   res.send({
+                success : false,
+                message : "Incorrect username"
+            });
+        }
+
+       User.comparePassword(req.body.password, user.password, (err, isMatch) => {
+            if (err) throw err;
+            
+            if(!isMatch){
+                res.send({
+                    success : false,
+                    message : "Incorrect Password"
+                });
+            }else{
+                const authUser = {
+                    username : user.username,
+                    password : user.password
+                };
+
+                jwt.sign({ authUser },'rMMOk7ULk17O7pFnNnnnurMIJzBbj7sQDg84', (err, token) => {
+                    if(err) throw err;
+                    res.send({
+                        token
+                    });
+                });
+
+            }
+       })
+    });
 }

@@ -38,6 +38,7 @@ let Host = {
     create: create,
     getHostById: getHostById,
     getHostByOrganization: getHostbyOrganization,
+    getUserbyUsername : getUserbyUsername,
     comparePassword: comparePassword,
     HostModel: HostModel,
     UserModel : UserModel
