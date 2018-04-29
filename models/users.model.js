@@ -1,8 +1,15 @@
 const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
+let userID = randomString(11, "0123456789")
 
 const UserSchema = new Schema({
+    user_id : {
+        type : String,
+        required : [true, "User ID is required"],
+        unique : [true, "User ID already exist"],
+        default : userID
+    },
     username : {
         type : String,
         required : [true, "username must be provided"],
@@ -32,3 +39,10 @@ const UserSchema = new Schema({
 
 const UserModel = mongoose.model("users", UserSchema);
 module.exports = UserModel;
+
+
+function randomString(length, chars) {
+    var result = '';
+    for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+    return result;
+}
