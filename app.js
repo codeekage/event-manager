@@ -37,6 +37,13 @@ app.use(function (req, res, next) {
 
         });
     }
+    if (res.status(422)) {
+        res.render("404", {
+            page_title: "404",
+            layout : false
+
+        });
+    }
 });
 
 
