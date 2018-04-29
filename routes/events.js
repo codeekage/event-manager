@@ -1,7 +1,8 @@
 const express = require("express"),
     routes = express.Router(),
     EventModel = require("../models/events.model"),
-    HostModel = require("../models/host.model")
+    HostModel = require("../models/host.model"),
+    AttendeeModel = require("../models/attendee.model");
 
 
 
@@ -58,6 +59,28 @@ routes.get("/", ensureAuthenticated, (req, res, next) => {
         }).catch(next)
     }).catch(next);
 });
+
+
+routes.get("/api/events/attendees", (req, res, next) => {
+    AttendeeModel.find({}).then((attendee) => {
+        res.send(attendee);
+    }).catch(next);
+});
+
+routes.post("/api/events/attendees", (req, res, next) => {
+    AttendeeModel.create(req.body).then(attendee => {
+        res.send(attendee);
+    }).catch(next);
+})
+
+routes.delete("/api/events/attendees/:id", (req, res, next) => {
+    AttendeeModel.findByIdAndRemove({_id : id}).then(attendee => {
+        res.send(attendee);
+    }).catch(next);
+})
+
+
+
 
 
 function ensureAuthenticated(req, res, next) {
