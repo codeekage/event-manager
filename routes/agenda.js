@@ -1,8 +1,10 @@
+// REQUIRE DEPENDENCIES AND MODELS
 const express = require("express"),
 routes = express.Router(),
 AgendaModel = require("../models/agenda.model"),
 EventModel = require("../models/events.model");
 
+// AGENDA [GET] ROUTE 
 routes.get("/api/agenda", (req, res, next) => {
     AgendaModel.find({}).then((agenda) => {
         res.send({
@@ -12,6 +14,7 @@ routes.get("/api/agenda", (req, res, next) => {
     }).catch(next)
 });
 
+// AGENDA [POST] ROUTE (ADDS NEW AGENDA)
 routes.post('/api/agenda/:link', (req, res, next) => {
     EventModel.findOne({evt_link : req.params.link}).then((event) => {
         if(!event){
@@ -30,6 +33,7 @@ routes.post('/api/agenda/:link', (req, res, next) => {
     }).catch(next);
 });
 
+// AGNEDA [PUT] ROUTE (UPDATES EXISTING AGENDA)
 routes.put('/api/agenda/:link', (req, res, next) => {
     EventModel.findOne({ evt_link: req.params.link }).then((event) => {
         if (!event) {
@@ -48,6 +52,7 @@ routes.put('/api/agenda/:link', (req, res, next) => {
     }).catch(next);
 })
 
+// AGENDA [DELETE] SERVICE (DELETES AN AGENDA)
 routes.delete('/api/agenda/:link', (req, res, next) => {
     EventModel.findOne({ evt_link: req.params.link }).then((event) => {
         if (!event) {
