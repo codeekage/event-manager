@@ -74,13 +74,14 @@ module.exports.loginUser = (res, req, next) => {
             }else{
                 const authUser = {
                     username : user.username,
-                    password : user.password
+                    user_id : user.id
                 };
 
                 jwt.sign({ authUser },'rMMOk7ULk17O7pFnNnnnurMIJzBbj7sQDg84', (err, token) => {
                     if(err) throw err;
                     res.send({
-                        token
+                        token : token,
+                        user : authUser
                     });
                 });
 

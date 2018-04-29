@@ -61,19 +61,19 @@ routes.get("/", ensureAuthenticated, (req, res, next) => {
 });
 
 
-routes.get("/api/events/attendees", (req, res, next) => {
+routes.get("/api/events/attendee", (req, res, next) => {
     AttendeeModel.find({}).then((attendee) => {
         res.send(attendee);
     }).catch(next);
 });
 
-routes.post("/api/events/attendees", (req, res, next) => {
+routes.post("/api/events/attendee", (req, res, next) => {
     AttendeeModel.create(req.body).then(attendee => {
         res.send(attendee);
     }).catch(next);
 })
 
-routes.delete("/api/events/attendees/:id", (req, res, next) => {
+routes.delete("/api/events/attendee/:id", (req, res, next) => {
     AttendeeModel.findByIdAndRemove({ _id: id }).then(attendee => {
         res.send(attendee);
     }).catch(next);

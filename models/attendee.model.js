@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const EventAttendee = new Schema({
     user_id: {
         type: String,
-        required: [true, "Spaker Required"]
+        required: [true, "User IDRequired"]
     },
     evt_link: {
         type: String,

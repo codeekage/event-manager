@@ -123,8 +123,10 @@ function attendRequest() {
         beforeSubmit: showRequest,
         success:function(data){
           localStorage.setItem('token', data.token); 
-          let userID = localStorage.setItem('username', data.username)
-          addAttendee(userID, link);
+          console.log(data)
+          localStorage.setItem('username', data.user.name)
+          localStorage.setItem('user_id', data.user.user_id)
+          //addAttendee(data.user_id, link);
         },
         error: showResponse,
     }
