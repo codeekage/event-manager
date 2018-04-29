@@ -124,9 +124,9 @@ function attendRequest() {
         success:function(data){
           localStorage.setItem('token', data.token); 
           console.log(data)
-          localStorage.setItem('username', data.user.name)
+          localStorage.setItem('username', data.user.username)
           localStorage.setItem('user_id', data.user.user_id)
-          //addAttendee(data.user_id, link);
+          addAttendee(data.user.user_id, link);
         },
         error: showResponse,
     }
@@ -182,7 +182,5 @@ const addAttendee = (user_id, eventLink) => {
 
 
 (function () {
-
     attendRequest();
-
 })();

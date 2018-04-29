@@ -74,7 +74,7 @@ module.exports.loginUser = (res, req, next) => {
             }else{
                 const authUser = {
                     username : user.username,
-                    user_id : user.id
+                    user_id : user.user_id
                 };
 
                 jwt.sign({ authUser },'rMMOk7ULk17O7pFnNnnnurMIJzBbj7sQDg84', (err, token) => {
