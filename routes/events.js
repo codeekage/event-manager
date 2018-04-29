@@ -74,13 +74,10 @@ routes.post("/api/events/attendees", (req, res, next) => {
 })
 
 routes.delete("/api/events/attendees/:id", (req, res, next) => {
-    AttendeeModel.findByIdAndRemove({_id : id}).then(attendee => {
+    AttendeeModel.findByIdAndRemove({ _id: id }).then(attendee => {
         res.send(attendee);
     }).catch(next);
 })
-
-
-
 
 
 function ensureAuthenticated(req, res, next) {

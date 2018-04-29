@@ -28,7 +28,7 @@ routes.post('/join',
     userPassport.authenticate('user', { sucessRedirect: "/", failureFlash: true, successFlash: true }),
     (req, res, next) => {
         console.log(req.attendee)
-        res.redirect("/chat")
+        //res.redirect("/chat")
     });
 
 

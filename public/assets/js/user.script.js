@@ -49,14 +49,14 @@ function signUpShowResponse(responseText, statusText, xhr, $form) {
                 //alert(`${msg} : Error`)
                 break;
             case true:
-                let username = document.querySelector("#username").value;
                 demo.showNotification('top', 'right', 'Success!', 'success');
                 $('#registerModal').modal('hide');
-                localStorage.setItem("username", username);
-                setTimeout(() => {
-                    location.href = "/chat"
-                }, 2000);
-                //alert(`${msg} : success`)
+                let eventLink = location.href.split('/')[4];
+                console.log(responseText)
+                console.log(msg)
+               let username = localStorage.setItem('username', responseText.user.username)
+                let user_id = localStorage.setItem('user_id', responseText.user.user_id)
+                addAttendee(user_id, eventLink)
                 break;
             default:
                 break;
@@ -123,6 +123,8 @@ function attendRequest() {
         beforeSubmit: showRequest,
         success:function(data){
           localStorage.setItem('token', data.token); 
+          let userID = localStorage.setItem('username', data.username)
+          addAttendee(userID, link);
         },
         error: showResponse,
     }
@@ -152,6 +154,28 @@ function attendRequest() {
         $('#loginModal').modal('hide');
     })
 
+}
+
+const addAttendee = (user_id, eventLink) => {
+    $.ajax({
+        url : "/api/events/attendee",
+        method : "POST",
+        contentType : "application/json",
+        dataType : "JSON",
+        data : JSON.stringify({
+            user_id : user_id,
+            evt_link : eventLink
+        }),
+        success : (data, status) => {
+            console.log(data)
+            setTimeout(() => {
+                location.href = `/chat/${eventLink}`
+            }, 2000);
+        },
+        error : (data, status) => {
+            console.log(data)
+        }
+    })
 }
 
 
