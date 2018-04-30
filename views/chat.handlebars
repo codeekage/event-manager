@@ -30,17 +30,7 @@
                 <input type="text" id="search-contact" class="form-control mt-10" placeholder="Search Contacts" required="required">
             </div>
             <div class="col-md-12 pd-0 contact-list">
-                <ul class="nav nav-stacked" id="all-contacts">
-                    <li class="contact-wrapper">
-                        <a href="#">
-                            <span class="contact-img" style='background-image: url(/assets/img/user3-128x128.jpg);'></span>
-                            <span class="contact-name">Logged User Name</span>
-                            <br>
-                            <p class="recent-message">I am a midfield fraud dsdssdddddddfffffffffffffff</p>
-                            <span class="date-sent">9/12/16</span>
-                        </a>
-                    </li>
-                </ul>
+                    {{> chat.contacts}}
             </div>
         </div>
         {{> modals}}

@@ -24,9 +24,8 @@ function showResponse(responseText, statusText, xhr, $form) {
                 }else{
                     demo.showNotification('top', 'left', 'Redirecting...', 'success');
                     let eventLink = location.href.split("/")[4];
-                    setTimeout(() => {
-                        location.href = `/chat/${eventLink}`;
-                    }, 2000);
+                   let user_id = localStorage.getItem('user_id');
+                   addAttendee(user_id, eventLink)
                 }
                 break;
             default:
@@ -171,7 +170,7 @@ const addAttendee = (user_id, eventLink) => {
         success : (data, status) => {
             console.log(data)
             setTimeout(() => {
-                location.href = `/chat/${eventLink}`
+                location.href = `/chat/${eventLink}.${user_id}`
             }, 2000);
         },
         error : (data, status) => {
