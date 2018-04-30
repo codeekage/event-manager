@@ -19,41 +19,31 @@ function ensureAuth(req, res, next) {
         let loggedUser = req.params.link.split('.')[1],
             link = req.params.link.split('.')[0];
         AttendeeModel.findOne({ user_id: loggedUser }).where('evt_link').equals(link).then(evt => {
-            if(!evt){
-               res.sendStatus(404)
-            }else{
+            if (!evt) {
+                res.sendStatus(404)
+            } else {
                 req.link = link;
                 next();
             }
         }).catch(next);
     } else {
-       res.sendStatus(404)
+        res.status(404).render('404', {
+            layout: false
+        });
+        next();
     }
 }
 
 
-function getChatsData(link, req, res, next){
-   EventModel.findOne({ evt_link: link }).then((event) => {
-    res.render('chat', {
-        layout: false,
-        evt_name: event.evt_name,
-        evt_venue: event.evt_venue,
-        evt_date: event.evt_date,
-        noti_msg: event.noti_msg,
-        evt_type: event.evt_type,
-      /*   agenda: agenda,
-        speaker: speaker, */
-        evt_occ: event.evt_occ,
-        evt_passkey: event.evt_passkey,
-
-    })
-        /*if (!event || event.evt_status === false) {
+function getChatsData(link, req, res, next) {
+    EventModel.findOne({ evt_link: link }).then((event) => {
+    if (!event || event.evt_status === false) {
             res.status(404).render('404', {
                 layout: false
             })
         } else {
-            let hostID = req.session.user_id */
-        /*     AgendaModel.find({ evt_link: link }).sort({ created_date: -1 }).then((agenda) => {
+            let hostID = req.session.user_id 
+             AgendaModel.find({ evt_link: link }).sort({ created_date: -1 }).then((agenda) => {
                 console.log(link)
                 SpeakerModel.find({ evt_link: link}).sort({ created_date: -1 }).then((speaker) => {
                     res.render('chat', {
@@ -70,7 +60,8 @@ function getChatsData(link, req, res, next){
 
                     })
                 }).catch(next)
-            }).catch(next) */
+            }).catch(next)
+        }
     }).catch(next)
 }
 
