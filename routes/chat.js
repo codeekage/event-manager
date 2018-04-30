@@ -15,15 +15,25 @@ routes.get('/chat/:link', ensureAuth, (req, res, next) => {
 
 routes.get('/api/attendee/:link', (req, res, next) => {
     AttendeeModel.find({ evt_link: req.params.link }).sort({ created_date: -1 }).then((attendee) => {
-      res.send({
-          name : attendee.user_id,
-          pass : attendee.evt_link
-      })
+        res.send(attendee)
     }).catch(next)
 })
+
 routes.get('/api/users', (req, res, next) => {
     UserModel.find({}).then((user) => {
-        res.send(user)
+       res.send(user)
+    }).catch(next)
+})
+
+routes.get('/api/users/:userid', (req, res, next) => {
+    UserModel.findOne({user_id : req.params.userid}).then((user) => {
+       res.send(user)
+    }).catch(next)
+})
+
+routes.get('/api/attendee', (req, res, next) => {
+    AttendeeModel.find({}).then((user) => {
+       res.send(user)
     }).catch(next)
 })
 
@@ -39,8 +49,7 @@ function getChatsData(link, req, res, next) {
             AgendaModel.find({ evt_link: link }).sort({ created_date: -1 }).then((agenda) => {
                 SpeakerModel.find({ evt_link: link }).sort({ created_date: -1 }).then((speaker) => {
                     AttendeeModel.find({ evt_link: link }).sort({ created_date: -1 }).then((attendee) => {
-                        UserModel.find({user_id : attendee.user_id}).then((user) => {
-                            console.log(user)
+                           // console.log(user)
                             res.render('chat', {
                                 layout: false,
                                 evt_name: event.evt_name,
@@ -55,7 +64,6 @@ function getChatsData(link, req, res, next) {
                                 attendee: attendee
 
                             })
-                        }).catch(next)
                     }).catch(next)
                 }).catch(next)
             }).catch(next)
