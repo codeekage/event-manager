@@ -58,6 +58,7 @@ function getChatsData(link, req, res, next) {
                                 noti_msg: event.noti_msg,
                                 evt_type: event.evt_type,
                                 agenda: agenda,
+                                title : event.evt_name,
                                 speaker: speaker,
                                 evt_occ: event.evt_occ,
                                 evt_passkey: event.evt_passkey,

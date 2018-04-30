@@ -100,6 +100,19 @@ body::-webkit-scrollbar-thumb {
     top: 70px;
 }
 
+.contact-list li {
+    background: #ececec;
+    width: 100%;
+    margin: 1px auto;
+    /* padding: 12px 5px; */
+}
+
+.contact-list li a {
+    /* padding: 10px; */
+    background: white;
+    margin: 0px;
+}
+
 li {
     list-style: none;
 }
@@ -111,6 +124,9 @@ li {
     height: 40px;
     width: 40px;
     position: absolute;
+    top: 0px;
+    bottom: 0px;
+    padding: 10px;
 }
 
 .contact-name,
