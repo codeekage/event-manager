@@ -46,7 +46,7 @@ routes.post('/chat/message', (req, res, next) =>{
 })
 
 routes.get('/chat/message/:link', (req, res, next) =>{
-    ChatModel.find({}).then((chat) => {
+    ChatModel.find({evt_link : req.params.link}).sort({join_date : -1}).then((chat) => {
         res.send(chat)
     }).catch(next);
 });

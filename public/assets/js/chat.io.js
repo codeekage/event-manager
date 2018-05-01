@@ -1,9 +1,43 @@
 //INIT SOCKET
 const socket = io.connect();
-let chatBody = document.querySelector('#msg-body'),
-    link = location.href.split('/')[4];
+let chatBody = document.querySelector('#msg-body');
 
 
+function post(url, object, successCallBack, errorCallback) {
+    $.ajax({
+        url: url,
+        method: "POST",
+        dataType: "JSON",
+        contentType: "application/json",
+        data: JSON.stringify(object),
+        success: (data, status) => {
+            return successCallBack(data, status)
+        },
+        error: (data, status) => {
+            return errorCallback(data, status)
+        }
+    });
+}
+
+function get(url, successCallBack, errorCallback) {
+    $.ajax({
+        url: url,
+        method: "GET",
+        success: (data, status) => {
+            return successCallBack(data, status)
+        },
+        error: (data, status) => {
+            return errorCallback(data, status)
+        }
+    });
+}
+
+function createMessageElement(message, userID){
+    $('#msg-body').prepend(`<div id="chat-div-${userID}" class="chat-receiver-div">
+        <p id="chat-p-${userID}"  class="chat-receiver">${message}</p>
+        </div>`
+    )
+}
 
 //NEW CONNECTION
 const newConnection = () => {
@@ -36,42 +70,31 @@ const newConnection = () => {
 
 }
 
-const post = (url, data, callback) => {
-    $.ajax({
-        url : urrl,
-        method :  "POST",
-        data : JSON.stringify(data),
-        success : (data, status) => {
-            return callback(data, status)
-        },
-        error: (data, status) => {
-            return callback = () => {
-                console.log("ERROR OCCURED!");
-            }
-        }
-    })
-}
-
-
 
 const sendMessage = () => {
     let message = document.querySelector('#send-msg').value;
+    let link = location.href.split('/')[4],
+        userID = link.split('.')[1],
+        evt_link = link.split('.')[0];
     if (message != "") {
         let trimedMessage = message.trim()
         post('/chat/message', {
             message : trimedMessage,
-            userid : localStorage.getItem('userid'),
-            evt_link : link
+            user_id : userID,
+            evt_link : evt_link
         }, (data, status) => {
-            console.log(data);
+            console.log(evt_link, userID, trimedMessage)
+            message = " ";
+            socket.emit('chat sender', {
+                socket: socket.id,
+                message: trimedMessage
+            });
+            socket.emit('chat reciever', trimedMessage);
+            $("#send-msg").val("")
+        },(data, status) => {
+            console.log(data)
         })
-        message = " ";
-        socket.emit('chat sender', {
-            socket: socket.id,
-            message: trimedMessage
-        });
-        socket.emit('chat reciever', trimedMessage);
-        $("#send-msg").val("")
+      
     }
 }
 
@@ -101,12 +124,33 @@ const testMessage = () => {
     });
 }
 
+function fetchMessage(){
+    let hrefLink = location.href.split('/')[4],
+        link = hrefLink.split('.')[0],
+        userId = hrefLink.split('.')[1]; 
+    get(`/chat/message/${link}`, (data, status) => {
+        console.log(data)
+        data.forEach(element => {
+            createMessageElement(element.message, element.user_id)
+            if(element.user_id === userId){
+                $(`#chat-p-${element.user_id}`).addClass('chat-sender')
+                $(`#chat-div-${element.user_id}`).addClass('chat-sender-div')
+                $(`#chat-div-${element.user_id}`).removeClass('chat-receiver-div')
+                $(`#chat-p-${element.user_id}`).removeClass('chat-receiver')
+            }
+        });
+    })
+}
+
 (function () {
     newConnection();
     testMessage();
+    fetchMessage();
     socket.emit('disconnect', {
         user: localStorage.getItem('username')
     })
+
+    $('#send-msg').focus();
     socket.on('disconnect', (data) => {
         $('#contact-element').html('');
         /*  data.still.forEach(element => {

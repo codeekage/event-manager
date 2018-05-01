@@ -4,11 +4,11 @@ const Schema = mongoose.Schema;
 const ChatSchema = new Schema({
     user_id: {
         type: String,
-        required: [true, "User IDRequired"]
+        required: [true, "User ID"]
     },
     message: {
         type: String,
-        required: [true, "User IDRequired"]
+        required: [true, "User Message"]
     },
     evt_link: {
         type: String,
