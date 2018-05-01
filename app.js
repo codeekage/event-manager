@@ -74,9 +74,16 @@ io.on('connection', (socket) => {
     });
 
     //Emit Disconnection of A User
-    socket.on('disconnect',  () => {
-        io.emit('disconnect', 'user disconnected')
-        console.log('disconnected');
+    socket.on('disconnect',  (data) => {
+        let toRemove = activeUser.indexOf(data.user) ;
+        if(toRemove > -1)
+        activeUser.splice(toRemove, 1);
+        io.emit('disconnect', {
+            stiil : activeUser,
+            user : data.user,
+            message : data.user + "  left"
+        });
+        console.log('disconnected ', data.user);
     });
 })
 

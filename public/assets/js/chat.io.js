@@ -20,13 +20,13 @@ const newConnection = () => {
         <span class="contact-img" style='background-image: url(/assets/img/user3-128x128.jpg);'></span>
         <span class="contact-name">${element}</span>
         <br>
-        <p class="recent-message"></p>
-        <span class="date-sent">${Date.now()}</span>
+        <!--<p class="recent-message"></p>
+        <span class="date-sent">${Date.now()}</span>-->
         </a>
         </li>`)
-        console.log(element)
+            console.log(element)
         });
-       
+
         console.log(data)
     });
 
@@ -75,7 +75,23 @@ const testMessage = () => {
 (function () {
     newConnection();
     testMessage();
-    socket.on('disconnect', (msg) => {
-        console.log('disconnect' + msg)
+    socket.emit('disconnect', {
+        user: localStorage.getItem('username')
+    })
+    socket.on('disconnect', (data) => {
+        $('#contact-element').html('');
+       /*  data.still.forEach(element => {
+            $("#contact-list").prepend(`<li class="contact-wrapper">
+        <a href="#">
+        <span class="contact-img" style='background-image: url(/assets/img/user3-128x128.jpg);'></span>
+        <span class="contact-name">${element}</span>
+        <br>
+        <!--<p class="recent-message"></p>
+        <span class="date-sent">${Date.now()}</span>-->
+        </a>
+        </li>`)
+            console.log(element)
+        }); */
+        console.log('disconnect ' + data.message)
     });
 })(); 
