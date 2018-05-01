@@ -68,9 +68,18 @@ routes.get("/api/events/attendee", (req, res, next) => {
 });
 
 routes.post("/api/events/attendee", (req, res, next) => {
-    AttendeeModel.create(req.body).then(attendee => {
-        res.send(attendee);
+    AttendeeModel.findOne({ user_id: req.body.user_id }).where('evt_link').equals(req.body.evt_link).then((attendee) => {
+        if (!attendee)
+            AttendeeModel.create(req.body).then(attendee => {
+                res.send(attendee);
+            }).catch(next);
+        else
+            res.send({
+                success: false,
+                message: "Try Loging in!"
+            })
     }).catch(next);
+
 })
 
 routes.delete("/api/events/attendee/:id", (req, res, next) => {

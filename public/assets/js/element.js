@@ -1,10 +1,10 @@
 
-function createContactElement(username, userid){
+function createContactElement(username, userid) {
     $('#contact-list').prepend(`<ul class="nav nav-stacked" id="all-contacts">
     <li class="contact-wrapper">
         <a href="#">
             <span class="contact-img" style='background-image: url(/assets/img/user3-128x128.jpg);'></span>
-            <span class="contact-name">${username}</span>
+            <span class="contact-name" id="user-${userid}">${username}</span>
             <br>
            <!--  <br>
             <p class="recent-message">I am a midfield fraud dsdssdddddddfffffffffffffff</p>
@@ -14,41 +14,44 @@ function createContactElement(username, userid){
 </ul>`)
 }
 
-function get(url, callback){
+function get(url, callback) {
     $.ajax({
-        url : url,
-        method : 'GET',
-        success : (data, status) => {
+        url: url,
+        method: 'GET',
+        success: (data, status) => {
             return callback(data, status)
         },
         error: (data, status) => {
             return callback(data, status)
-        }, 
+        },
     })
 }
 
 const fetchAttendee = () => {
     let link = location.href.split('/')[4],
-    evtLink = link.split('.')[0];
+        evtLink = link.split('.')[0],
+        name = link.split('.')[1];
     get(`/api/attendee/${evtLink}`, (data, status) => {
         console.log(data)
-       data.forEach(element => {
-          get(`/api/users/${element.user_id}`, (data, status) => {
-              console.log(data);
-              createContactElement(data.username, data.user_id)
-          });
-      });
+        data.forEach(element => {
+            get(`/api/users/${element.user_id}`, (data, status) => {
+                createContactElement(data.username, data.user_id)
+                if(data.user_id === name){
+                    $(`#user-${name}`).html("ME!");
+                }
+            });
+        });
     })
 
 }
 
-(function (){
+(function () {
     let loop = 1;
     fetchAttendee();
-  /*   setInterval(() => {
-        $('#contact-list').html('');
-        fetchAttendee();
-        console.log('looped' + loop);
-        loop++;
-    }, 10000)  */
+    /*   setInterval(() => {
+          $('#contact-list').html('');
+          fetchAttendee();
+          console.log('looped' + loop);
+          loop++;
+      }, 10000)  */
 })();

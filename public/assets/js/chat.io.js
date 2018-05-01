@@ -14,19 +14,22 @@ const newConnection = () => {
     //emit to client
     socket.on('new-connection', (data) => {
 
-        data.activeUser.forEach(element => {
-            $("#contact-list").prepend(`<li class="contact-wrapper">
-        <a href="#">
-        <span class="contact-img" style='background-image: url(/assets/img/user3-128x128.jpg);'></span>
-        <span class="contact-name">${element}</span>
-        <br>
-        <!--<p class="recent-message"></p>
-        <span class="date-sent">${Date.now()}</span>-->
-        </a>
-        </li>`)
+      /*   data.activeUser.forEach(element => {
+            $('#contact-list').prepend(`<ul class="nav nav-stacked" id="all-contacts">
+                <li class="contact-wrapper">
+                    <a href="#">
+                        <span class="contact-img" style='background-image: url(/assets/img/user3-128x128.jpg);'></span>
+                        <span class="contact-name">${element}</span>
+                         <br>
+                        <!--  <br>
+                        <p class="recent-message">I am a midfield fraud dsdssdddddddfffffffffffffff</p>
+                        <span class="date-sent">9/12/16</span> --!>
+                    </a>
+                </li>
+            </ul>`);
             console.log(element)
         });
-
+ */
         console.log(data)
     });
 
@@ -80,18 +83,18 @@ const testMessage = () => {
     })
     socket.on('disconnect', (data) => {
         $('#contact-element').html('');
-       /*  data.still.forEach(element => {
-            $("#contact-list").prepend(`<li class="contact-wrapper">
-        <a href="#">
-        <span class="contact-img" style='background-image: url(/assets/img/user3-128x128.jpg);'></span>
-        <span class="contact-name">${element}</span>
-        <br>
-        <!--<p class="recent-message"></p>
-        <span class="date-sent">${Date.now()}</span>-->
-        </a>
-        </li>`)
-            console.log(element)
-        }); */
+        /*  data.still.forEach(element => {
+             $("#contact-list").prepend(`<li class="contact-wrapper">
+         <a href="#">
+         <span class="contact-img" style='background-image: url(/assets/img/user3-128x128.jpg);'></span>
+         <span class="contact-name">${element}</span>
+         <br>
+         <!--<p class="recent-message"></p>
+         <span class="date-sent">${Date.now()}</span>-->
+         </a>
+         </li>`)
+             console.log(element)
+         }); */
         console.log('disconnect ' + data.message)
     });
 })(); 
