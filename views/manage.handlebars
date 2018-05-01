@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
 
     <div class="card col-md-10">
-        <div class="card-body">
+        <div id="manage-tab" class="card-body">
             <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Agenda</a>
@@ -53,6 +53,25 @@
                 {{> event-tab}} {{> speaker-tab}}
             </div>
         </div>
+
+
+        <div id="manage-table" class="table-responsive d-none">
+            <table class="table"> 
+                <caption>List of users</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Full Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone</th>
+                    </tr>
+                </thead>
+                <tbody id="t-body">
+                </tbody>
+            </table>
+        </div>
+
     </div>
 </div>
 

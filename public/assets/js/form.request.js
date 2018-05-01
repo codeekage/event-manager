@@ -543,6 +543,7 @@ function speakersRequest() {
                 <div class="bio" contenteditable="true" id="speakers-bio-${index}"></div>
             </div>
         `)
+        $(`#speakers-field-${index}`).focus()
         console.log(index)
         arr.push(index);
         index++;
@@ -599,6 +600,16 @@ function speakersRequest() {
     $('#speakerModal').on('shown.bs.modal', function (e) {
         $("#speakers-field-0").focus();
     });
+    $('#speakerModal').on('hidden.bs.modal', function (e) {
+        $("#speakers-modal-field").html(`<div class="form-group">
+                <label for="recipient-name" class="col-form-label">Speaker's Name</label>
+                <input type="text" class="form-control" id="speakers-field-0">
+            </div>
+            <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Speaker's Bio</label>
+                <div class="bio" contenteditable="true" id="speakers-bio-0"></div>
+            </div>`);
+    });
 
     deleteSpeaker();
     editSpeaker();
@@ -629,6 +640,13 @@ function deleteSpeaker() {
 
 function goLive() {
     let link = location.href.split("/")[4];
+    setInterval(() => {
+        $("#off-live").css({ "background": "#2e82d5db" });
+    }, 1000);
+
+    setInterval(() => {
+        $("#off-live").css({ "background": "#dc3545" });
+    }, 2000);
     $("#on-live").on('click', () => {
         putRequest(`/api/events/${link}`, {
             evt_status: true

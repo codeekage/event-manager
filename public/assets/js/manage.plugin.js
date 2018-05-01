@@ -40,3 +40,76 @@
             </div>`);
     })
 })(); */
+function get(url, callback) {
+    $.ajax({
+        url: url,
+        method: 'GET',
+        success: (data, status) => {
+            return callback(data, status)
+        },
+        error: (data, status) => {
+            return callback(data, status)
+        },
+    })
+}
+
+function createTableRows(index, username, fullname, email, phone){
+    $('#t-body').append(`<tr>
+                        <th scope="row">${index}</th>
+                        <td>${username}</td>
+                        <td>${fullname}</td>
+                        <td>${email}</td>
+                        <td>${phone}</td>
+                    </tr>`)
+}
+
+
+function viewTable() {
+    $('#view').on('click', function() {
+        $('#manage-tab').fadeOut(function(){
+            $('#manage-tab').addClass('d-none');
+            $('#manage-table').fadeIn(function() {
+                $('#manage-table').removeClass('d-none')
+                $('#view').addClass('d-none');
+                $('#hide').removeClass('d-none')
+                fetchAttendee();
+            })
+
+        })
+    })
+
+    $('#hide').on('click', function() {
+        $('#manage-table').fadeOut(function () {
+            $('#manage-table').addClass('d-none');
+            $('#manage-tab').fadeIn(function () {
+                $('#manage-tab').removeClass('d-none')
+                $('#view').removeClass('d-none')
+                $('#hide').addClass('d-none');
+                fetchAttendee();
+            })
+
+        })
+    })
+}
+
+const fetchAttendee = () => {
+    let link = location.href.split('/')[4],
+        evtLink = link.split('.')[0],
+        name = link.split('.')[1];
+
+    get(`/api/attendee/${evtLink}`, (data, status) => {
+        console.log(data)
+        data.forEach((element, index) => {
+            get(`/api/users/${element.user_id}`, (data, status) => {
+                createTableRows(index, data.username, data.fullname, data.email, data.phone)
+                console.log(data)
+            });
+            $('#t-body').html('')
+        });
+    })
+
+}
+
+(function(){
+    viewTable();
+})();

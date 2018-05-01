@@ -3,6 +3,7 @@ const express = require("express"),
     EventModel = require("../models/events.model"),
     HostModel = require("../models/host.model"),
     AgendaModel = require("../models/agenda.model"),
+    AttendeeModel = require("../models/attendee.model"),
     SpeakerModel = require("../models/speaker.model"),
     jwt = require('jsonwebtoken');
 
@@ -16,23 +17,26 @@ routes.get("/manage/:link", ensureAuthenticated, (req, res, next) => {
             let hostID = req.session.user_id
             HostModel.findOne({ _id: hostID }).then((host) => {
                 AgendaModel.find({ evt_link: req.params.link }).sort({ created_date: -1 }).then((agenda) => {
-                    SpeakerModel.find({ evt_link: req.params.link }).sort({ created_date: -1 }).then((speaker) => {
-                        console.log(agenda)
-                        res.render('manage', {
-                            layout: 'manage',
-                            evt_name: event.evt_name,
-                            evt_venue: event.evt_venue,
-                            evt_link: event.evt_link,
-                            evt_date: event.evt_date,
-                            noti_msg: event.noti_msg,
-                            evt_type: event.evt_type,
-                            agenda: agenda,
-                            speaker: speaker,
-                            evt_occ: event.evt_occ,
-                            evt_passkey: event.evt_passkey,
-                            evt_status: event.evt_status,
-                            organization: host.organization
-                        })
+                    AttendeeModel.count({ evt_link: req.params.link }).then((count) => {
+                        SpeakerModel.find({ evt_link: req.params.link }).sort({ created_date: -1 }).then((speaker) => {
+                            console.log(agenda)
+                            res.render('manage', {
+                                layout: 'manage',
+                                evt_name: event.evt_name,
+                                evt_venue: event.evt_venue,
+                                evt_link: event.evt_link,
+                                evt_date: event.evt_date,
+                                noti_msg: event.noti_msg,
+                                evt_type: event.evt_type,
+                                agenda: agenda,
+                                speaker: speaker,
+                                evt_occ: event.evt_occ,
+                                evt_passkey: event.evt_passkey,
+                                evt_status: event.evt_status,
+                                organization: host.organization,
+                                count: count
+                            })
+                        }).catch(next)
                     }).catch(next)
                 }).catch(next)
             }).catch(next)

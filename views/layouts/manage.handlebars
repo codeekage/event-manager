@@ -71,7 +71,8 @@
                             <img src="/assets/img/mike.jpg" alt="" height="100%" width="50px">
                             <div class="subject col-12">
                                 <h5 class="mb-0">{{evt_name}}</h5>
-                                <a href="#" class="mb-0 fn-1 fn-bold">VIEW ATTENDEES</a>
+                                <a href="#" class="mb-0 fn-1 fn-bold" id="view">VIEW ATTENDEES</a>
+                                <a href="#" class="mb-0 fn-1 fn-bold d-none" id="hide">HIDE ATTENDEES</a>
 
                                 <div class="subject-about">
                                     <ul>
@@ -80,7 +81,7 @@
                                             <div class="li-text text-center">Co-Host</div>
                                         </li> --}}
                                         <li class="border-side-1">
-                                            <div class="text-center">0</div>
+                                            <div class="text-center">{{count}}</div>
                                             <div class="li-text text-center">ATTENDEES</div>
                                         </li>
                                        {{!--  <li>
