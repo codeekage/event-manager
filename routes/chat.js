@@ -88,8 +88,7 @@ function ensureAuth(req, res, next) {
     } else {
         res.status(404).render('404', {
             layout: false
-        });
-        next();
+        })
     }
 }
 

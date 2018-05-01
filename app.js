@@ -41,14 +41,21 @@ app.use(function (req, res, next) {
 
 
 // SET SOCKET.IO CONNECTIVITY
+let activeUser = [];
 io.on('connection', (socket) => {
     //
     console.log("connected!")
 
     //Check user that joined socker 
     socket.on('new-connection', (data) => {
+        if(activeUser.includes(data.user))
+            io.emit('new-connection', {
+                activeUser : activeUser
+            });
+        else
+        activeUser.push(data.user);
         io.emit('new-connection', {
-            msg : data
+            activeUser: activeUser
         });
     });
 
