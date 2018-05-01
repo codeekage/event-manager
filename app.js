@@ -69,8 +69,11 @@ io.on('connection', (socket) => {
     });
 
     //Emit Message to Audience
-    socket.on('chat reciever', (msg) => {
-        socket.broadcast.emit('chat reciever', msg);
+    socket.on('chat reciever', (data) => {
+        socket.broadcast.emit('chat reciever', {
+            message : data.message,
+            user : data.user
+        });
     });
 
     //Emit Disconnection of A User

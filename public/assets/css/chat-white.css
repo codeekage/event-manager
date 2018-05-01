@@ -4,7 +4,8 @@ body {
     font-family: "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif;
 }
 
-body::-webkit-scrollbar-track {
+
+/* body::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     background-color: #F5F5F5;
     z-index: 9999999999;
@@ -20,6 +21,7 @@ body::-webkit-scrollbar-thumb {
     background: #4c94db -webkit-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
     z-index: 9999999999;
 }
+ */
 
 #sent-chats::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
@@ -75,6 +77,22 @@ body::-webkit-scrollbar-thumb {
     background: #4c94db -webkit-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
     z-index: 9999999999;
 }
+
+.chat-img {
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    /* height: 5%; */
+    /* width: 5%; */
+    position: relative;
+    float: left;
+    top: 24px;
+    left: -31px;
+    /* bottom: 0px; */
+    padding: 13px;
+}
+
+.chat-name {}
 
 .search-contact-wrapper {
     position: fixed;
@@ -341,5 +359,8 @@ li {
     }
     .chat-user-name {
         width: fit-content
+    }
+    .chat-img {
+        top: 202px;
     }
 }

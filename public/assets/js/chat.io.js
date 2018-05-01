@@ -32,10 +32,19 @@ function get(url, successCallBack, errorCallback) {
     });
 }
 
-function createMessageElement(message, userID){
-    $('#msg-body').prepend(`<div id="chat-div-${userID}" class="chat-receiver-div">
+function createMessageElement(message, username, userID){
+   /*  $('#msg-body').prepend(`<div id="chat-div-${userID}" class="chat-receiver-div">
         <p id="chat-p-${userID}"  class="chat-receiver">${message}</p>
         </div>`
+    ) */
+    $('#msg-body').prepend(`<div id="chat-div-${userID}" class="chat-receiver-div">
+                     <p id="chat-p-${userID}" class="chat-receiver">
+                        <span id="chat-user-${userID}">${username} : </span>
+                        <br>
+                         ${message}
+                    <span id="chat-img-${userID}" class="chat-img" style='background-image: url(/assets/img/user3-128x128.jpg);'></span>
+                    </p>
+                </div>`
     )
 }
 
@@ -89,7 +98,10 @@ const sendMessage = () => {
                 socket: socket.id,
                 message: trimedMessage
             });
-            socket.emit('chat reciever', trimedMessage);
+            socket.emit('chat reciever', {
+                user : localStorage.getItem('username'),
+                message : trimedMessage
+            });
             $("#send-msg").val("")
         },(data, status) => {
             console.log(data)
@@ -105,22 +117,34 @@ const testMessage = () => {
 
     document.querySelector("#send-msg").addEventListener('keypress', (e) => {
         if (e.keyCode == 13) {
+            setInterval(() => {
+                $("#sent-chats").scrollTop($("#sent-chats")[0].scrollHeight);            
+            }, 1000);
             sendMessage();
         }
     })
 
     socket.on('chat sender', (msg) => {
+        $(`#msg-body`).fadeIn("slow", function () {
         $('#msg-body').append(`<div class="chat-sender-div">
         <p class="chat-sender">${msg.message}</p>
         </div>`);
+        })
         console.log(msg)
     });
 
-    socket.on('chat reciever', (msg) => {
-        $('#msg-body').append(`<div class="chat-receiver-div">
-                    <p class="chat-receiver">${msg}</p>
-                </div>`);
-        console.log(msg)
+    socket.on('chat reciever', (data) => {
+        $(`#msg-body`).fadeIn("slow", function () {
+            $('#msg-body').append(`<div class="chat-receiver-div">
+                         <p class="chat-receiver">
+                            <span>${data.user} : </span>
+                            <br>
+                              ${data.message}
+                        <span class="chat-img" style='background-image: url(/assets/img/user3-128x128.jpg);'></span>
+                        </p>
+                    </div>`);
+        })
+        console.log(data)
     });
 }
 
@@ -129,15 +153,20 @@ function fetchMessage(){
         link = hrefLink.split('.')[0],
         userId = hrefLink.split('.')[1]; 
     get(`/chat/message/${link}`, (data, status) => {
+        
         console.log(data)
         data.forEach(element => {
-            createMessageElement(element.message, element.user_id)
-            if(element.user_id === userId){
-                $(`#chat-p-${element.user_id}`).addClass('chat-sender')
-                $(`#chat-div-${element.user_id}`).addClass('chat-sender-div')
-                $(`#chat-div-${element.user_id}`).removeClass('chat-receiver-div')
-                $(`#chat-p-${element.user_id}`).removeClass('chat-receiver')
-            }
+            get(`/api/users/${element.user_id}`, (data, status) => {
+                createMessageElement(element.message, data.username, element.user_id)
+                if(element.user_id === userId){
+                    $(`#chat-user-${element.user_id}`).remove();
+                    $(`#chat-img-${element.user_id}`).remove();
+                    $(`#chat-p-${element.user_id}`).addClass('chat-sender')
+                    $(`#chat-div-${element.user_id}`).addClass('chat-sender-div')
+                    $(`#chat-div-${element.user_id}`).removeClass('chat-receiver-div')
+                    $(`#chat-p-${element.user_id}`).removeClass('chat-receiver')
+                }
+            });
         });
     })
 }
