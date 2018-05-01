@@ -3,14 +3,8 @@
     "version": "1.0.0",
     "description": "Event managment software",
     "main": "app.js",
-    "directories": {
-        "doc": "docs",
-        "example": "examples"
-    },
     "scripts": {
-        "start": "node app.js",
-        "test": "mocha",
-        "postinstall": "bower install && grunt build"
+        "start": "node app.js"
     },
     "author": "codeekage",
     "license": "MIT",
@@ -36,15 +30,6 @@
         "passport-local": "^1.0.0",
         "popper.js": "^1.14.3",
         "socket.io": "^2.1.0"
-    },
-    "devDependencies": {
-        "gulp": "^3.9.1",
-        "gulp-autoprefixer": "^4.1.0",
-        "gulp-clean": "^0.3.2",
-        "gulp-install": "^1.1.0",
-        "gulp-open": "^2.1.0",
-        "gulp-sass": "^3.1.0",
-        "gulp-sourcemaps": "^2.6.3"
     },
     "engines": {
         "node": "8.10.0",
