@@ -7,6 +7,7 @@ const express = require("express"),
     SpeakerModel = require("../models/speaker.model"),
     AttendeeModel = require("../models/attendee.model"),
     UserModel = require("../models/users.model"),
+    ChatModel = require("../models/chat.model"),
     jwt = require('jsonwebtoken');
 
 routes.get('/chat/:link', ensureAuth, (req, res, next) => {
@@ -37,6 +38,18 @@ routes.get('/api/attendee', (req, res, next) => {
     }).catch(next)
 })
 
+
+routes.post('/chat/message', (req, res, next) =>{
+    ChatModel.create(req.body).then((chat) => {
+        res.send(chat)
+    }).catch(next);
+})
+
+routes.get('/chat/message/:link', (req, res, next) =>{
+    ChatModel.find({}).then((chat) => {
+        res.send(chat)
+    }).catch(next);
+});
 
 function getChatsData(link, req, res, next) {
     EventModel.findOne({ evt_link: link }).then((event) => {

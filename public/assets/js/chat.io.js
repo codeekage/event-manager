@@ -1,6 +1,7 @@
 //INIT SOCKET
 const socket = io.connect();
-let chatBody = document.querySelector('#msg-body')
+let chatBody = document.querySelector('#msg-body'),
+    link = location.href.split('/')[4];
 
 
 
@@ -34,11 +35,36 @@ const newConnection = () => {
     });
 
 }
+
+const post = (url, data, callback) => {
+    $.ajax({
+        url : urrl,
+        method :  "POST",
+        data : JSON.stringify(data),
+        success : (data, status) => {
+            return callback(data, status)
+        },
+        error: (data, status) => {
+            return callback = () => {
+                console.log("ERROR OCCURED!");
+            }
+        }
+    })
+}
+
+
+
 const sendMessage = () => {
     let message = document.querySelector('#send-msg').value;
     if (message != "") {
         let trimedMessage = message.trim()
-
+        post('/chat/message', {
+            message : trimedMessage,
+            userid : localStorage.getItem('userid'),
+            evt_link : link
+        }, (data, status) => {
+            console.log(data);
+        })
         message = " ";
         socket.emit('chat sender', {
             socket: socket.id,
