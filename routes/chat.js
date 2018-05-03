@@ -78,6 +78,8 @@ function getChatsData(link, req, res, next) {
                                 attendee: attendee
 
                             })
+
+                            console.log(agenda, speaker)
                     }).catch(next)
                 }).catch(next)
             }).catch(next)
