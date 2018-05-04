@@ -3,7 +3,7 @@ function createContactElement(username, userid) {
     $('#contact-list').prepend(`<ul class="nav nav-stacked" id="all-contacts">
     <li class="contact-wrapper">
         <a href="#">
-            <span class="contact-img" style='background-image: url(/assets/img/user3-128x128.jpg);'></span>
+            <span class="contact-img" style='background-image: url(/assets/img/favicon.png);'></span>
             <span class="contact-name" id="user-${userid}">${username}</span>
             <br>
            <!--  <br>
