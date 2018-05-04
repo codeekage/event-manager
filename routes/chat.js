@@ -66,6 +66,7 @@ function getChatsData(link, req, res, next) {
                             res.render('chat', {
                                 layout: false,
                                 evt_name: event.evt_name,
+                                evt_link: event.evt_link,
                                 evt_venue: event.evt_venue,
                                 evt_date: event.evt_date,
                                 noti_msg: event.noti_msg,
