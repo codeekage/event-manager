@@ -140,7 +140,7 @@ const testMessage = () => {
                             <span>${data.user} : </span>
                             <br>
                               ${data.message}
-                        <span class="chat-img" style='background-image: url(/assets/img/user3-128x128.jpg);'></span>
+                        <span class="chat-img" style='background-image: url(/assets/img/favicon.png);'></span>
                         </p>
                     </div>`);
         })
@@ -160,7 +160,7 @@ function fetchMessage(){
                 createMessageElement(element.message, data.username, element.user_id)
                 if(element.user_id === userId){
                     $(`#chat-user-${element.user_id}`).remove();
-                    $(`#chat-img-${element.user_id}`).remove();
+                    $(`#chat-img-${element.user_id}`).remove()
                     $(`#chat-p-${element.user_id}`).addClass('chat-sender')
                     $(`#chat-div-${element.user_id}`).addClass('chat-sender-div')
                     $(`#chat-div-${element.user_id}`).removeClass('chat-receiver-div')
