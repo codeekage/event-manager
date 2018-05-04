@@ -42,7 +42,7 @@ function createMessageElement(message, username, userID){
                         <span id="chat-user-${userID}">${username} : </span>
                         <br>
                          ${message}
-                    <span id="chat-img-${userID}" class="chat-img" style='background-image: url(/assets/img/user3-128x128.jpg);'></span>
+                    <span id="chat-img-${userID}" class="chat-img" style='background-image: url(/assets/img/mongo.png);'></span>
                     </p>
                 </div>`
     )
