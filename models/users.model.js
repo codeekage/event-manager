@@ -8,7 +8,7 @@ const UserSchema = new Schema({
         type : String,
         required : [true, "User ID is required"],
         unique : [true, "User ID already exist"],
-        default : Math.floor(Math.random() * 111111111111) + 999999999999; 
+        default : Math.floor(Math.random() * 111111111111) + 999999999999
     },
     username : {
         type : String,
