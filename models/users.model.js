@@ -4,12 +4,12 @@ const Schema = mongoose.Schema;
 let user_id = randomString(10, "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
 
 const UserSchema = new Schema({
-    user_id : {
+    /* user_id : {
         type : String,
         required : [true, "User ID is required"],
         unique : [true, "User ID already exist"],
         default : Math.floor(Math.random() * 111111111111) + 999999999999
-    },
+    }, */
     username : {
         type : String,
         required : [true, "username must be provided"],

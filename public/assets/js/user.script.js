@@ -54,7 +54,7 @@ function signUpShowResponse(responseText, statusText, xhr, $form) {
                 console.log(responseText)
                 console.log(msg)
                let username = localStorage.setItem('username', responseText.user.username)
-                let user_id = localStorage.setItem('user_id', responseText.user.user_id)
+                let user_id = localStorage.setItem('user_id', responseText.user._id)
                 addAttendee(user_id, eventLink)
                 break;
             default:
@@ -124,8 +124,8 @@ function attendRequest() {
           localStorage.setItem('token', data.token); 
           console.log(data)
           localStorage.setItem('username', data.user.username)
-          localStorage.setItem('user_id', data.user.user_id)
-          addAttendee(data.user.user_id, link);
+          localStorage.setItem('user_id', data.user._id)
+          addAttendee(data.user._id, link);
         },
         error: showResponse,
     }

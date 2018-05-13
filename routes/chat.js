@@ -26,15 +26,15 @@ routes.get('/api/users', (req, res, next) => {
     }).catch(next)
 })
 
-routes.get('/api/users/:userid', (req, res, next) => {
-    UserModel.findOne({user_id : req.params.userid}).then((user) => {
+routes.get('/api/users/:_id', (req, res, next) => {
+    UserModel.findById({_id : req.params._id}).then((user) => {
        res.send(user)
     }).catch(next)
 })
 
 routes.get('/api/attendee', (req, res, next) => {
-    AttendeeModel.find({}).then((user) => {
-       res.send(user)
+    AttendeeModel.find({}).then((attendee) => {
+       res.send(attendee)
     }).catch(next)
 })
 

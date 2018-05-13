@@ -30,14 +30,19 @@ function get(url, callback) {
 const fetchAttendee = () => {
     let link = location.href.split('/')[4],
         evtLink = link.split('.')[0],
-        name = link.split('.')[1];
+        user = link.split('.')[1];
     get(`/api/attendee/${evtLink}`, (data, status) => {
         console.log(data)
         data.forEach(element => {
+            console.log("element", element.user_id);
+            
             get(`/api/users/${element.user_id}`, (data, status) => {
-                createContactElement(data.username, data.user_id)
-                if(data.user_id === name){
-                    $(`#user-${name}`).html("ME!");
+                console.log("user data: ");
+                console.log(data);
+                
+                createContactElement(data.username, data._id)
+                if(data._id === user){
+                    $(`#user-${user}`).html("ME!");
                 }
             });
         });
